@@ -56,6 +56,24 @@ program define impa
 	local codesystems = strtrim("`codesystems'"))
 	local num_codesystems : word count `codesystems'
 	tokenize "`codesystems'", parse(",")
+	
+	// Parse searchvars to identify variables to search
+	local searchvars = strtrim("`searchvars'")
+	local num_searchvars : word count `searchvars'
+	tokenize "`searchvars'", parse(",")
+	
+	// Combine all vars listed in searchvars
+	local allvars = ""
+	forvalues i = 1 / `num_searchvars' {
+		local allvars = "`allvars' ``i''"
+	}
+	local allvars : list uniq allvars
+	
+	// Throw error if number of codesystems != searchvars
+	if (`num_codesystems' != `num_searchvars') {
+		
+	}
+	
 
 	// Load the definition files for only the selected code systems, for code mapping 
 	forvalues i = 1 / `num_codesystems' {
@@ -100,17 +118,7 @@ program define impa
 		
 	}
 	
-	// Parse searchvars to identify variables to search
-	local searchvars = strtrim("`searchvars'")
-	local num_searchvars : word count `searchvars'
-	tokenize "`searchvars'", parse(",")
-	
-	// Combine all vars listed in searchvars
-	local allvars = ""
-	forvalues i = 1 / `num_searchvars' {
-		local allvars = "`allvars' ``i''"
-	}
-	local allvars : list uniq allvars
+
 
 	// If '0' is specified as the number of CPU cores to use, use all available cores
 	if (`n_cores' == 0) {
