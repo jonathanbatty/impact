@@ -29,6 +29,12 @@ program define impa
 		error 498
 	}
 	
+	// If '0' is specified as the number of CPU cores to use, use all available cores
+	if (`n_cores' == 0) {
+		local `n_cores' = `c(processors)'
+		display _newline "Number of CPU cores not specified. iMPA will use all available CPU cores (`c(processors)' cores)."
+	}
+	
 	// Check if data is currently loaded into Stata
 	capture assert _N == 0
 	if _rc != 0 {
@@ -47,85 +53,100 @@ program define impa
 	// Import list of LTCs
 	quietly findfile "__ltcs.ado"
 	quietly include "`r(fn)'"
-	
-	// Initiate lookup array to store code-LTC mapping(s)
-	mata: code_lookup = asarray_create()
-	mata: asarray_notfound(code_lookup, "")	   
 		   
 	// Parse codesystems to identify which definition files to load
-	local codesystems = strtrim("`codesystems'"))
+	local codesystems = strtrim(ustrregexra("`codesystems'","[,]", ""))
 	local num_codesystems : word count `codesystems'
-	tokenize "`codesystems'", parse(",")
+	tokenize "`codesystems'"
+	
+	forvalues i = 1 / `num_codesystems' { 
+		local codesystem_`i' = "``i''"
+	}
 	
 	// Parse searchvars to identify variables to search
-	local searchvars = strtrim("`searchvars'")
+	local searchvars = strtrim(ustrregexra("`searchvars'","[,]", " "))
 	local num_searchvars : word count `searchvars'
-	tokenize "`searchvars'", parse(",")
+	tokenize "`searchvars'"
 	
 	// Combine all vars listed in searchvars
 	local allvars = ""
 	forvalues i = 1 / `num_searchvars' {
+		local searchvars_`i' = "``i''"
 		local allvars = "`allvars' ``i''"
 	}
 	local allvars : list uniq allvars
 	
 	// Throw error if number of codesystems != searchvars
 	if (`num_codesystems' != `num_searchvars') {
-		
+		display as error "Error. The number of code systems and the number of search variables must be equal."
+		error(3001)
 	}
-	
 
+	// Create local macros to store which codesystems are to be searched
+	local icd9cm = 0
+	local icd9pcs = 0
+	local icd10cm = 0
+	local icd10pcs = 0
+	local icd10 = 0
+	local opcs4 = 0
+	local medcodeid = 0
+	
 	// Load the definition files for only the selected code systems, for code mapping 
 	forvalues i = 1 / `num_codesystems' {
-		display as text _newline "Loading iMPA code definitions for: {bf:" %9s "``i''" "}"
+		display as text _newline "Loading iMPA code definitions for: {bf:" %9s "`codesystem_`i''" "}"
 		
-		if ("``i''" == "icd9cm") {
+		local codesys = "`codesystem_`i''"
+		
+		if ("`codesys'" == "icd9cm") {
+			local icd9cm = 1
 			quietly findfile "__icd9cm.ado"
 			quietly include "`r(fn)'"
 		} 
-		else if ("``i''" == "icd9pcs") {
+		else if ("`codesys'" == "icd9pcs") {
+			local icd9pcs = 1
 			quietly findfile "__icd9pcs.ado"
 			quietly include "`r(fn)'"
 		}
-		else if ("``i''" == "icd10cm") {
+		else if ("`codesys'" == "icd10cm") {
+			local icd10cm = 1
 			quietly findfile "__icd10cm.ado"
 			quietly include "`r(fn)'"
 		}
-		else if ("``i''" == "icd10pcs") {
+		else if ("`codesys'" == "icd10pcs") {
+			local icd10pcs = 1
 			quietly findfile "__icd10pcs.ado"
 			quietly include "`r(fn)'"
 		} 
-		else if ("``i''" == "icd10") {
+		else if ("`codesys'" == "icd10") {
+			local icd10 = 1
 			quietly findfile "__icd10.ado"
 			quietly include "`r(fn)'"
 		}
-		else if ("``i''" == "opcs4") {
+		else if ("`codesys'" == "opcs4") {
+			local opcs4 = 1
 			quietly findfile "__opcs4.ado"
 			quietly include "`r(fn)'"
 		}
-		else if ("``i''" == "medcodeid") {
+		else if ("`codesys'" == "medcodeid") {
+			local medcodeid = 1
 			quietly findfile "__medcodeid.ado"
 			quietly include "`r(fn)'"
 		}
 		else {
 			display as error "Error. Select one of the available code systems documented in the help file."
-			error(3300)
 			display as text "See: {stata help impa_helpfile: help impa}"
+			error(3300)	
 		}
+		
+		// Initiate lookup array to store code-LTC mapping(s) for a given codesystem
+		mata: code_lookup_`codesys' = asarray_create()
+		mata: asarray_notfound(code_lookup_`codesys', "")	   
 				
 		// Load selected coding system into associative array
-		mata: impa_load("``i''", code_lookup)
-		
+		mata: impa_load("`codesys'", code_lookup_`codesys')
 	}
 	
 
-
-	// If '0' is specified as the number of CPU cores to use, use all available cores
-	if (`n_cores' == 0) {
-		local `n_cores' = `c(processors)'
-		display _newline "Number of CPU cores not specified. iMPA will use all available CPU cores (`c(processors)' cores)."
-	}
-	
 	// Run in either single or multi-CPU mode.
 	if (`n_cores' == 1) {
 		
@@ -152,13 +173,31 @@ program define impa
 		forvalues i = 1 / `num_codesystems' {
 			
 			// Get unabbreviated list of all variables to search
-			unab vars_to_search : ``i''
+			unab vars_to_search : `searchvars_`i''
 			
 			// Loop over each variable that contains code data to be searched
 			foreach var of varlist `vars_to_search' {
-				findcodes `var' "`resultvars'" code_lookup
+				findcodes `var' "`resultvars'" code_lookup_`codesystem_`i''
 			}
 		}
+		
+		// If both ICD-9-CM and ICD-9-PCS, ICD-10-CM and ICD-PCS or ICD-10 and OPCS4 are selected,
+		// also evaluate adjunct codes and use these to make a more precise ascertainment of
+		// CKD status.
+		if (`icd9cm' == 1 & `icd9pcs' == 1) {
+			display "Using ICD-9-CM and ICD-9-PCS codes in combination to more accurately ascertain LTCs..."
+		}
+		if (`icd10cm' == 1 & `icd10pcs' == 1) {
+			display "Using ICD-10-CM and ICD-10-PCS codes in combination to more accurately ascertain LTCs..."
+		}
+		if (`icd10' == 1 & `opcs4' == 1) {
+			display "Using ICD-10 and OPCS-4 codes to more accurately ascertain LTCs..."
+		}
+		if (`medcodeid' == 1) {
+			display "Applying hierarchical medcodeid-based rules to more accurately ascertain LTCs..."
+		}
+
+		
 		
 		// Keep only ID and result variables
 		keep `id' `resultvars'
@@ -172,6 +211,14 @@ program define impa
 		
 	}
 	
+	// Delete compiled mata code files
+	erase "cf_load.mo"
+	erase "cf_find.mo"
+	
+	// Print confirmation of completion.
+	noisily display as text "Code mapping complete." _newline
+	
+	
 end
 
 // Program to execute search function on nonmissing rows of data for each variable
@@ -184,12 +231,11 @@ program define findcodes
 	markout `touse' `variable', strok
 			
 	// Find conditions
-	mata: impa_find("`variable'", "`touse'", "`resultvars'", code_lookup)
+	mata: impa_find("`variable'", "`touse'", "`resultvars'", `code_lookup')
 	
 end
 
 
 // Use codesystem-searchvar pairs to create multiple lookups (prevent clashes, etc)
-// Ensure number of arguments to codesystems == number of arguments to searchvars
 // adapt codefinder code to enable multi-CPU functionality.
 

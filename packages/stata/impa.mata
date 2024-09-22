@@ -90,10 +90,11 @@ void impa_find(string scalar varname,
 	// code.
 	n = rows(tosearch)
 	for (i = 1; i <= n; i++) { 
-		result = asarray(code_lookup, tosearch[i])
+		
+		result = asarray(code_lookup, tosearch[i])	
 				
 		if (result != "") {
-			for (j = 1; j <= rows(result); j++) {
+			for (j = 1; j <= cols(result); j++) {
 				result_var = "__" + result[j]
 				searchresults[i, asarray(resindex, result_var)] = 1
 			}
