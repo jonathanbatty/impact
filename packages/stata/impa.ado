@@ -10,6 +10,7 @@ program define impa
 		   searchvars(string)			  /// Variables to search for iMPA codes (same order as codesystems)
 	       [                              ///
 		      n_cores(integer 1)          /// Specify number of cores with which to run the mapping algorithm
+			  multimorbidity              /// Creates a number of multimorbidity-related variables
 			  summary                     /// Provides a summary of the totals of each codelist searched for
 		   ] 
 
@@ -212,12 +213,24 @@ program define impa
 	}
 	
 	// Delete compiled mata code files
-	erase "cf_load.mo"
-	erase "cf_find.mo"
+	capture erase "cf_load.mo"
+	capture erase "cf_find.mo"
 	
 	// Print confirmation of completion.
 	noisily display as text "Code mapping complete." _newline
 	
+
+	if `multimorbidity' {
+
+		// Create body system variables
+		display "MM"
+
+		// Create multimorbidity definition variables
+
+
+	}
+
+
 	
 end
 
