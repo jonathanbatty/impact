@@ -1,1 +1,5 @@
 buildfile.py
+*.stswp
+*.Rhistory
+.Rproj.user
+^.*\.Rproj$

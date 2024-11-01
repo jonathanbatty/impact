@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "impa"
+version = "0.0.1"
+authors = [
+  { name="Jonathan A. Batty", email="J.Batty@leeds.ac.uk" },
+]
+description = "A package to implement the Inclusive Multimorbidity Phenotyping Algorithm (iMPA)."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/jonathanbatty/impa"
+Issues = "https://github.com/jonathanbatty/impa/issues"

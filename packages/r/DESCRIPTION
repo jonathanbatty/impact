@@ -1,0 +1,4 @@
+Package: iMPA: the Inclusive Multimorbidity Phenotyping Algorithm
+Type: Package
+Title: Implementation of the Inclusive Multimorbidity Phenotyping Algorithm in R
+Version: 0.0.1

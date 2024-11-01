@@ -1,5 +1,5 @@
 capture program drop impa
-*! version 0.01 20 Sep 2024
+*! version 0.0.1 01 Nov 2024
 program define impa
 	version 17
 	
