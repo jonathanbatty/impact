@@ -3,3 +3,4 @@ buildfile.py
 *.Rhistory
 .Rproj.user
 ^.*\.Rproj$
+__pycache__/
