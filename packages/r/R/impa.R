@@ -1,3 +1,4 @@
+#' @export
 select_codesystem <- function(ontology){
   
   if (ontology == "icd9cm"){
