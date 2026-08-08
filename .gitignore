@@ -1,8 +1,0 @@
-buildfile.py
-*.stswp
-*.Rhistory
-.Rproj.user
-^.*\.Rproj$
-.reasonix
-.gitignore
-__pycache__/
