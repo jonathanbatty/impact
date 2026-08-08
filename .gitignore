@@ -3,4 +3,6 @@ buildfile.py
 *.Rhistory
 .Rproj.user
 ^.*\.Rproj$
+.reasonix
+.gitignore
 __pycache__/
