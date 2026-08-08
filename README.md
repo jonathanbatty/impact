@@ -1,2 +1,2 @@
-# impa
- Inclusive/individual multimorbidity phenotyping algorithm
+# impact
+Inclusive multimorbidity phenotyping algorithm and coding tool
