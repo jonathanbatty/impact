@@ -3902,10 +3902,6 @@ generate_lookup_icd9cm <- function() {
 	icd9cm[["3698"]] <- "VISU"
 	icd9cm[["3699"]] <- "VISU"
 	icd9cm[["V410"]] <- "VISU"
-	icd9cm[["4271"]] <- "VTAC"
-	icd9cm[["4274"]] <- "VTAC"
-	icd9cm[["42741"]] <- "VTAC"
-	icd9cm[["42742"]] <- "VTAC"
 	icd9cm[["4376"]] <- "VTET"
 	icd9cm[["45111"]] <- "VTET"
 	icd9cm[["45119"]] <- "VTET"
@@ -3957,6 +3953,10 @@ generate_lookup_icd9cm <- function() {
 	icd9cm[["V1255"]] <- "VTET"
 	icd9cm[["28981"]] <- "VTET"
 	icd9cm[["28982"]] <- "VTET"
+	icd9cm[["4271"]] <- "VTVF"
+	icd9cm[["4274"]] <- "VTVF"
+	icd9cm[["42741"]] <- "VTVF"
+	icd9cm[["42742"]] <- "VTVF"
 
 	invisible(icd9cm)
 }

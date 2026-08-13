@@ -2622,9 +2622,6 @@ generate_lookup_icd10 <- function() {
 	icd10[["H545"]] <- "VISU"
 	icd10[["H546"]] <- "VISU"
 	icd10[["H549"]] <- "VISU"
-	icd10[["I470"]] <- "VTAC"
-	icd10[["I472"]] <- "VTAC"
-	icd10[["I490"]] <- "VTAC"
 	icd10[["I801"]] <- "VTET"
 	icd10[["I802"]] <- "VTET"
 	icd10[["I81X"]] <- "VTET"
@@ -2641,6 +2638,9 @@ generate_lookup_icd10 <- function() {
 	icd10[["O871"]] <- "VTET"
 	icd10[["O873"]] <- "VTET"
 	icd10[["O882"]] <- "VTET"
+	icd10[["I470"]] <- "VTVF"
+	icd10[["I472"]] <- "VTVF"
+	icd10[["I490"]] <- "VTVF"
 
 	invisible(icd10)
 }

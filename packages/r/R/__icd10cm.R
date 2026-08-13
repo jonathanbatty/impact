@@ -9949,13 +9949,6 @@ generate_lookup_icd10cm <- function() {
 	icd10cm[["H5462"]] <- "VISU"
 	icd10cm[["H547"]] <- "VISU"
 	icd10cm[["H548"]] <- "VISU"
-	icd10cm[["I470"]] <- "VTAC"
-	icd10cm[["I472"]] <- "VTAC"
-	icd10cm[["I4720"]] <- "VTAC"
-	icd10cm[["I4721"]] <- "VTAC"
-	icd10cm[["I4729"]] <- "VTAC"
-	icd10cm[["I4901"]] <- "VTAC"
-	icd10cm[["I4902"]] <- "VTAC"
 	icd10cm[["I676"]] <- "VTET"
 	icd10cm[["I8010"]] <- "VTET"
 	icd10cm[["I8011"]] <- "VTET"
@@ -10175,6 +10168,13 @@ generate_lookup_icd10cm <- function() {
 	icd10cm[["D6861"]] <- "VTET"
 	icd10cm[["D6862"]] <- "VTET"
 	icd10cm[["D6869"]] <- "VTET"
+	icd10cm[["I470"]] <- "VTVF"
+	icd10cm[["I472"]] <- "VTVF"
+	icd10cm[["I4720"]] <- "VTVF"
+	icd10cm[["I4721"]] <- "VTVF"
+	icd10cm[["I4729"]] <- "VTVF"
+	icd10cm[["I4901"]] <- "VTVF"
+	icd10cm[["I4902"]] <- "VTVF"
 
 	invisible(icd10cm)
 }
