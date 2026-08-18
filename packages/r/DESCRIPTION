@@ -14,7 +14,3 @@ Encoding: UTF-8
 Depends: R (>= 3.5.0)
 NeedsCompilation: no
 RoxygenNote: 7.3.2
-Collate:
-    'lookup_utils.R'
-    'definition_loader.R'
-    'impact.R'

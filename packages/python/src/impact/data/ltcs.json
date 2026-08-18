@@ -1,0 +1,1610 @@
+{
+  "schema_version": 1,
+  "ltcs": [
+    {
+      "ltc_id": "AAAO",
+      "ltc_label": "Abdominal aortic aneurysm",
+      "phenotype_id": "AORT"
+    },
+    {
+      "ltc_id": "ACAN",
+      "ltc_label": "Acanthosis nigricans",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "ACCS",
+      "ltc_label": "Accessory conduction pathways",
+      "phenotype_id": "SVNT"
+    },
+    {
+      "ltc_id": "ACNE",
+      "ltc_label": "Acne",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "ACTI",
+      "ltc_label": "Actinic keratosis",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "ADHD",
+      "ltc_label": "Attention deficit hyperactivity disorder",
+      "phenotype_id": "ADHD"
+    },
+    {
+      "ltc_id": "ADRN",
+      "ltc_label": "Adrenal insufficiency",
+      "phenotype_id": "ADRN"
+    },
+    {
+      "ltc_id": "AFIB",
+      "ltc_label": "Atrial fibrillation and flutter",
+      "phenotype_id": "AFIB"
+    },
+    {
+      "ltc_id": "ALCO",
+      "ltc_label": "Alcohol misuse",
+      "phenotype_id": "ALCO"
+    },
+    {
+      "ltc_id": "ALOP",
+      "ltc_label": "Alopecia areata",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "ALZH",
+      "ltc_label": "Alzheimer's disease",
+      "phenotype_id": "DMNT"
+    },
+    {
+      "ltc_id": "AMYL",
+      "ltc_label": "Amyloidosis",
+      "phenotype_id": "AMYL"
+    },
+    {
+      "ltc_id": "ANEU",
+      "ltc_label": "Autonomic neuropathy and dysfunction",
+      "phenotype_id": "ANEU"
+    },
+    {
+      "ltc_id": "ANKY",
+      "ltc_label": "Ankylosing spondylitis",
+      "phenotype_id": "ANKY"
+    },
+    {
+      "ltc_id": "ANOM",
+      "ltc_label": "Anomalous coronary arteries",
+      "phenotype_id": "CONG"
+    },
+    {
+      "ltc_id": "AORE",
+      "ltc_label": "Aortic regurgitation",
+      "phenotype_id": "VALV"
+    },
+    {
+      "ltc_id": "AOST",
+      "ltc_label": "Aortic stenosis",
+      "phenotype_id": "VALV"
+    },
+    {
+      "ltc_id": "APLA",
+      "ltc_label": "Aplastic anaemia",
+      "phenotype_id": "ANAE"
+    },
+    {
+      "ltc_id": "APNE",
+      "ltc_label": "Sleep apnoea",
+      "phenotype_id": "APNE"
+    },
+    {
+      "ltc_id": "APVC",
+      "ltc_label": "Anomalous pulmonary venous  connection",
+      "phenotype_id": "CONG"
+    },
+    {
+      "ltc_id": "ARST",
+      "ltc_label": "Cardiorespiratory arrest",
+      "phenotype_id": "ARST"
+    },
+    {
+      "ltc_id": "ASDS",
+      "ltc_label": "Atrial septal defects (including patent foramen ovale)",
+      "phenotype_id": "CONG"
+    },
+    {
+      "ltc_id": "ASTH",
+      "ltc_label": "Asthma",
+      "phenotype_id": "ASTH"
+    },
+    {
+      "ltc_id": "ATRO",
+      "ltc_label": "Atrophic conditions of skin",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "AUTM",
+      "ltc_label": "Autism spectrum disorder",
+      "phenotype_id": "AUTM"
+    },
+    {
+      "ltc_id": "AVNB",
+      "ltc_label": "Atrioventricular nodal block",
+      "phenotype_id": "COND"
+    },
+    {
+      "ltc_id": "BCNS",
+      "ltc_label": "Cancer of brain and central nervous system",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "BDEF",
+      "ltc_label": "B12 deficiency anaemia",
+      "phenotype_id": "ANAE"
+    },
+    {
+      "ltc_id": "BEHC",
+      "ltc_label": "Behçet disease",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "BILI",
+      "ltc_label": "Gallstone disease",
+      "phenotype_id": "BILI"
+    },
+    {
+      "ltc_id": "BIPO",
+      "ltc_label": "Bipolar affective disorder",
+      "phenotype_id": "BIPO"
+    },
+    {
+      "ltc_id": "BLAD",
+      "ltc_label": "Bladder cancer",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "BPHP",
+      "ltc_label": "Benign prostatic hyperplasia",
+      "phenotype_id": "PROS"
+    },
+    {
+      "ltc_id": "BPPV",
+      "ltc_label": "Benign paroxysmal positional vertigo",
+      "phenotype_id": "VERT"
+    },
+    {
+      "ltc_id": "BREA",
+      "ltc_label": "Breast cancer",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "BRON",
+      "ltc_label": "Bronchiectasis",
+      "phenotype_id": "BRON"
+    },
+    {
+      "ltc_id": "BUER",
+      "ltc_label": "Buerger's disease",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "CALC",
+      "ltc_label": "Urinary calculi",
+      "phenotype_id": "CALC"
+    },
+    {
+      "ltc_id": "CANN",
+      "ltc_label": "Misuse of cannabinoids",
+      "phenotype_id": "SUBS"
+    },
+    {
+      "ltc_id": "CARI",
+      "ltc_label": "Dental caries",
+      "phenotype_id": "DENT"
+    },
+    {
+      "ltc_id": "CATA",
+      "ltc_label": "Cataract",
+      "phenotype_id": "CATA"
+    },
+    {
+      "ltc_id": "CERV",
+      "ltc_label": "Cervical cancer",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "CFTS",
+      "ltc_label": "Chronic and post-viral fatigue syndromes",
+      "phenotype_id": "CFTS"
+    },
+    {
+      "ltc_id": "CHOL",
+      "ltc_label": "Hypercholesterolaemia and lipid disorders",
+      "phenotype_id": "CHOL"
+    },
+    {
+      "ltc_id": "CIED",
+      "ltc_label": "Presence of Cardiac Implantable Electronic Device",
+      "phenotype_id": "COND"
+    },
+    {
+      "ltc_id": "CJDS",
+      "ltc_label": "Creutzfeldt-Jakob disease",
+      "phenotype_id": "NDGD"
+    },
+    {
+      "ltc_id": "CKDU",
+      "ltc_label": "Chronic kidney disease, unspecified",
+      "phenotype_id": "CKID"
+    },
+    {
+      "ltc_id": "CLOT",
+      "ltc_label": "Deep venous thrombosis",
+      "phenotype_id": "VTET"
+    },
+    {
+      "ltc_id": "CLUS",
+      "ltc_label": "Cluster headaches",
+      "phenotype_id": "HEAD"
+    },
+    {
+      "ltc_id": "CNSD",
+      "ltc_label": "Misuse of CNS depressants",
+      "phenotype_id": "SUBS"
+    },
+    {
+      "ltc_id": "CNSS",
+      "ltc_label": "Misuse of CNS stimulants",
+      "phenotype_id": "SUBS"
+    },
+    {
+      "ltc_id": "COAG",
+      "ltc_label": "Coagulopathy and bleeding diathesis",
+      "phenotype_id": "COAG"
+    },
+    {
+      "ltc_id": "COAR",
+      "ltc_label": "Coarctation of the aorta",
+      "phenotype_id": "CONG"
+    },
+    {
+      "ltc_id": "COCA",
+      "ltc_label": "Other specified congenital cardiac conditions",
+      "phenotype_id": "CONG"
+    },
+    {
+      "ltc_id": "COCU",
+      "ltc_label": "Unspecified congenital cardiac conditions",
+      "phenotype_id": "CONG"
+    },
+    {
+      "ltc_id": "COEL",
+      "ltc_label": "Coeliac disease",
+      "phenotype_id": "MALA"
+    },
+    {
+      "ltc_id": "COLO",
+      "ltc_label": "Colon, rectal and anal cancer",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "CONN",
+      "ltc_label": "Cancer of the bone and connective tissues",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "CONS",
+      "ltc_label": "Chronic constipation",
+      "phenotype_id": "CONS"
+    },
+    {
+      "ltc_id": "COPD",
+      "ltc_label": "Chronic obstructive pulmonary disease",
+      "phenotype_id": "COPD"
+    },
+    {
+      "ltc_id": "CORO",
+      "ltc_label": "Coronary artery disease",
+      "phenotype_id": "CORO"
+    },
+    {
+      "ltc_id": "CPPD",
+      "ltc_label": "Calcium pyrophosphate deposition disease",
+      "phenotype_id": "GOUT"
+    },
+    {
+      "ltc_id": "CPRO",
+      "ltc_label": "Chronic prostatitis",
+      "phenotype_id": "PROS"
+    },
+    {
+      "ltc_id": "CPTH",
+      "ltc_label": "Chronic post-traumatic headache",
+      "phenotype_id": "HEAD"
+    },
+    {
+      "ltc_id": "CROH",
+      "ltc_label": "Crohn's disease",
+      "phenotype_id": "IFBD"
+    },
+    {
+      "ltc_id": "CRUL",
+      "ltc_label": "Non-pressure-related chronic skin ulcer",
+      "phenotype_id": "ULCR"
+    },
+    {
+      "ltc_id": "CRYS",
+      "ltc_label": "Other specified crystal arthropathies",
+      "phenotype_id": "GOUT"
+    },
+    {
+      "ltc_id": "CYSF",
+      "ltc_label": "Cystic fibrosis",
+      "phenotype_id": "CYSF"
+    },
+    {
+      "ltc_id": "DEFI",
+      "ltc_label": "Micronutrient, vitamin and mineral deficiencies",
+      "phenotype_id": "DEFI"
+    },
+    {
+      "ltc_id": "DERM",
+      "ltc_label": "Chronic dermatitis",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "DEXT",
+      "ltc_label": "Dextrocardia and other cardiac malposition",
+      "phenotype_id": "CONG"
+    },
+    {
+      "ltc_id": "DISS",
+      "ltc_label": "Dissociative and conversion disorders",
+      "phenotype_id": "ANXI"
+    },
+    {
+      "ltc_id": "DIVT",
+      "ltc_label": "Diverticular disease of large intestine",
+      "phenotype_id": "DIVT"
+    },
+    {
+      "ltc_id": "DOWN",
+      "ltc_label": "Down's syndrome",
+      "phenotype_id": "CHRO"
+    },
+    {
+      "ltc_id": "DPRN",
+      "ltc_label": "Depression and chronic affective disorders",
+      "phenotype_id": "DPRN"
+    },
+    {
+      "ltc_id": "DTCH",
+      "ltc_label": "Retinal breaks and detachment",
+      "phenotype_id": "MACU"
+    },
+    {
+      "ltc_id": "EATD",
+      "ltc_label": "Eating disorders",
+      "phenotype_id": "EATD"
+    },
+    {
+      "ltc_id": "ECTO",
+      "ltc_label": "Premature depolarisation and ectopy",
+      "phenotype_id": "COND"
+    },
+    {
+      "ltc_id": "EDEN",
+      "ltc_label": "Edentulism",
+      "phenotype_id": "DENT"
+    },
+    {
+      "ltc_id": "EDHB",
+      "ltc_label": "Extradural haemorrhage",
+      "phenotype_id": "ICHM"
+    },
+    {
+      "ltc_id": "EDSH",
+      "ltc_label": "Ehlers-Danlos and hypermobility syndromes",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "EGPA",
+      "ltc_label": "Eosinophilic granulomatosis with polyangiitis",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "ENAR",
+      "ltc_label": "Enteropathic arthropathy",
+      "phenotype_id": "RHEU"
+    },
+    {
+      "ltc_id": "ENDO",
+      "ltc_label": "Endometriosis and adenomyosis",
+      "phenotype_id": "ENDO"
+    },
+    {
+      "ltc_id": "ENTP",
+      "ltc_label": "Upper limb peripheral nerve entrapment neuropathy",
+      "phenotype_id": "PNEU"
+    },
+    {
+      "ltc_id": "EPIL",
+      "ltc_label": "Epilepsy",
+      "phenotype_id": "EPIL"
+    },
+    {
+      "ltc_id": "EREC",
+      "ltc_label": "Erectile dysfunction",
+      "phenotype_id": "EREC"
+    },
+    {
+      "ltc_id": "ESRD",
+      "ltc_label": "End-stage renal disease",
+      "phenotype_id": "CKID"
+    },
+    {
+      "ltc_id": "FAEC",
+      "ltc_label": "Faecal incontinence",
+      "phenotype_id": "INCO"
+    },
+    {
+      "ltc_id": "FBBB",
+      "ltc_label": "Fascicular and bundle branch block",
+      "phenotype_id": "COND"
+    },
+    {
+      "ltc_id": "FEMA",
+      "ltc_label": "Cancer of other female genital organs",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "FIBR",
+      "ltc_label": "Uterine fibroids",
+      "phenotype_id": "FIBR"
+    },
+    {
+      "ltc_id": "FIMD",
+      "ltc_label": "Fibromuscular dysplasia",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "FISS",
+      "ltc_label": "Anal fissure",
+      "phenotype_id": "LGID"
+    },
+    {
+      "ltc_id": "FIST",
+      "ltc_label": "Anorectal fistula",
+      "phenotype_id": "LGID"
+    },
+    {
+      "ltc_id": "FMYA",
+      "ltc_label": "Fibromyalgia",
+      "phenotype_id": "FMYA"
+    },
+    {
+      "ltc_id": "FOLA",
+      "ltc_label": "Folate deficiency anaemia",
+      "phenotype_id": "ANAE"
+    },
+    {
+      "ltc_id": "FOLL",
+      "ltc_label": "Chronic folliculitis",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "FPOP",
+      "ltc_label": "Female pelvic organ prolapse",
+      "phenotype_id": "FPOP"
+    },
+    {
+      "ltc_id": "FTDP",
+      "ltc_label": "Frontotemporal dementia (Pick's disease)",
+      "phenotype_id": "DMNT"
+    },
+    {
+      "ltc_id": "GAND",
+      "ltc_label": "Generalised anxiety",
+      "phenotype_id": "ANXI"
+    },
+    {
+      "ltc_id": "GCAR",
+      "ltc_label": "Giant cell arteritis",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "GICA",
+      "ltc_label": "Cancer of other gastrointestinal organs and peritoneum",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "GLAU",
+      "ltc_label": "Glaucoma",
+      "phenotype_id": "GLAU"
+    },
+    {
+      "ltc_id": "GOOD",
+      "ltc_label": "Goodpasture's syndrome",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "GPAW",
+      "ltc_label": "Granulomatosis with polyangiitis",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "GRAN",
+      "ltc_label": "Granulomatous skin disease",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "HALU",
+      "ltc_label": "Misuse of hallucinogens",
+      "phenotype_id": "SUBS"
+    },
+    {
+      "ltc_id": "HARM",
+      "ltc_label": "Self-harm and suicidal ideation",
+      "phenotype_id": "HARM"
+    },
+    {
+      "ltc_id": "HEFA",
+      "ltc_label": "Heart failure",
+      "phenotype_id": "HFCM"
+    },
+    {
+      "ltc_id": "HEMM",
+      "ltc_label": "Haemorrhoids",
+      "phenotype_id": "LGID"
+    },
+    {
+      "ltc_id": "HEMO",
+      "ltc_label": "Haemolytic anaemia",
+      "phenotype_id": "ANAE"
+    },
+    {
+      "ltc_id": "HENE",
+      "ltc_label": "Head and neck cancer",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "HEPB",
+      "ltc_label": "Chronic viral hepatitis B",
+      "phenotype_id": "HBCV"
+    },
+    {
+      "ltc_id": "HEPC",
+      "ltc_label": "Chronic viral hepatitis C",
+      "phenotype_id": "HBCV"
+    },
+    {
+      "ltc_id": "HEPU",
+      "ltc_label": "Other and unspecified chronic viral hepatitis",
+      "phenotype_id": "HBCV"
+    },
+    {
+      "ltc_id": "HERN",
+      "ltc_label": "Abdominal wall hernia",
+      "phenotype_id": "HERN"
+    },
+    {
+      "ltc_id": "HIAT",
+      "ltc_label": "Hiatus and other diaphragmatic hernia",
+      "phenotype_id": "HIAT"
+    },
+    {
+      "ltc_id": "HIVA",
+      "ltc_label": "HIV/AIDS",
+      "phenotype_id": "HIVA"
+    },
+    {
+      "ltc_id": "HLOS",
+      "ltc_label": "Hearing loss and deafness",
+      "phenotype_id": "HLOS"
+    },
+    {
+      "ltc_id": "HLYM",
+      "ltc_label": "Hodgkin's lymphoma",
+      "phenotype_id": "HAEM"
+    },
+    {
+      "ltc_id": "HOCM",
+      "ltc_label": "Hypertrophic (obstructive)  cardiomyopathy",
+      "phenotype_id": "HFCM"
+    },
+    {
+      "ltc_id": "HPTH",
+      "ltc_label": "Hyperparathyroidism",
+      "phenotype_id": "HPTH"
+    },
+    {
+      "ltc_id": "HTCM",
+      "ltc_label": "Hypertensive cardiomyopathy",
+      "phenotype_id": "HFCM"
+    },
+    {
+      "ltc_id": "HUNT",
+      "ltc_label": "Huntington disease",
+      "phenotype_id": "NDGD"
+    },
+    {
+      "ltc_id": "HYTN",
+      "ltc_label": "Hypertension",
+      "phenotype_id": "HYTN"
+    },
+    {
+      "ltc_id": "ICEB",
+      "ltc_label": "Intracerebral haemorrhage",
+      "phenotype_id": "ICHM"
+    },
+    {
+      "ltc_id": "IDIH",
+      "ltc_label": "Idiopathic intracranial hypertension",
+      "phenotype_id": "HEAD"
+    },
+    {
+      "ltc_id": "IGAV",
+      "ltc_label": "IgA vasculitis",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "ILDS",
+      "ltc_label": "Interstitial lung disease",
+      "phenotype_id": "ILDS"
+    },
+    {
+      "ltc_id": "IMPD",
+      "ltc_label": "Malignant immunoproliferative diseases",
+      "phenotype_id": "HAEM"
+    },
+    {
+      "ltc_id": "INHA",
+      "ltc_label": "Misuse of inhalants (volatile solvents)",
+      "phenotype_id": "SUBS"
+    },
+    {
+      "ltc_id": "IRBS",
+      "ltc_label": "Irritable bowel syndrome",
+      "phenotype_id": "IRBS"
+    },
+    {
+      "ltc_id": "IRON",
+      "ltc_label": "Iron deficiency anaemia",
+      "phenotype_id": "ANAE"
+    },
+    {
+      "ltc_id": "ISCM",
+      "ltc_label": "Ischaemic cardiomyopathy",
+      "phenotype_id": "HFCM"
+    },
+    {
+      "ltc_id": "KAWA",
+      "ltc_label": "Kawasaki syndrome",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "KERA",
+      "ltc_label": "Keratoderma",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "KLIN",
+      "ltc_label": "Klinefelter syndrome",
+      "phenotype_id": "CHRO"
+    },
+    {
+      "ltc_id": "LABY",
+      "ltc_label": "Related labyrinthine disorders",
+      "phenotype_id": "VERT"
+    },
+    {
+      "ltc_id": "LEAR",
+      "ltc_label": "Learning disability",
+      "phenotype_id": "LEAR"
+    },
+    {
+      "ltc_id": "LEUK",
+      "ltc_label": "Leukaemia",
+      "phenotype_id": "HAEM"
+    },
+    {
+      "ltc_id": "LIVE",
+      "ltc_label": "Liver and intrahepatic bile duct cancer",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "LIVR",
+      "ltc_label": "Chronic liver disease",
+      "phenotype_id": "LIVR"
+    },
+    {
+      "ltc_id": "LUNG",
+      "ltc_label": "Lung and bronchus cancers",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "LUPU",
+      "ltc_label": "Systematic lupus erythematosus",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "LYMP",
+      "ltc_label": "Lymphoedema",
+      "phenotype_id": "LYMP"
+    },
+    {
+      "ltc_id": "MALE",
+      "ltc_label": "Cancer of other male genital organs",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "MALN",
+      "ltc_label": "Abnormal weight loss, low body weight or malnutrition",
+      "phenotype_id": "MALN"
+    },
+    {
+      "ltc_id": "MELA",
+      "ltc_label": "Melanoma of skin",
+      "phenotype_id": "MELA"
+    },
+    {
+      "ltc_id": "MENI",
+      "ltc_label": "Ménière's disease",
+      "phenotype_id": "VERT"
+    },
+    {
+      "ltc_id": "MERA",
+      "ltc_label": "Meralgia paresthetica",
+      "phenotype_id": "PNEU"
+    },
+    {
+      "ltc_id": "MIGR",
+      "ltc_label": "Migraine",
+      "phenotype_id": "HEAD"
+    },
+    {
+      "ltc_id": "MIRE",
+      "ltc_label": "Mitral regurgitation",
+      "phenotype_id": "VALV"
+    },
+    {
+      "ltc_id": "MIST",
+      "ltc_label": "Mitral stenosis",
+      "phenotype_id": "VALV"
+    },
+    {
+      "ltc_id": "MIXD",
+      "ltc_label": "Mixed connective tissue disease",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "MOND",
+      "ltc_label": "Motor neuron disease",
+      "phenotype_id": "MNDS"
+    },
+    {
+      "ltc_id": "MPDS",
+      "ltc_label": "Myeloproliferative disorders",
+      "phenotype_id": "MYLO"
+    },
+    {
+      "ltc_id": "MULT",
+      "ltc_label": "Multiple sclerosis",
+      "phenotype_id": "MULT"
+    },
+    {
+      "ltc_id": "MYAS",
+      "ltc_label": "Myasthenia gravis",
+      "phenotype_id": "MYAS"
+    },
+    {
+      "ltc_id": "MYDS",
+      "ltc_label": "Myelodysplastic syndromes",
+      "phenotype_id": "MYLO"
+    },
+    {
+      "ltc_id": "MYEL",
+      "ltc_label": "Myeloma and plasma cell neoplasia",
+      "phenotype_id": "HAEM"
+    },
+    {
+      "ltc_id": "MYOS",
+      "ltc_label": "Dermatomyositis and polymyositis",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "NLYM",
+      "ltc_label": "Non-Hodgkin's lymphoma",
+      "phenotype_id": "HAEM"
+    },
+    {
+      "ltc_id": "NPTY",
+      "ltc_label": "Generalised and unspecified neuropathy",
+      "phenotype_id": "PNEU"
+    },
+    {
+      "ltc_id": "NSMI",
+      "ltc_label": "Non-ST-elevation myocardial infarction",
+      "phenotype_id": "ACSN"
+    },
+    {
+      "ltc_id": "OAAO",
+      "ltc_label": "Other or unspecified aortic aneurysm",
+      "phenotype_id": "AORT"
+    },
+    {
+      "ltc_id": "OAES",
+      "ltc_label": "Osteoarthritis (excluding spine)",
+      "phenotype_id": "OSTE"
+    },
+    {
+      "ltc_id": "OBCD",
+      "ltc_label": "Obsessive compulsive disorder",
+      "phenotype_id": "OBCD"
+    },
+    {
+      "ltc_id": "OBES",
+      "ltc_label": "Obesity",
+      "phenotype_id": "OBES"
+    },
+    {
+      "ltc_id": "OCMP",
+      "ltc_label": "Other specified cardiomyopathy",
+      "phenotype_id": "HFCM"
+    },
+    {
+      "ltc_id": "OCOL",
+      "ltc_label": "Indeterminate and other specified colitis",
+      "phenotype_id": "IFBD"
+    },
+    {
+      "ltc_id": "OCON",
+      "ltc_label": "Other specified conduction system abnormalities",
+      "phenotype_id": "COND"
+    },
+    {
+      "ltc_id": "OCSC",
+      "ltc_label": "Other chronic skin conditions",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "OCTD",
+      "ltc_label": "Other connective tissue disease",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "ODEM",
+      "ltc_label": "Dementia of other specified aetiology",
+      "phenotype_id": "DMNT"
+    },
+    {
+      "ltc_id": "OESO",
+      "ltc_label": "Oesophageal cancer",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "OHEA",
+      "ltc_label": "Other specified episodic or chronic headache syndrome",
+      "phenotype_id": "HEAD"
+    },
+    {
+      "ltc_id": "OHEM",
+      "ltc_label": "Other specified haematological malignancy",
+      "phenotype_id": "HAEM"
+    },
+    {
+      "ltc_id": "OMAL",
+      "ltc_label": "Other specified malabsorption",
+      "phenotype_id": "MALA"
+    },
+    {
+      "ltc_id": "OPOM",
+      "ltc_label": "Osteoporosis and osteomalacia",
+      "phenotype_id": "OPOM"
+    },
+    {
+      "ltc_id": "OPRI",
+      "ltc_label": "Other forms of cancer (including cancer of unknown primary)",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "OPUD",
+      "ltc_label": "Misuse of opioids",
+      "phenotype_id": "SUBS"
+    },
+    {
+      "ltc_id": "OTAN",
+      "ltc_label": "Other specified forms of anaemia",
+      "phenotype_id": "ANAE"
+    },
+    {
+      "ltc_id": "OTAR",
+      "ltc_label": "Other inflammatory and multisystem polyarthropathies",
+      "phenotype_id": "RHEU"
+    },
+    {
+      "ltc_id": "OTAX",
+      "ltc_label": "Other specified forms of anxiety",
+      "phenotype_id": "ANXI"
+    },
+    {
+      "ltc_id": "OTDM",
+      "ltc_label": "Other specified diabetes mellitus",
+      "phenotype_id": "DIAB"
+    },
+    {
+      "ltc_id": "OURT",
+      "ltc_label": "Other chronic upper respiratory tract issues",
+      "phenotype_id": "URTS"
+    },
+    {
+      "ltc_id": "OVAR",
+      "ltc_label": "Ovarian cancer",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "OVAS",
+      "ltc_label": "Other vasculitis",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "PADL",
+      "ltc_label": "Peripheral arterial disease",
+      "phenotype_id": "ARTD"
+    },
+    {
+      "ltc_id": "PADM",
+      "ltc_label": "Mesenteric arterial disease",
+      "phenotype_id": "ARTD"
+    },
+    {
+      "ltc_id": "PADR",
+      "ltc_label": "Renal arterial disease",
+      "phenotype_id": "ARTD"
+    },
+    {
+      "ltc_id": "PADU",
+      "ltc_label": "Unspecified arterial disease",
+      "phenotype_id": "ARTD"
+    },
+    {
+      "ltc_id": "PANC",
+      "ltc_label": "Chronic pancreatitis",
+      "phenotype_id": "PANC"
+    },
+    {
+      "ltc_id": "PANO",
+      "ltc_label": "Polyarteritis nodosa",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "PANR",
+      "ltc_label": "Pancreatic cancer",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "PARD",
+      "ltc_label": "Parkinson's disease",
+      "phenotype_id": "PARK"
+    },
+    {
+      "ltc_id": "PCOS",
+      "ltc_label": "Polycystic ovarian syndrome",
+      "phenotype_id": "PCOS"
+    },
+    {
+      "ltc_id": "PDAR",
+      "ltc_label": "Patent ductus arteriosus",
+      "phenotype_id": "CONG"
+    },
+    {
+      "ltc_id": "PDPL",
+      "ltc_label": "Atypical parkinsonian disorders",
+      "phenotype_id": "PARK"
+    },
+    {
+      "ltc_id": "PEMB",
+      "ltc_label": "Pulmonary embolism",
+      "phenotype_id": "VTET"
+    },
+    {
+      "ltc_id": "PEMP",
+      "ltc_label": "Pemphigus, pemphigoid and other bullous conditions",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "PERI",
+      "ltc_label": "Periodontal disease",
+      "phenotype_id": "DENT"
+    },
+    {
+      "ltc_id": "PERS",
+      "ltc_label": "Personality disorder",
+      "phenotype_id": "PERS"
+    },
+    {
+      "ltc_id": "PHOB",
+      "ltc_label": "Phobias",
+      "phenotype_id": "ANXI"
+    },
+    {
+      "ltc_id": "PHTN",
+      "ltc_label": "Pulmonary hypertension",
+      "phenotype_id": "PHTN"
+    },
+    {
+      "ltc_id": "PILO",
+      "ltc_label": "Pilonidal sinus",
+      "phenotype_id": "LGID"
+    },
+    {
+      "ltc_id": "PLSY",
+      "ltc_label": "Cerebral palsy",
+      "phenotype_id": "PLSY"
+    },
+    {
+      "ltc_id": "PMLE",
+      "ltc_label": "Progressive multifocal leukoencephalopathy",
+      "phenotype_id": "NDGD"
+    },
+    {
+      "ltc_id": "PMRH",
+      "ltc_label": "Polymyalgia rheumatica",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "POSU",
+      "ltc_label": "Postsurgical malabsorption",
+      "phenotype_id": "MALA"
+    },
+    {
+      "ltc_id": "PRES",
+      "ltc_label": "Decubitus and pressure ulcer",
+      "phenotype_id": "ULCR"
+    },
+    {
+      "ltc_id": "PROL",
+      "ltc_label": "Anal and rectal prolapse",
+      "phenotype_id": "LGID"
+    },
+    {
+      "ltc_id": "PROT",
+      "ltc_label": "Prostate cancer",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "PSAR",
+      "ltc_label": "Psoriatic arthropathy",
+      "phenotype_id": "RHEU"
+    },
+    {
+      "ltc_id": "PSOR",
+      "ltc_label": "Psoriasis",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "PSQU",
+      "ltc_label": "Papulosquamous conditions",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "PTSD",
+      "ltc_label": "Post-traumatic stress disorder",
+      "phenotype_id": "PTSD"
+    },
+    {
+      "ltc_id": "PULD",
+      "ltc_label": "Peptic ulcer disease",
+      "phenotype_id": "PULD"
+    },
+    {
+      "ltc_id": "PURE",
+      "ltc_label": "Pulmonary regurgitation",
+      "phenotype_id": "VALV"
+    },
+    {
+      "ltc_id": "PUST",
+      "ltc_label": "Pulmonary stenosis",
+      "phenotype_id": "VALV"
+    },
+    {
+      "ltc_id": "RAOC",
+      "ltc_label": "Retinal artery occlusion",
+      "phenotype_id": "RVOC"
+    },
+    {
+      "ltc_id": "RAYN",
+      "ltc_label": "Raynaud's phenomenon",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "REAR",
+      "ltc_label": "Reactive and post-infectious arthropathy",
+      "phenotype_id": "RHEU"
+    },
+    {
+      "ltc_id": "REFL",
+      "ltc_label": "Chronic dyspepsia, gastritis, and reflux disease",
+      "phenotype_id": "REFL"
+    },
+    {
+      "ltc_id": "RENA",
+      "ltc_label": "Renal cancer",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "REST",
+      "ltc_label": "Restless leg syndrome",
+      "phenotype_id": "REST"
+    },
+    {
+      "ltc_id": "RETI",
+      "ltc_label": "Retinopathy",
+      "phenotype_id": "MACU"
+    },
+    {
+      "ltc_id": "RHAR",
+      "ltc_label": "Rheumatoid arthritis",
+      "phenotype_id": "RHEU"
+    },
+    {
+      "ltc_id": "RHIN",
+      "ltc_label": "Chronic rhinitis",
+      "phenotype_id": "URTS"
+    },
+    {
+      "ltc_id": "ROSA",
+      "ltc_label": "Rosacea",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "RVEC",
+      "ltc_label": "Retinal vein occlusion",
+      "phenotype_id": "RVOC"
+    },
+    {
+      "ltc_id": "RVUN",
+      "ltc_label": "Unspecified retinal vascular occlusion",
+      "phenotype_id": "RVOC"
+    },
+    {
+      "ltc_id": "SAHB",
+      "ltc_label": "Subarachnoid haemorrhage",
+      "phenotype_id": "ICHM"
+    },
+    {
+      "ltc_id": "SAND",
+      "ltc_label": "Sinoatrial node dysfunction",
+      "phenotype_id": "COND"
+    },
+    {
+      "ltc_id": "SARC",
+      "ltc_label": "Sarcoidosis",
+      "phenotype_id": "SARC"
+    },
+    {
+      "ltc_id": "SCAN",
+      "ltc_label": "Non-melanoma skin cancer",
+      "phenotype_id": "SCAN"
+    },
+    {
+      "ltc_id": "SCIZ",
+      "ltc_label": "Schizophrenia, schizotypal, psychotic and delusional disorders",
+      "phenotype_id": "SCIZ"
+    },
+    {
+      "ltc_id": "SCTD",
+      "ltc_label": "Cutaneous lupus, connective tissue and vasculitic disorders",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "SDHB",
+      "ltc_label": "Subdural haemorrhage",
+      "phenotype_id": "ICHM"
+    },
+    {
+      "ltc_id": "SEBO",
+      "ltc_label": "Seborrhoeic dermatitis",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "SECO",
+      "ltc_label": "Secondary (metastatic) cancer",
+      "phenotype_id": "SECO"
+    },
+    {
+      "ltc_id": "SICA",
+      "ltc_label": "Sickle cell anaemia",
+      "phenotype_id": "ANAE"
+    },
+    {
+      "ltc_id": "SICT",
+      "ltc_label": "Sickle cell trait",
+      "phenotype_id": "ANAE"
+    },
+    {
+      "ltc_id": "SINU",
+      "ltc_label": "Chronic sinusitis",
+      "phenotype_id": "URTS"
+    },
+    {
+      "ltc_id": "SJOG",
+      "ltc_label": "Sjögren's syndrome",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "SMAT",
+      "ltc_label": "Spinal muscular atrophy",
+      "phenotype_id": "MNDS"
+    },
+    {
+      "ltc_id": "SOMA",
+      "ltc_label": "Somatoform disorders",
+      "phenotype_id": "ANXI"
+    },
+    {
+      "ltc_id": "SPBI",
+      "ltc_label": "Spina bifida and neural tube defects",
+      "phenotype_id": "SPBI"
+    },
+    {
+      "ltc_id": "SPON",
+      "ltc_label": "Spondylosis and osteoarthritis of the spine",
+      "phenotype_id": "OSTE"
+    },
+    {
+      "ltc_id": "STEA",
+      "ltc_label": "Exocrine pancreas insufficiency",
+      "phenotype_id": "MALA"
+    },
+    {
+      "ltc_id": "STKE",
+      "ltc_label": "Stroke (cerebral infarction)",
+      "phenotype_id": "STRO"
+    },
+    {
+      "ltc_id": "STMI",
+      "ltc_label": "ST-elevation myocardial infarction",
+      "phenotype_id": "ACSN"
+    },
+    {
+      "ltc_id": "STOM",
+      "ltc_label": "Stomach cancer",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "SUBD",
+      "ltc_label": "Dementia due to substance misuse (including alcohol)",
+      "phenotype_id": "DMNT"
+    },
+    {
+      "ltc_id": "SVTS",
+      "ltc_label": "AVNRT, AVRT and AT",
+      "phenotype_id": "SVNT"
+    },
+    {
+      "ltc_id": "SYSC",
+      "ltc_label": "Systemic sclerosis",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "T1DM",
+      "ltc_label": "Type 1 diabetes mellitus",
+      "phenotype_id": "DIAB"
+    },
+    {
+      "ltc_id": "T2DM",
+      "ltc_label": "Type 2 diabetes mellitus",
+      "phenotype_id": "DIAB"
+    },
+    {
+      "ltc_id": "TAAO",
+      "ltc_label": "Thoracic aortic aneurysm",
+      "phenotype_id": "AORT"
+    },
+    {
+      "ltc_id": "TAKA",
+      "ltc_label": "Takayasu's arteritis",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "TENS",
+      "ltc_label": "Episodic or chronic tension headache",
+      "phenotype_id": "HEAD"
+    },
+    {
+      "ltc_id": "TEST",
+      "ltc_label": "Testicular cancer",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "TETR",
+      "ltc_label": "Tetralogy of Fallot",
+      "phenotype_id": "CONG"
+    },
+    {
+      "ltc_id": "THLA",
+      "ltc_label": "Thalassaemia",
+      "phenotype_id": "ANAE"
+    },
+    {
+      "ltc_id": "THLT",
+      "ltc_label": "Thalassaemia trait",
+      "phenotype_id": "ANAE"
+    },
+    {
+      "ltc_id": "THOR",
+      "ltc_label": "Other respiratory and intrathoracic cancers",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "THRO",
+      "ltc_label": "Thyroid cancer",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "THYR",
+      "ltc_label": "Thyroid disorders",
+      "phenotype_id": "THYR"
+    },
+    {
+      "ltc_id": "TIAS",
+      "ltc_label": "Transient cerebrovascular ischaemia",
+      "phenotype_id": "STRO"
+    },
+    {
+      "ltc_id": "TINN",
+      "ltc_label": "Chronic tinnitus",
+      "phenotype_id": "TINN"
+    },
+    {
+      "ltc_id": "TMJD",
+      "ltc_label": "Temporomandibular joint pain and dysfunction",
+      "phenotype_id": "DENT"
+    },
+    {
+      "ltc_id": "TPIA",
+      "ltc_label": "Thrombophilia and other hypercoagulable states",
+      "phenotype_id": "VTET"
+    },
+    {
+      "ltc_id": "TRAN",
+      "ltc_label": "Transposition of the great vessels",
+      "phenotype_id": "CONG"
+    },
+    {
+      "ltc_id": "TREM",
+      "ltc_label": "Essential tremor",
+      "phenotype_id": "TREM"
+    },
+    {
+      "ltc_id": "TRIA",
+      "ltc_label": "Cor triatrium",
+      "phenotype_id": "CONG"
+    },
+    {
+      "ltc_id": "TRRE",
+      "ltc_label": "Tricuspid regurgitation",
+      "phenotype_id": "VALV"
+    },
+    {
+      "ltc_id": "TRST",
+      "ltc_label": "Tricuspid stenosis",
+      "phenotype_id": "VALV"
+    },
+    {
+      "ltc_id": "TRUN",
+      "ltc_label": "Persistent truncus arteriosus",
+      "phenotype_id": "CONG"
+    },
+    {
+      "ltc_id": "TUBE",
+      "ltc_label": "Tuberculosis",
+      "phenotype_id": "TUBE"
+    },
+    {
+      "ltc_id": "TURN",
+      "ltc_label": "Turner's syndrome",
+      "phenotype_id": "CHRO"
+    },
+    {
+      "ltc_id": "UACS",
+      "ltc_label": "Unspecified acute coronary syndrome",
+      "phenotype_id": "ACSN"
+    },
+    {
+      "ltc_id": "UCMP",
+      "ltc_label": "Unspecified cardiomyopathy",
+      "phenotype_id": "HFCM"
+    },
+    {
+      "ltc_id": "UCOL",
+      "ltc_label": "Ulcerative colitis",
+      "phenotype_id": "IFBD"
+    },
+    {
+      "ltc_id": "UCON",
+      "ltc_label": "Unspecified conduction system disease and arrhythmia",
+      "phenotype_id": "COND"
+    },
+    {
+      "ltc_id": "UCRY",
+      "ltc_label": "Unspecified crystal arthropathies",
+      "phenotype_id": "GOUT"
+    },
+    {
+      "ltc_id": "UCSC",
+      "ltc_label": "Unspecified chronic skin conditions",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "UCTD",
+      "ltc_label": "Unspecified connective tissue disease and vasculitis",
+      "phenotype_id": "CTDS"
+    },
+    {
+      "ltc_id": "UCVD",
+      "ltc_label": "Unspecified cerebrovascular disease",
+      "phenotype_id": "STRO"
+    },
+    {
+      "ltc_id": "UDEM",
+      "ltc_label": "Dementia of unspecified aetiology",
+      "phenotype_id": "DMNT"
+    },
+    {
+      "ltc_id": "UHEA",
+      "ltc_label": "Unspecified episodic or chronic headache syndrome",
+      "phenotype_id": "HEAD"
+    },
+    {
+      "ltc_id": "UHEM",
+      "ltc_label": "Unspecified haematological malignancy",
+      "phenotype_id": "HAEM"
+    },
+    {
+      "ltc_id": "UICH",
+      "ltc_label": "Unspecified intracranial haemorrhage",
+      "phenotype_id": "ICHM"
+    },
+    {
+      "ltc_id": "UINC",
+      "ltc_label": "Unspecified incontinence",
+      "phenotype_id": "INCO"
+    },
+    {
+      "ltc_id": "UMAL",
+      "ltc_label": "Unspecified malabsorption",
+      "phenotype_id": "MALA"
+    },
+    {
+      "ltc_id": "UMND",
+      "ltc_label": "Unspecified anterior horn cell disease",
+      "phenotype_id": "MNDS"
+    },
+    {
+      "ltc_id": "UMYP",
+      "ltc_label": "Unspecified myelodysplastic and myeloproliferative disorders",
+      "phenotype_id": "MYLO"
+    },
+    {
+      "ltc_id": "UNCO",
+      "ltc_label": "Unspecified chronic non-infectious  colitis",
+      "phenotype_id": "IFBD"
+    },
+    {
+      "ltc_id": "UNMI",
+      "ltc_label": "Unspecified myocardial infarction",
+      "phenotype_id": "ACSN"
+    },
+    {
+      "ltc_id": "UNSA",
+      "ltc_label": "Unstable angina",
+      "phenotype_id": "ACSN"
+    },
+    {
+      "ltc_id": "UPRI",
+      "ltc_label": "Unspecified cancer",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "URIC",
+      "ltc_label": "Gout",
+      "phenotype_id": "GOUT"
+    },
+    {
+      "ltc_id": "URNE",
+      "ltc_label": "Urinary incontinence",
+      "phenotype_id": "INCO"
+    },
+    {
+      "ltc_id": "UROT",
+      "ltc_label": "Cancer of other urinary organs",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "URTI",
+      "ltc_label": "Chronic urticaria",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "USAN",
+      "ltc_label": "Unspecified anaemia",
+      "phenotype_id": "ANAE"
+    },
+    {
+      "ltc_id": "USAX",
+      "ltc_label": "Unspecified anxiety-related state",
+      "phenotype_id": "ANXI"
+    },
+    {
+      "ltc_id": "USUB",
+      "ltc_label": "Misuse of unspecified or mixed substances",
+      "phenotype_id": "SUBS"
+    },
+    {
+      "ltc_id": "UTAR",
+      "ltc_label": "Unspecified inflammatory and multisystem polyarthropathies",
+      "phenotype_id": "RHEU"
+    },
+    {
+      "ltc_id": "UTDM",
+      "ltc_label": "Unspecified diabetes mellitus",
+      "phenotype_id": "DIAB"
+    },
+    {
+      "ltc_id": "UTER",
+      "ltc_label": "Endometrial and uterine cancer",
+      "phenotype_id": "PRIM"
+    },
+    {
+      "ltc_id": "UVAL",
+      "ltc_label": "Unspecified valvular heart disease",
+      "phenotype_id": "VALV"
+    },
+    {
+      "ltc_id": "UVRT",
+      "ltc_label": "Unspecified chronic vertigo",
+      "phenotype_id": "VERT"
+    },
+    {
+      "ltc_id": "VASC",
+      "ltc_label": "Vascular dementia",
+      "phenotype_id": "DMNT"
+    },
+    {
+      "ltc_id": "VENT",
+      "ltc_label": "Single ventricle defects",
+      "phenotype_id": "CONG"
+    },
+    {
+      "ltc_id": "VFIB",
+      "ltc_label": "Ventricular fibrillation",
+      "phenotype_id": "VTVF"
+    },
+    {
+      "ltc_id": "VISU",
+      "ltc_label": "Blindness and significant visual impairment",
+      "phenotype_id": "VISU"
+    },
+    {
+      "ltc_id": "VITI",
+      "ltc_label": "Vitiligo",
+      "phenotype_id": "SKIN"
+    },
+    {
+      "ltc_id": "VSDS",
+      "ltc_label": "Ventricular septal defects",
+      "phenotype_id": "CONG"
+    },
+    {
+      "ltc_id": "VTAC",
+      "ltc_label": "Ventricular tachycardia",
+      "phenotype_id": "VTVF"
+    },
+    {
+      "ltc_id": "VUNS",
+      "ltc_label": "Unspecified ventricular arrhythmia",
+      "phenotype_id": "VTVF"
+    }
+  ]
+}

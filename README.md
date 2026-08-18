@@ -43,8 +43,32 @@ decimal points and long identifiers exactly. Surrounding whitespace is ignored.
 - [`packages/stata/`](packages/stata/) contains the Stata implementation.
 - [`packages/r/`](packages/r/) contains the R implementation.
 - [`packages/python/`](packages/python/) contains the Python implementation.
-- [`buildfile.py`](buildfile.py) generates the immutable `__*` definition
-  resources from the master codelist.
+- [`buildfile.py`](buildfile.py) is the single build entry point for package
+  definitions. It reads the master codelist and generates Stata `__*.ado`
+  locals, compressed R internal data in `packages/r/R/sysdata.rda`, and UTF-8
+  Python resources in `packages/python/src/impact/data/`.
+
+## Rebuilding package definitions
+
+Install Python with pandas and R, then run from the repository root:
+
+```bash
+python buildfile.py
+```
+
+Use `--rscript PATH` if `Rscript` is not on `PATH`. A full build regenerates
+all generated definitions from `codelist/master_codelist.csv`. To refresh only
+the R and Python runtime resources without rewriting the legacy `__*` files:
+
+```bash
+python buildfile.py --resources-only
+```
+
+The R package loads its lookups and metadata automatically from
+`R/sysdata.rda`. The Python package reads `data/codes.json.gz`,
+`data/ltcs.json`, and `data/phenotypes.json` as package resources. Stata keeps
+using generated `__*.ado` files; the build does not create Stata `.dta` files.
+Generated definitions should never be edited by hand.
 
 ## Installation from GitHub
 

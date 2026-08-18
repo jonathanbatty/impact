@@ -14,6 +14,11 @@ library(impact)
 
 IMPACT is not distributed through CRAN.
 
+The package's code lookups and LTC/phenotype metadata are stored as compressed
+internal data in `R/sysdata.rda`. This file is generated from the repository's
+authoritative `codelist/master_codelist.csv` by `buildfile.py`; it should not be
+edited directly.
+
 ## Run IMPACT
 
 ```r

@@ -13,6 +13,11 @@ python -m pip install "git+https://github.com/jonathanbatty/impact.git#subdirect
 Pip is used only to install the GitHub source; IMPACT is not published on PyPI.
 The package requires pandas.
 
+The generated lookup data are installed as UTF-8 package resources:
+`data/codes.json.gz`, `data/ltcs.json`, and `data/phenotypes.json`. They are
+built from the repository's authoritative `codelist/master_codelist.csv` by
+`buildfile.py` and should not be edited directly.
+
 ## Run IMPACT
 
 ```python

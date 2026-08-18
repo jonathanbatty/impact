@@ -1,0 +1,817 @@
+{
+  "schema_version": 1,
+  "phenotypes": [
+    {
+      "phenotype_id": "ACSN",
+      "phenotype_label": "Acute coronary syndrome",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Cardiovascular"
+    },
+    {
+      "phenotype_id": "ADHD",
+      "phenotype_label": "Attention deficit hyperactivity disorder",
+      "sex": "either",
+      "category": "Mental",
+      "body_system": "Neurodevelopmental"
+    },
+    {
+      "phenotype_id": "ADRN",
+      "phenotype_label": "Adrenal insufficiency",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Endocrine"
+    },
+    {
+      "phenotype_id": "AFIB",
+      "phenotype_label": "Atrial fibrillation and flutter",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Cardiovascular"
+    },
+    {
+      "phenotype_id": "ALCO",
+      "phenotype_label": "Alcohol misuse",
+      "sex": "either",
+      "category": "Mental",
+      "body_system": "Behavioural"
+    },
+    {
+      "phenotype_id": "AMYL",
+      "phenotype_label": "Amyloidosis",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Haematological"
+    },
+    {
+      "phenotype_id": "ANAE",
+      "phenotype_label": "Anaemia",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Haematological"
+    },
+    {
+      "phenotype_id": "ANEU",
+      "phenotype_label": "Autonomic neuropathy and dysfunction",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Neurological"
+    },
+    {
+      "phenotype_id": "ANKY",
+      "phenotype_label": "Ankylosing spondylitis",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Rheumatological"
+    },
+    {
+      "phenotype_id": "ANXI",
+      "phenotype_label": "Anxiety disorders",
+      "sex": "either",
+      "category": "Mental",
+      "body_system": "Mental health"
+    },
+    {
+      "phenotype_id": "AORT",
+      "phenotype_label": "Aortopathies",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Cardiovascular"
+    },
+    {
+      "phenotype_id": "APNE",
+      "phenotype_label": "Sleep apnoea",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Respiratory"
+    },
+    {
+      "phenotype_id": "ARST",
+      "phenotype_label": "Cardiorespiratory arrest",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Cardiovascular"
+    },
+    {
+      "phenotype_id": "ARTD",
+      "phenotype_label": "Other major arterial disease",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Cardiovascular"
+    },
+    {
+      "phenotype_id": "ASTH",
+      "phenotype_label": "Asthma",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Respiratory"
+    },
+    {
+      "phenotype_id": "AUTM",
+      "phenotype_label": "Autism spectrum disorder",
+      "sex": "either",
+      "category": "Mental",
+      "body_system": "Neurodevelopmental"
+    },
+    {
+      "phenotype_id": "BILI",
+      "phenotype_label": "Gallstone disease",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Gastrointestinal"
+    },
+    {
+      "phenotype_id": "BIPO",
+      "phenotype_label": "Bipolar affective disorder",
+      "sex": "either",
+      "category": "Mental",
+      "body_system": "Mental health"
+    },
+    {
+      "phenotype_id": "BRON",
+      "phenotype_label": "Bronchiectasis",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Respiratory"
+    },
+    {
+      "phenotype_id": "CALC",
+      "phenotype_label": "Urinary calculi",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Urological"
+    },
+    {
+      "phenotype_id": "CATA",
+      "phenotype_label": "Cataract",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Ophthalmological"
+    },
+    {
+      "phenotype_id": "CFTS",
+      "phenotype_label": "Chronic and post-viral fatigue syndromes",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Rheumatological"
+    },
+    {
+      "phenotype_id": "CHOL",
+      "phenotype_label": "Hypercholesterolaemia and lipid disorders",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Metabolic"
+    },
+    {
+      "phenotype_id": "CHRO",
+      "phenotype_label": "Chromosomal aneuploidy",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Congenital"
+    },
+    {
+      "phenotype_id": "CKID",
+      "phenotype_label": "Chronic kidney disease",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Renal"
+    },
+    {
+      "phenotype_id": "COAG",
+      "phenotype_label": "Coagulopathy and bleeding diathesis",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Haematological"
+    },
+    {
+      "phenotype_id": "COND",
+      "phenotype_label": "Cardiac conduction system disease",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Cardiovascular"
+    },
+    {
+      "phenotype_id": "CONG",
+      "phenotype_label": "Congenital heart disease",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Cardiovascular"
+    },
+    {
+      "phenotype_id": "CONS",
+      "phenotype_label": "Chronic constipation",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Gastrointestinal"
+    },
+    {
+      "phenotype_id": "COPD",
+      "phenotype_label": "Chronic obstructive pulmonary disease",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Respiratory"
+    },
+    {
+      "phenotype_id": "CORO",
+      "phenotype_label": "Coronary artery disease",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Cardiovascular"
+    },
+    {
+      "phenotype_id": "CTDS",
+      "phenotype_label": "Connective tissue diseases and vasculitis",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Rheumatological"
+    },
+    {
+      "phenotype_id": "CYSF",
+      "phenotype_label": "Cystic fibrosis",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Congenital"
+    },
+    {
+      "phenotype_id": "DEFI",
+      "phenotype_label": "Micronutrient, vitamin and mineral deficiencies",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Metabolic"
+    },
+    {
+      "phenotype_id": "DENT",
+      "phenotype_label": "Chronic orodental conditions",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Dental"
+    },
+    {
+      "phenotype_id": "DIAB",
+      "phenotype_label": "Diabetes mellitus",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Endocrine"
+    },
+    {
+      "phenotype_id": "DIVT",
+      "phenotype_label": "Diverticular disease of large intestine",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Gastrointestinal"
+    },
+    {
+      "phenotype_id": "DMNT",
+      "phenotype_label": "Dementia and chronic cognitive impairment",
+      "sex": "either",
+      "category": "Mental",
+      "body_system": "Neurological"
+    },
+    {
+      "phenotype_id": "DPRN",
+      "phenotype_label": "Depression and chronic affective disorders",
+      "sex": "either",
+      "category": "Mental",
+      "body_system": "Mental health"
+    },
+    {
+      "phenotype_id": "EATD",
+      "phenotype_label": "Eating disorders",
+      "sex": "either",
+      "category": "Mental",
+      "body_system": "Mental health"
+    },
+    {
+      "phenotype_id": "ENDO",
+      "phenotype_label": "Endometriosis and adenomyosis",
+      "sex": "female only",
+      "category": "Physical",
+      "body_system": "Gynaecological"
+    },
+    {
+      "phenotype_id": "EPIL",
+      "phenotype_label": "Epilepsy",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Neurological"
+    },
+    {
+      "phenotype_id": "EREC",
+      "phenotype_label": "Erectile dysfunction",
+      "sex": "male only",
+      "category": "Physical",
+      "body_system": "Urological"
+    },
+    {
+      "phenotype_id": "FIBR",
+      "phenotype_label": "Uterine fibroids",
+      "sex": "female only",
+      "category": "Physical",
+      "body_system": "Gynaecological"
+    },
+    {
+      "phenotype_id": "FMYA",
+      "phenotype_label": "Fibromyalgia",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Rheumatological"
+    },
+    {
+      "phenotype_id": "FPOP",
+      "phenotype_label": "Female pelvic organ prolapse",
+      "sex": "female only",
+      "category": "Physical",
+      "body_system": "Gynaecological"
+    },
+    {
+      "phenotype_id": "GLAU",
+      "phenotype_label": "Glaucoma",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Ophthalmological"
+    },
+    {
+      "phenotype_id": "GOUT",
+      "phenotype_label": "Gout and other crystal arthropathies",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Rheumatological"
+    },
+    {
+      "phenotype_id": "HAEM",
+      "phenotype_label": "Haematological malignancy",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Haematological"
+    },
+    {
+      "phenotype_id": "HARM",
+      "phenotype_label": "Self-harm and suicidal ideation",
+      "sex": "either",
+      "category": "Mental",
+      "body_system": "Mental health"
+    },
+    {
+      "phenotype_id": "HBCV",
+      "phenotype_label": "Chronic viral hepatitis",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Infectious disease"
+    },
+    {
+      "phenotype_id": "HEAD",
+      "phenotype_label": "Chronic headache",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Neurological"
+    },
+    {
+      "phenotype_id": "HERN",
+      "phenotype_label": "Abdominal wall hernia",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Gastrointestinal"
+    },
+    {
+      "phenotype_id": "HFCM",
+      "phenotype_label": "Heart failure and cardiomyopathy",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Cardiovascular"
+    },
+    {
+      "phenotype_id": "HIAT",
+      "phenotype_label": "Hiatus and other diaphragmatic hernia",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Gastrointestinal"
+    },
+    {
+      "phenotype_id": "HIVA",
+      "phenotype_label": "HIV/AIDS",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Infectious disease"
+    },
+    {
+      "phenotype_id": "HLOS",
+      "phenotype_label": "Hearing loss and deafness",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Ear, nose and throat"
+    },
+    {
+      "phenotype_id": "HPTH",
+      "phenotype_label": "Hyperparathyroidism",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Endocrine"
+    },
+    {
+      "phenotype_id": "HYTN",
+      "phenotype_label": "Hypertension",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Cardiovascular"
+    },
+    {
+      "phenotype_id": "ICHM",
+      "phenotype_label": "Intracranial haemorrhage",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Neurological"
+    },
+    {
+      "phenotype_id": "IFBD",
+      "phenotype_label": "Inflammatory bowel disease",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Gastrointestinal"
+    },
+    {
+      "phenotype_id": "ILDS",
+      "phenotype_label": "Interstitial lung disease",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Respiratory"
+    },
+    {
+      "phenotype_id": "INCO",
+      "phenotype_label": "Incontinence",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Urological"
+    },
+    {
+      "phenotype_id": "IRBS",
+      "phenotype_label": "Irritable bowel syndrome",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Gastrointestinal"
+    },
+    {
+      "phenotype_id": "LEAR",
+      "phenotype_label": "Learning disability",
+      "sex": "either",
+      "category": "Mental",
+      "body_system": "Congenital"
+    },
+    {
+      "phenotype_id": "LGID",
+      "phenotype_label": "Other chronic pathology of the lower gastrointestinal tract",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Gastrointestinal"
+    },
+    {
+      "phenotype_id": "LIVR",
+      "phenotype_label": "Chronic liver disease",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Gastrointestinal"
+    },
+    {
+      "phenotype_id": "LYMP",
+      "phenotype_label": "Lymphoedema",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Rheumatological"
+    },
+    {
+      "phenotype_id": "MACU",
+      "phenotype_label": "Macular and retinal pathology",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Ophthalmological"
+    },
+    {
+      "phenotype_id": "MALA",
+      "phenotype_label": "Coeliac disease and chronic intestinal malabsorption",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Gastrointestinal"
+    },
+    {
+      "phenotype_id": "MALN",
+      "phenotype_label": "Abnormal weight loss, low body weight or malnutrition",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Metabolic"
+    },
+    {
+      "phenotype_id": "MELA",
+      "phenotype_label": "Melanoma of skin",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Dermatological"
+    },
+    {
+      "phenotype_id": "MNDS",
+      "phenotype_label": "Anterior horn cell disease",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Neurological"
+    },
+    {
+      "phenotype_id": "MULT",
+      "phenotype_label": "Multiple sclerosis",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Neurological"
+    },
+    {
+      "phenotype_id": "MYAS",
+      "phenotype_label": "Myasthenia gravis",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Neurological"
+    },
+    {
+      "phenotype_id": "MYLO",
+      "phenotype_label": "Myelodysplastic and myeloproliferative disorders",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Haematological"
+    },
+    {
+      "phenotype_id": "NDGD",
+      "phenotype_label": "Neurodegenerative diseases",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Neurological"
+    },
+    {
+      "phenotype_id": "OBCD",
+      "phenotype_label": "Obsessive compulsive disorder",
+      "sex": "either",
+      "category": "Mental",
+      "body_system": "Mental health"
+    },
+    {
+      "phenotype_id": "OBES",
+      "phenotype_label": "Obesity",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Metabolic"
+    },
+    {
+      "phenotype_id": "OPOM",
+      "phenotype_label": "Osteoporosis and osteomalacia",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Rheumatological"
+    },
+    {
+      "phenotype_id": "OSTE",
+      "phenotype_label": "Osteoarthritis and degenerative joint disease",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Rheumatological"
+    },
+    {
+      "phenotype_id": "PANC",
+      "phenotype_label": "Chronic pancreatitis",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Gastrointestinal"
+    },
+    {
+      "phenotype_id": "PARK",
+      "phenotype_label": "Parkinson's disease and related conditions",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Neurological"
+    },
+    {
+      "phenotype_id": "PCOS",
+      "phenotype_label": "Polycystic ovarian syndrome",
+      "sex": "female only",
+      "category": "Physical",
+      "body_system": "Gynaecological"
+    },
+    {
+      "phenotype_id": "PERS",
+      "phenotype_label": "Personality disorder",
+      "sex": "either",
+      "category": "Mental",
+      "body_system": "Mental health"
+    },
+    {
+      "phenotype_id": "PHTN",
+      "phenotype_label": "Pulmonary hypertension",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Respiratory"
+    },
+    {
+      "phenotype_id": "PLSY",
+      "phenotype_label": "Cerebral palsy",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Neurological"
+    },
+    {
+      "phenotype_id": "PNEU",
+      "phenotype_label": "Peripheral neuropathy",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Neurological"
+    },
+    {
+      "phenotype_id": "PRIM",
+      "phenotype_label": "Primary solid organ malignancy",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Oncological"
+    },
+    {
+      "phenotype_id": "PROS",
+      "phenotype_label": "Chronic prostate disorders",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Urological"
+    },
+    {
+      "phenotype_id": "PTSD",
+      "phenotype_label": "Post-traumatic stress disorder",
+      "sex": "either",
+      "category": "Mental",
+      "body_system": "Mental health"
+    },
+    {
+      "phenotype_id": "PULD",
+      "phenotype_label": "Peptic ulcer disease",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Gastrointestinal"
+    },
+    {
+      "phenotype_id": "REFL",
+      "phenotype_label": "Chronic dyspepsia, gastritis, and reflux disease",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Gastrointestinal"
+    },
+    {
+      "phenotype_id": "REST",
+      "phenotype_label": "Restless leg syndrome",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Neurological"
+    },
+    {
+      "phenotype_id": "RHEU",
+      "phenotype_label": "Inflammatory and multisystem polyarthropathies",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Rheumatological"
+    },
+    {
+      "phenotype_id": "RVOC",
+      "phenotype_label": "Retinal vascular occlusion",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Ophthalmological"
+    },
+    {
+      "phenotype_id": "SARC",
+      "phenotype_label": "Sarcoidosis",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Respiratory"
+    },
+    {
+      "phenotype_id": "SCAN",
+      "phenotype_label": "Non-melanoma skin cancer",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Dermatological"
+    },
+    {
+      "phenotype_id": "SCIZ",
+      "phenotype_label": "Schizophrenia, schizotypal, psychotic and delusional disorders",
+      "sex": "either",
+      "category": "Mental",
+      "body_system": "Mental health"
+    },
+    {
+      "phenotype_id": "SECO",
+      "phenotype_label": "Secondary (metastatic) cancer",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Oncological"
+    },
+    {
+      "phenotype_id": "SKIN",
+      "phenotype_label": "Chronic skin conditions",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Dermatological"
+    },
+    {
+      "phenotype_id": "SPBI",
+      "phenotype_label": "Spina bifida and neural tube defects",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Congenital"
+    },
+    {
+      "phenotype_id": "STRO",
+      "phenotype_label": "Cerebrovascular disease and ischaemic stroke",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Neurological"
+    },
+    {
+      "phenotype_id": "SUBS",
+      "phenotype_label": "Substance misuse (excluding alcohol)",
+      "sex": "either",
+      "category": "Mental",
+      "body_system": "Behavioural"
+    },
+    {
+      "phenotype_id": "SVNT",
+      "phenotype_label": "Supraventricular tachyarrhythmia",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Cardiovascular"
+    },
+    {
+      "phenotype_id": "THYR",
+      "phenotype_label": "Thyroid disorders",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Endocrine"
+    },
+    {
+      "phenotype_id": "TINN",
+      "phenotype_label": "Chronic tinnitus",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Ear, nose and throat"
+    },
+    {
+      "phenotype_id": "TREM",
+      "phenotype_label": "Essential tremor",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Neurological"
+    },
+    {
+      "phenotype_id": "TUBE",
+      "phenotype_label": "Tuberculosis",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Infectious disease"
+    },
+    {
+      "phenotype_id": "ULCR",
+      "phenotype_label": "Chronic skin ulcers",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Dermatological"
+    },
+    {
+      "phenotype_id": "URTS",
+      "phenotype_label": "Chronic upper respiratory tract conditions",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Respiratory"
+    },
+    {
+      "phenotype_id": "VALV",
+      "phenotype_label": "Valvular heart disease",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Cardiovascular"
+    },
+    {
+      "phenotype_id": "VERT",
+      "phenotype_label": "Chronic peripheral vertiginous disorders",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Ear, nose and throat"
+    },
+    {
+      "phenotype_id": "VISU",
+      "phenotype_label": "Blindness and significant visual impairment",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Ophthalmological"
+    },
+    {
+      "phenotype_id": "VTET",
+      "phenotype_label": "Venous thromboembolism and thrombophilia",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Haematological"
+    },
+    {
+      "phenotype_id": "VTVF",
+      "phenotype_label": "Ventricular arrhythmia",
+      "sex": "either",
+      "category": "Physical",
+      "body_system": "Cardiovascular"
+    }
+  ]
+}

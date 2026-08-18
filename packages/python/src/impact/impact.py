@@ -1,27 +1,50 @@
 """Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool (IMPACT)."""
 
-import ast
+import gzip
+import json
 from functools import lru_cache
-from pathlib import Path
+import pkgutil
 import re
-
-from .__ltcs import ltc_id, ltc_label, phenotype_id as ltc_phenotype_id
-from .__phenotypes import (
-    phenotype_id,
-    phenotype_label,
-    phenotype_body_system,
-    phenotype_category,
-)
 
 __all__ = ["impact", "select_codesystem", "list_ltcs", "list_codesystems"]
 
-LTC_IDS = tuple(ltc_id)
-LTC_LABELS = dict(ltc_label)
-LTC_PHENOTYPES = dict(ltc_phenotype_id)
-PHENOTYPE_IDS = tuple(phenotype_id)
-PHENOTYPE_LABELS = dict(zip(PHENOTYPE_IDS, phenotype_label))
-PHENOTYPE_SYSTEMS = dict(zip(PHENOTYPE_IDS, phenotype_body_system))
-PHENOTYPE_CATEGORIES = dict(zip(PHENOTYPE_IDS, phenotype_category))
+
+def _load_json_resource(filename):
+    raw = pkgutil.get_data(__package__, "data/" + filename)
+    if raw is None:
+        raise RuntimeError("IMPACT package resource %r is missing." % filename)
+    try:
+        payload = json.loads(raw.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise RuntimeError(
+            "IMPACT package resource %r is not valid UTF-8 JSON." % filename
+        ) from exc
+    if payload.get("schema_version") != 1:
+        raise RuntimeError(
+            "Unsupported schema in IMPACT package resource %r." % filename
+        )
+    return payload
+
+
+_LTC_RECORDS = _load_json_resource("ltcs.json")["ltcs"]
+_PHENOTYPE_RECORDS = _load_json_resource("phenotypes.json")["phenotypes"]
+
+LTC_IDS = tuple(row["ltc_id"] for row in _LTC_RECORDS)
+LTC_LABELS = {row["ltc_id"]: row["ltc_label"] for row in _LTC_RECORDS}
+LTC_PHENOTYPES = {
+    row["ltc_id"]: row["phenotype_id"] for row in _LTC_RECORDS
+}
+PHENOTYPE_IDS = tuple(row["phenotype_id"] for row in _PHENOTYPE_RECORDS)
+PHENOTYPE_LABELS = {
+    row["phenotype_id"]: row["phenotype_label"]
+    for row in _PHENOTYPE_RECORDS
+}
+PHENOTYPE_SYSTEMS = {
+    row["phenotype_id"]: row["body_system"] for row in _PHENOTYPE_RECORDS
+}
+PHENOTYPE_CATEGORIES = {
+    row["phenotype_id"]: row["category"] for row in _PHENOTYPE_RECORDS
+}
 
 CANONICAL_CODESYSTEMS = (
     "cprd_aurum_medcodeid",
@@ -56,39 +79,32 @@ def _normalise_codesystem(value):
     return value
 
 
-@lru_cache(maxsize=None)
-def _load_codesystem(canonical):
-    """Load one immutable generated dictionary without importing its module.
-
-    A small number of generated files contain Windows-1252 descriptions but
-    no encoding declaration. Reading the sole literal assignment directly
-    keeps those resources usable without modifying them.
-    """
-    path = Path(__file__).with_name("__%s.py" % canonical)
-    raw = path.read_bytes()
+@lru_cache(maxsize=1)
+def _load_all_codes():
+    raw = pkgutil.get_data(__package__, "data/codes.json.gz")
+    if raw is None:
+        raise RuntimeError("IMPACT package resource 'codes.json.gz' is missing.")
     try:
-        source = raw.decode("utf-8")
-    except UnicodeDecodeError:
-        source = raw.decode("cp1252")
-    tree = ast.parse(source, filename=str(path))
-    for node in tree.body:
-        if (
-            isinstance(node, ast.Assign)
-            and len(node.targets) == 1
-            and isinstance(node.targets[0], ast.Name)
-            and node.targets[0].id == canonical
-        ):
-            raw_lookup = ast.literal_eval(node.value)
-            if not isinstance(raw_lookup, dict):
-                break
-            lookup = {}
-            for code, ltcs in raw_lookup.items():
-                if isinstance(ltcs, str):
-                    ltcs = [ltcs]
-                key = str(code).strip()
-                lookup[key] = list(dict.fromkeys(lookup.get(key, []) + list(ltcs)))
-            return lookup
-    raise RuntimeError("No %r lookup was found in %s." % (canonical, path.name))
+        payload = json.loads(gzip.decompress(raw).decode("utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise RuntimeError(
+            "IMPACT package resource 'codes.json.gz' is not valid UTF-8 JSON."
+        ) from exc
+    if payload.get("schema_version") != 1:
+        raise RuntimeError(
+            "Unsupported schema in IMPACT package resource 'codes.json.gz'."
+        )
+    return payload["codesystems"]
+
+
+def _load_codesystem(canonical):
+    """Load a generated code-to-LTC mapping from package resources."""
+    try:
+        return _load_all_codes()[canonical]
+    except KeyError as exc:
+        raise RuntimeError(
+            "Code system %r is absent from IMPACT package resources." % canonical
+        ) from exc
 
 
 def select_codesystem(ontology):

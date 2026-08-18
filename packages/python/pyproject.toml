@@ -25,3 +25,6 @@ Issues = "https://github.com/jonathanbatty/impact/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+impact = ["data/*.json", "data/*.json.gz"]

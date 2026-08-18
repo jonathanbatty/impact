@@ -56,3 +56,4 @@ error_seen <- tryCatch({
 stopifnot(error_seen)
 
 message("OK: IMPACT R functional test passed")
+
