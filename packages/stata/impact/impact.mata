@@ -4,7 +4,7 @@ mata:
 
 // Function that loads selected coding system into associative array
 void impact_load(string scalar coding_sys, 
-		       transmorphic scalar lookup_asarray)
+		         transmorphic scalar lookup_asarray)
 {
 	
 	// Declare variables
@@ -12,9 +12,10 @@ void impact_load(string scalar coding_sys,
 	real scalar n_ltcs, n_codes, i, j
 	
 	// 'cprdaurum' is an alias for the CPRD Aurum medcodeid codelists
-	if (coding_sys == "cprdaurum") coding_sys = "medcodeid"
-	
-	// Create colvector containing each of the 120 LTCs
+	if (coding_sys == "cprdaurum") coding_sys = "cprd_aurum_medcodeid"
+	if (coding_sys == "cprdgold") coding_sys = "cprd_gold_medcode"
+
+	// Create colvector containing each of the LTCs
 	ltcs = tokens(st_local("ltcs"))
 	n_ltcs = cols(ltcs)
 

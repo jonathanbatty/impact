@@ -1,2 +1,4 @@
 v 3
-d impact Inclusive Multimorbidity Phenotyping Algorithm: ascertain long-term conditions from routinely collected, coded healthcare data
+d {bf:IMPACT}: the Inclusive Multimorbidity Phenotyping Algorithm and Codelist Tool
+d By Jonathan A. Batty, The Survivorship and Multimorbidity Epidemiology Group, University of Leeds
+d This tool can be used to ascertain long-term conditions from routinely collected, coded healthcare data.

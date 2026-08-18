@@ -1,5 +1,5 @@
 capture program drop impact
-*! version 0.1.0 2024
+*! version 0.1.0 2026
 program define impact
 	version 17
 	
@@ -10,7 +10,7 @@ program define impact
 		   searchvars(string)			  /// Variables to search for IMPACT codes (same order as codesystems)
 	       [                              ///
 			  multimorbidity              /// Creates a number of multimorbidity-related variables
-			  summary                     /// Provides a summary of the totals of each codelist searched for
+			  summary                     /// Provides a summary of the totals
 		   ] 
 
 	// Set system parameters
@@ -21,7 +21,7 @@ program define impact
 	mata: mata set matafavor speed
 	mata: mata set matamofirst on
 	
-	// Check if data is currently loaded into Stata
+	// Check if any data is currently loaded into Stata
 	capture assert _N == 0
 	if _rc != 0 {
 		noisily display as error "Please {stata clear all:clear all} data from Stata before running IMPACT."
