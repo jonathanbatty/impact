@@ -1,12 +1,12 @@
 Package: impact
 Type: Package
-Title: Implementation of the Inclusive Multimorbidity Phenotyping Algorithm
+Title: Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool
 Version: 0.1.0
 Authors@R: person("Jonathan A.", "Batty", email = "J.Batty@leeds.ac.uk", role = c("aut", "cre"))
 Description: Ascertain long-term conditions from routinely collected, coded
     healthcare data (ICD-9-CM, ICD-9-PCS, ICD-10-CM, ICD-10-PCS, ICD-10,
-    OPCS-4, and CPRD Aurum medcodeid values) using the Inclusive
-    Multimorbidity Phenotyping Algorithm.
+    OPCS-4, primary-care terminology and SNOMED CT values) using IMPACT,
+    the Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool.
 License: MIT + file LICENSE
 URL: https://github.com/jonathanbatty/impact
 BugReports: https://github.com/jonathanbatty/impact/issues
@@ -14,3 +14,7 @@ Encoding: UTF-8
 Depends: R (>= 3.5.0)
 NeedsCompilation: no
 RoxygenNote: 7.3.2
+Collate:
+    'lookup_utils.R'
+    'definition_loader.R'
+    'impact.R'

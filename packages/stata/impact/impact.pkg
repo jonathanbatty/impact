@@ -1,0 +1,22 @@
+v 3
+d IMPACT: the Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool
+d
+d Ascertain granular long-term conditions or grouped phenotypes from coded healthcare data.
+f impact.ado
+f impact.mata
+f impact.sthlp
+f __cprd_aurum_medcodeid.ado
+f __cprd_gold_medcode.ado
+f __emis_local.ado
+f __icd10.ado
+f __icd10cm.ado
+f __icd10pcs.ado
+f __icd9cm.ado
+f __icd9pcs.ado
+f __ltcs.ado
+f __opcs4.ado
+f __phenotypes.ado
+f __read_cleansed.ado
+f __read_original.ado
+f __snomed_concept.ado
+f __snomed_description.ado

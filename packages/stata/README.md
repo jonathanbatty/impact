@@ -1,53 +1,53 @@
-# impact — Stata package
+# IMPACT — Stata package
 
-The Stata implementation of the Inclusive Multimorbidity Phenotyping Algorithm.
-It ascertains long-term conditions (LTCs) from a dataset of coded diagnoses,
-procedures or clinical events (one row per code) and returns one 0/1 indicator
-variable per condition (named `__<LTC>`).
+This is the Stata implementation of IMPACT, the Inclusive Multimorbidity
+Phenotyping Algorithm and Coding Tool. It creates either 321 granular LTC
+indicators or 116 grouped phenotype indicators from row-level coded-event data.
 
-## Install from GitHub
+## Install directly from GitHub
 
 ```stata
-net from https://raw.githubusercontent.com/jonathanbatty/impact/main/packages/stata/
+net from https://raw.githubusercontent.com/jonathanbatty/impact/main/packages/stata/impact
 net install impact, replace
+help impact
 ```
 
-This installs `impact.ado`, `impact.mata`, `impact.sthlp`, `__ltcs.ado`, and
-all `__icd*.ado` files. Run `help impact` for the full documentation.
-
-*Manual fallback:* clone the repository and add the folder to the ado-path:
-`adopath + "C:\path\to\impact\packages\stata"`.
-
-## Interface
+IMPACT is not distributed through SSC. For local development, clone the
+repository and add the implementation folder to Stata's ado-path:
 
 ```stata
-impact, dataset(events.dta) id(patid) codesystems(icd10) searchvars(icdcode) ///
-        [n_cores(1) multimorbidity summary]
+adopath ++ "C:\path\to\impact\packages\stata\impact"
 ```
 
-| Option              | Description                                                         |
-|---------------------|---------------------------------------------------------------------|
-| `dataset(string)`   | Path to the dataset to be searched (one row per coded event).       |
-| `id(string)`        | Unique identifier variable.                                         |
-| `codesystems(string)` | Coding system(s), one per search variable: `icd9cm`, `icd9pcs`, `icd10cm`, `icd10pcs`, `icd10`, `opcs4`, `medcodeid` (or `cprdaurum`). |
-| `searchvars(string)`  | Variable(s) to search, in the same order as `codesystems`.       |
-| `n_cores(integer)`  | CPU cores to use (default 1; 0 = all available). This release runs serially. |
-| `multimorbidity`    | Add `__nltc`, `__nmental`, `__nphysical`, `__nbody`, `__bs_<system>`. |
-| `summary`           | Print per-codelist matched-code counts.                             |
-
-The output dataset contains the identifier plus one `__<LTC>` column per
-long-term condition, and (with `multimorbidity`) the multimorbidity variables.
-
-## Example
-
-See `smoke_test.do`:
+## Run IMPACT
 
 ```stata
 clear all
-input long patid str30 icdcode
-1 "41001"
-2 "49300"
-end
-save "events.dta", replace
-impact, dataset("events.dta") id(patid) codesystems(icd9cm) searchvars(icdcode) multimorbidity summary
+impact, dataset("events.dta") id(patid) codesystems(icd10) ///
+    searchvars(icdcode) level(phenotype) multimorbidity summary
 ```
+
+`level()` is required:
+
+- `level(ltc)` returns 321 granular `__<LTC>` indicators.
+- `level(phenotype)` returns 116 grouped `__<phenotype>` indicators.
+
+`codesystems()` and `searchvars()` are ordered pairs. A wildcard expression in
+one search-variable position can search several columns with the same code
+system. Search variables must be strings.
+
+Supported canonical systems are `cprd_aurum_medcodeid`,
+`cprd_gold_medcode`, `emis_local`, `icd10`, `icd10cm`, `icd10pcs`, `icd9cm`,
+`icd9pcs`, `opcs4`, `read_cleansed`, `read_original`, `snomed_concept`, and
+`snomed_description`. Aliases are `cprdaurum`, `medcodeid`, and `cprdgold`.
+
+The command replaces the empty Stata session with an output dataset containing
+the identifier and indicators. `multimorbidity` adds phenotype-based
+`__nphenotypes`, `__nmental`, `__nphysical`, `__bs_<system>`, and `__nbody`.
+Grouped phenotypes are counted even with `level(ltc)`.
+
+`n_cores()` accepts a non-negative integer for interface compatibility; this
+release maps serially. `summary` prints matched-code counts.
+
+Run [`test.do`](test.do) from this directory to exercise both output levels on
+hard-coded sample data.

@@ -1,63 +1,57 @@
-# impact — Python package
+# IMPACT — Python package
 
-The Python implementation of the Inclusive Multimorbidity Phenotyping
-Algorithm. It ascertains long-term conditions (LTCs) from a pandas DataFrame
-of coded diagnoses, procedures or clinical events (one row per code) and
-returns one 0/1 indicator column per condition (named `__<LTC>`).
+This is the Python implementation of IMPACT, the Inclusive Multimorbidity
+Phenotyping Algorithm and Coding Tool. It returns either 321 granular LTC
+indicators or 116 grouped phenotype indicators for row-level coded-event data.
 
-## Install from GitHub
-
-```bash
-pip install "git+https://github.com/jonathanbatty/impact#subdirectory=packages/python"
-```
-
-Requires `pandas`. For development, install in editable mode:
+## Install directly from GitHub
 
 ```bash
-pip install -e "git+https://github.com/jonathanbatty/impact#subdirectory=packages/python"
+python -m pip install "git+https://github.com/jonathanbatty/impact.git#subdirectory=packages/python"
 ```
 
-## Interface
+Pip is used only to install the GitHub source; IMPACT is not published on PyPI.
+The package requires pandas.
+
+## Run IMPACT
 
 ```python
-import pandas as pd
 from impact import impact
 
-out = impact(df, id="patid",
-             codesystems=["icd10"], searchvars=["icdcode"],
-             n_cores=1, multimorbidity=False, summary=False)
+out = impact(events, id="patid", codesystems="icd10",
+             searchvars="icdcode", level="phenotype",
+             multimorbidity=True, summary=True)
 ```
 
-| Argument         | Description                                                          |
-|------------------|----------------------------------------------------------------------|
-| `df`             | In-memory pandas DataFrame of coded events (one row per code).       |
-| `id`             | Name of the unique identifier column.                                |
-| `codesystems`    | Coding system(s), one per search variable: `icd9cm`, `icd9pcs`, `icd10cm`, `icd10pcs`, `icd10`, `opcs4`, `cprdaurum` (or `medcodeid`). |
-| `searchvars`     | Column name(s) to search, one per code system. An element may be a list of columns. |
-| `n_cores`        | CPU cores to use (default 1; 0 = all available). This release runs serially; accepted for interface compatibility. |
-| `multimorbidity` | Add `__nltc`, `__nmental`, `__nphysical`, `__nbody`, `__bs_<system>`.|
-| `summary`        | Print per-codelist matched-code counts.                              |
+`level` is required. Use `"ltc"` for 321 granular `__<LTC>` indicators or
+`"phenotype"` for 116 grouped `__<phenotype>` indicators.
 
-The result is a DataFrame with the identifier and `__<LTC>` indicator columns,
-plus multimorbidity variables if requested.
-
-## Helpers
-
-- `impact.select_codesystem("icd10")` — return the code-to-LTC lookup for one
-  system.
-- `impact.list_codesystems()` — names of the supported code systems.
-- `impact.list_ltcs()` — metadata for all 120 LTCs (label, body system,
-  category).
-
-## Example
-
-See `smoke_test.py` (or `src/example.py`):
+For several code systems, pass one search-column group per system:
 
 ```python
-import pandas as pd
-from impact import impact
-
-events = pd.DataFrame({"patid": [1, 1, 2], "icdcode": ["41001", "42731", "25000"]})
-out = impact(events, id="patid", codesystems="icd9cm",
-             searchvars=["icdcode"], multimorbidity=True)
+out = impact(events, id="patid",
+             codesystems=["icd10", "opcs4"],
+             searchvars=[["diagnosis"], ["procedure_1", "procedure_2"]],
+             level="ltc")
 ```
+
+Supported canonical systems are `cprd_aurum_medcodeid`,
+`cprd_gold_medcode`, `emis_local`, `icd10`, `icd10cm`, `icd10pcs`, `icd9cm`,
+`icd9pcs`, `opcs4`, `read_cleansed`, `read_original`, `snomed_concept`, and
+`snomed_description`. Aliases are `cprdaurum`, `medcodeid`, and `cprdgold`.
+
+Code columns should contain strings; surrounding whitespace is ignored.
+`multimorbidity=True` adds phenotype-based
+`__nphenotypes`, `__nmental`, `__nphysical`, `__bs_<system>`, and `__nbody`,
+regardless of the chosen output level. `n_cores` is retained for interface
+compatibility; mapping is currently serial.
+
+Helpers:
+
+- `select_codesystem("icd10")` returns a code-to-granular-LTC dictionary.
+- `list_codesystems()` lists canonical names and aliases.
+- `list_ltcs()` returns all 321 LTCs with their phenotype metadata.
+
+Run [`test.py`](test.py) from this directory to exercise both output levels
+with hard-coded sample data. [`src/example.py`](src/example.py) is a minimal
+worked example.

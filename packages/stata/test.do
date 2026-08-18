@@ -1,37 +1,46 @@
-* Smoke test for the impact Stata package.
-*
-* Run from the package root (packages/stata) with:  do smoke_test.do
-* (or from any directory, adjusting the ado-path / file paths as needed).
-* Requires the impact.ado, impact.mata, __ltcs.ado and __icd*.ado files to be
-* on the ado-path (e.g. installed via net install, or the current directory).
+* Functional test for the IMPACT Stata package.
+* Run from packages/stata with: stata -b do test.do
 
 clear all
+set more off
+adopath ++ "impact"
 
-* Build a small dataset of coded events (one row per code)
-* and save it to disk (impact reads the dataset from disk).
-input long patid str30 icdcode
-1 "41001"
-1 "42731"
-2 "25000"
-2 "49300"
-3 "99999"
+tempfile events
+input long patid str8 icdcode
+1 "410.01"
+1 "427.31"
+2 "250.00"
+2 "493.00"
+3 "999.99"
 end
-save "smoke_events.dta", replace
+save `events'
 
-* Ascertain long-term conditions
-impact, dataset("smoke_events.dta") id(patid) codesystems(icd9cm) searchvars(icdcode) multimorbidity summary
+* Granular LTC output: 410.01 maps to STMI and CORO.
+clear
+impact, dataset(`events') id(patid) codesystems(icd9cm) ///
+    searchvars(icdcode) level(ltc) multimorbidity summary
+assert __STMI == 1 in 1
+assert __CORO == 1 in 1
+assert __AFIB == 1 in 2
+assert __T2DM == 1 in 3
+assert __ASTH == 1 in 4
+assert __STMI == 0 in 5
+assert __nphenotypes == 2 in 1
+assert __nmental == 0 in 1
+assert __nphysical == 2 in 1
+assert __nbody == 1 in 1
+assert _N == 5
 
-* Checks
-assert __MINF[_n==1] == 1
-assert __CORO[_n==1] == 1
-assert __AFIB[_n==2] == 1
-assert __DIAB[_n==3] == 1
-assert __ASTH[_n==4] == 1
-assert __MINF[_n==5] == 0
-assert __nltc[_n==1] == 2
-assert __nbody[_n==1] == 1
-assert __nmental[_n==1] == 0
+* Grouped phenotype output: the same first event maps to ACSN and CORO.
+clear
+impact, dataset(`events') id(patid) codesystems(icd9cm) ///
+    searchvars(icdcode) level(phenotype) multimorbidity
+assert __ACSN == 1 in 1
+assert __CORO == 1 in 1
+assert __AFIB == 1 in 2
+assert __DIAB == 1 in 3
+assert __ASTH == 1 in 4
+assert __ACSN == 0 in 5
+assert __nphenotypes == 2 in 1
 
-display "OK: impact Stata smoke test passed"
-
-erase "smoke_events.dta"
+display as result "OK: IMPACT Stata functional test passed"

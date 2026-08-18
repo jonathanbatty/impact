@@ -1,13 +1,8 @@
-"""Smoke test for the impact Python package.
-
-Runs the full pipeline on a small synthetic dataset and asserts the expected
-long-term condition flags. Run with:  python smoke_test.py
-"""
+"""Functional test for the IMPACT Python package. Run with: python test.py"""
 
 import os
 import sys
 
-# Make the src/ package importable regardless of the current working directory
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "src"))
 
 import pandas as pd
@@ -15,42 +10,60 @@ from impact import impact, list_codesystems, list_ltcs
 
 
 def main():
-    # Introspection helpers
-    assert "icd9cm" in list_codesystems()
-    assert "cprdaurum" in list_codesystems()
-    meta = list_ltcs()
-    assert meta.shape == (120, 4), meta.shape
+    assert len(list_codesystems()) >= 13
+    assert list_ltcs().shape == (321, 6)
 
-    # A small dataset of coded events (one row per code)
-    events = pd.DataFrame({
-        "patid":   [1, 1, 2, 2, 3],
-        "icdcode": ["41001", "42731", "25000", "49300", "99999"],
-    })
+    events = pd.DataFrame(
+        {
+            "patid": [1, 1, 2, 2, 3],
+            "icdcode": ["410.01", "427.31", "250.00", "493.00", "999.99"],
+        }
+    )
 
-    out = impact(events, id="patid",
-                 codesystems="icd9cm", searchvars=["icdcode"],
-                 multimorbidity=True, summary=False)
+    ltc_out = impact(
+        events,
+        id="patid",
+        codesystems="icd9cm",
+        searchvars="icdcode",
+        level="ltc",
+        multimorbidity=True,
+        summary=True,
+    )
+    assert ltc_out.loc[0, "__STMI"] == 1
+    assert ltc_out.loc[0, "__CORO"] == 1
+    assert ltc_out.loc[1, "__AFIB"] == 1
+    assert ltc_out.loc[2, "__T2DM"] == 1
+    assert ltc_out.loc[3, "__ASTH"] == 1
+    assert ltc_out.loc[4, "__STMI"] == 0
+    assert ltc_out.loc[0, "__nphenotypes"] == 2
+    assert ltc_out.loc[0, "__nmental"] == 0
+    assert ltc_out.loc[0, "__nphysical"] == 2
+    assert ltc_out.loc[0, "__nbody"] == 1
 
-    # 41001 -> CORO + MINF ; 42731 -> AFIB ; 25000 -> DIAB ; 49300 -> ASTH
-    assert out.loc[0, "__MINF"] == 1
-    assert out.loc[0, "__CORO"] == 1
-    assert out.loc[1, "__AFIB"] == 1
-    assert out.loc[2, "__DIAB"] == 1
-    assert out.loc[3, "__ASTH"] == 1
-    assert out.loc[4, "__MINF"] == 0          # 99999 is not a known code
-    assert out.loc[0, "__nltc"] == 2
-    assert out.loc[0, "__nmental"] == 0       # MINF/CORO are physical
-    assert "__nbody" in out.columns
-    assert any(c.startswith("__bs_") for c in out.columns)
+    phenotype_out = impact(
+        events,
+        id="patid",
+        codesystems=["icd9cm"],
+        searchvars=[["icdcode"]],
+        level="phenotype",
+        multimorbidity=True,
+    )
+    assert phenotype_out.loc[0, "__ACSN"] == 1
+    assert phenotype_out.loc[0, "__CORO"] == 1
+    assert phenotype_out.loc[1, "__AFIB"] == 1
+    assert phenotype_out.loc[2, "__DIAB"] == 1
+    assert phenotype_out.loc[3, "__ASTH"] == 1
+    assert phenotype_out.loc[4, "__ACSN"] == 0
+    assert phenotype_out.loc[0, "__nphenotypes"] == 2
 
-    # Validation
     try:
-        impact(events, id="patid", codesystems=["icd9cm"], searchvars=["icdcode", "x"])
-        raise SystemExit("expected length-mismatch error")
-    except ValueError:
-        pass
+        impact(events, "patid", "icd9cm", "icdcode", level="invalid")
+    except ValueError as error:
+        assert "level" in str(error)
+    else:
+        raise AssertionError("An invalid output level did not raise ValueError.")
 
-    print("OK: impact smoke test passed")
+    print("OK: IMPACT Python functional test passed")
 
 
 if __name__ == "__main__":

@@ -1,71 +1,74 @@
 {smcl}
-{* 2024-11-01}{...}
+{* 2026-08-18}{...}
 {hi:help impact}
 {hline}
-{cmd:impact} ascertains the Inclusive Multimorbidity Phenotyping Algorithm's long-term conditions
-from routinely collected, coded healthcare data (e.g. ICD-9-CM, ICD-10-CM, ICD-10,
-ICD-10-PCS, ICD-9-PCS, OPCS-4, or CPRD Aurum medcodeid values).
-{hline}
+{title:IMPACT — Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool}
+
+{p 4 4 2}
+{cmd:impact} maps coded healthcare events to either 321 granular long-term
+condition (LTC) indicators or 116 grouped phenotype indicators.
+
+{title:Syntax}
+
 {p 8 12 2}
-{synoptline}
-{synopt:{cmd:impact} {opt:{cmd:dataset(string)}} {opt:{cmd:id(string)}} {opt:{cmd:codesystems(string)}} {opt:{cmd:searchvars(string)}}} {p_end}
-{p 4 4 4}
-{synopt:{opt:n_cores(integer)}} specifies the number of CPU cores to use. Default is 1.
-Set to 0 to use all available cores. This release executes the mapping serially;
-{cmd:n_cores()} is accepted for interface compatibility with the R and Python
-implementations. {p_end}
-{synopt:{opt:multimorbidity}} creates a set of multimorbidity-related variables:
-{cmd:__nltc} (total number of long-term conditions), {cmd:__nmental} and
-{cmd:__nphysical} (mental/physical counts), {cmd:__nbody} (number of distinct
-body systems affected), and one {cmd:__bs_}<system> count per body system. {p_end}
-{synopt:{opt:summary}} prints, for each codelist searched, the number of codes
-matched in the searched variable(s). {p_end}
-{hline}
-{marker:description}
-{hi:Description}
-{p}
-{cmd:impact} takes a dataset containing coded diagnoses/procedures, maps each code to one
-or more long-term conditions (LTCs) using the iMPA codelists, and returns the input dataset
-with one new indicator variable per LTC (named {cmd:__}<ltc>, taking values 0/1).
-{p}
-The command is designed to be run on a dataset in which each row is a single coded event,
-with a unique identifier ({cmd:id}) and one or more variables holding the codes
-({cmd:searchvars}). Each element of {cmd:codesystems} must correspond, in order, to an
-element of {cmd:searchvars}.
-{p}
-{marker:options}
-{hi:Options}
-{dl 4 6}
-{opt:dataset(string)} specifies the path to the dataset (e.g. a .dta file) to be searched.
-This dataset should be loaded from disk; Stata should be {cmd:{stata clear all:clear all}}
-before the command is run. {p_end}
-{opt:id(string)} specifies the name of the unique identifier variable in the dataset.
-This variable is retained in the output along with the generated LTC indicators. {p_end}
-{opt:codesystems(string)} specifies the coding system(s) to be used in the mapping,
-separated by spaces: {cmd:icd9cm}, {cmd:icd9pcs}, {cmd:icd10cm}, {cmd:icd10pcs},
-{cmd:icd10}, {cmd:opcs4}, or {cmd:medcodeid}. {p_end}
-{opt:searchvars(string)} specifies the variables to search for iMPA codes, in the same
-order as {cmd:codesystems}. Multiple variables per code system may be given (space or
-comma separated). The number of code systems and the number of search variables must
-be equal. {p_end}
-{opt:n_cores(integer)} specifies the number of CPU cores to use when running the mapping
-algorithm. The default is 1. Specify 0 to use all available cores. This release runs
-the mapping serially; {cmd:n_cores()} is accepted for interface compatibility. {p_end}
-{opt:multimorbidity} creates multimorbidity-related variables: {cmd:__nltc} (total number
-of long-term conditions), {cmd:__nmental} and {cmd:__nphysical} (mental/physical counts),
-{cmd:__nbody} (number of distinct body systems affected), and one {cmd:__bs_}<system>
-count per body system. {p_end}
-{opt:summary} prints, for each codelist searched, the number of codes matched in the
-searched variable(s). {p_end}
-{dl_end}
-{marker:examples}
-{hi:Examples}
-{p}
-{p 4 8 2}{cmd:. impact, dataset(events.dta) id(patid) codesystems(icd10cm) searchvars(icdcode)}{p_end}
-{p 4 8 2}{cmd:. impact, dataset(events.dta) id(patid) codesystems(icd10cm icd10pcs) searchvars(icdcode proccode) multimorbidity summary}{p_end}
-{marker:seealso}
-{hi:See also}
-{p}
-{cmd:help impact} for the full documentation; the iMPA codelists and the R and Python
-implementations are available from the IMPACT GitHub repository.
-{p}
+{cmd:impact}, {opt dataset(string)} {opt id(varname)}
+{opt codesystems(string)} {opt searchvars(string)}
+{opt level(ltc|phenotype)}
+[{opt n_cores(integer)} {opt multimorbidity} {opt summary}]
+
+{title:Required options}
+
+{phang}
+{opt dataset(string)} is the path to a Stata dataset containing one coded
+event per row. Stata must contain no loaded observations before the command.
+
+{phang}
+{opt id(varname)} is the identifier retained in the result. Values may repeat
+because output remains at coded-event row level.
+
+{phang}
+{opt codesystems(string)} lists code systems in the same order as
+{cmd:searchvars()}. Supported canonical values are
+{cmd:cprd_aurum_medcodeid}, {cmd:cprd_gold_medcode}, {cmd:emis_local},
+{cmd:icd10}, {cmd:icd10cm}, {cmd:icd10pcs}, {cmd:icd9cm}, {cmd:icd9pcs},
+{cmd:opcs4}, {cmd:read_cleansed}, {cmd:read_original},
+{cmd:snomed_concept}, and {cmd:snomed_description}. Aliases are
+{cmd:cprdaurum}, {cmd:medcodeid}, and {cmd:cprdgold}.
+
+{phang}
+{opt searchvars(string)} lists string variables or wildcard expressions to
+search. There must be one expression per code system. Codes should remain
+strings to preserve punctuation, leading zeroes and long identifiers.
+Surrounding whitespace is ignored.
+
+{phang}
+{opt level(ltc|phenotype)} selects 321 granular {cmd:__}<LTC> indicators or
+116 grouped {cmd:__}<phenotype> indicators. It must be specified on every run.
+
+{title:Optional options}
+
+{phang}
+{opt multimorbidity} adds phenotype-based {cmd:__nphenotypes},
+{cmd:__nmental}, {cmd:__nphysical}, one {cmd:__bs_}<system> count per body
+system, and {cmd:__nbody}. These count grouped phenotypes at either output
+level; multiple granular LTCs in one phenotype are counted once.
+
+{phang}
+{opt summary} prints matched-code counts for each selected code system.
+
+{phang}
+{opt n_cores(integer)} accepts zero or a positive integer for interface
+compatibility with R and Python. This release maps serially. The default is 1.
+
+{title:Examples}
+
+{p 4 8 2}{cmd:. clear all}{p_end}
+{p 4 8 2}{cmd:. impact, dataset("events.dta") id(patid) codesystems(icd10) searchvars(icdcode) level(phenotype)}{p_end}
+{p 4 8 2}{cmd:. clear all}{p_end}
+{p 4 8 2}{cmd:. impact, dataset("events.dta") id(patid) codesystems(icd10 opcs4) searchvars(diagnosis procedure) level(ltc) multimorbidity summary}{p_end}
+
+{title:Installation}
+
+{p 4 4 2}
+IMPACT is installed directly from its GitHub repository, not SSC. See the
+package README for the {cmd:net install} command.
