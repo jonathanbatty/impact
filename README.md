@@ -1,5 +1,7 @@
 # IMPACT — Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool
 
+![IMPACT](assets/package.png?raw=true "Codefinder")
+
 [![Version](https://img.shields.io/badge/version-0.1.0-blue)](https://github.com/jonathanbatty/impact)
 [![Stata 17+](https://img.shields.io/badge/Stata-17%2B-1f77b4)](packages/stata/README.md)
 [![R 3.5+](https://img.shields.io/badge/R-%E2%89%A53.5.0-276DC3?logo=r&logoColor=white)](packages/r/README.md)
