@@ -57,8 +57,9 @@ python buildfile.py
 ```
 
 Use `--rscript PATH` if `Rscript` is not on `PATH`. A full build regenerates
-all generated definitions from `codelist/master_codelist.csv`. To refresh only
-the R and Python runtime resources without rewriting the legacy `__*` files:
+all package definitions from `codelist/master_codelist.csv`. To refresh only
+the R and Python runtime resources without rebuilding the Stata `__*.ado`
+files:
 
 ```bash
 python buildfile.py --resources-only
