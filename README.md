@@ -1,6 +1,4 @@
-# IMPACT — Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool
-
-![IMPACT](assets/package.png?raw=true "Codefinder")
+![IMPACT](assets/header.png?raw=true "IMPACT")
 
 [![Version](https://img.shields.io/badge/version-0.1.0-blue)](https://github.com/jonathanbatty/impact)
 [![Stata 17+](https://img.shields.io/badge/Stata-17%2B-1f77b4)](packages/stata/README.md)
@@ -14,16 +12,7 @@
 
 ## Contents
 
-- [Introduction](#introduction)
-- [Installation](#installation)
-  - [Stata](#stata)
-  - [R](#r)
-  - [Python](#python)
-- [Syntax](#syntax)
-- [Examples of key syntax](#examples-of-key-syntax)
-- [Feedback](#feedback)
-- [Acknowledgements](#acknowledgements)
-- [Suggested citation](#suggested-citation)
+- [Introduction](#introduction) | [Installation](#installation) | [Stata](#stata) | [R](#r) | [Python](#python) | [Syntax](#syntax) | [Examples of key syntax](#examples-of-key-syntax) | [Feedback](#feedback) | [Acknowledgements](#acknowledgements) | [Suggested citation](#suggested-citation)
 
 ---
 
