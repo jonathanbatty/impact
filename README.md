@@ -36,7 +36,6 @@ CRAN, or PyPI.
 
 
 
-
 ### Supported coding systems
 
 | Value | Source coding system |
@@ -205,15 +204,11 @@ or runtime problems, suggest feature enhancements, or make any other request.
 
 ## Acknowledgements
 
-JB received funding from the Wellcome Trust 4ward North Clinical Research
-Training Fellowship (227498/Z/23/Z; R127002).
+JB received funding from a Wellcome Trust 4ward North Clinical Research Training Fellowship (227498/Z/23/Z; R127002).
 
-This work was done while JB was a member of the
-[Survivorship and Multimorbidity Epidemiology Group](https://multimorbidity-research-leeds.github.io/)
-at the University of Leeds, led by Dr Marlous Hall.
+This work was done while JB was a member of the [Survivorship and Multimorbidity Epidemiology Group](https://multimorbidity-research-leeds.github.io/) at the University of Leeds, led by Dr Marlous Hall.
 
 ## Suggested citation
 
-Batty, J. A. (2026). *IMPACT: Inclusive Multimorbidity Phenotyping Algorithm
-and Coding Tool* (Version 0.1.0) [Computer software].
+Batty, J. A. (2026). *IMPACT: The Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool* (Version 0.1.0) [Computer software].
 https://github.com/jonathanbatty/impact
