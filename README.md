@@ -1,4 +1,4 @@
-![IMPACT](assets/header.png?raw=true "IMPACT")
+![IMPACT](assets/header.png "IMPACT")
 
 [![Version](https://img.shields.io/badge/version-0.1.0-blue)](https://github.com/jonathanbatty/impact)
 [![Stata 17+](https://img.shields.io/badge/Stata-17%2B-1f77b4)](packages/stata/README.md)
