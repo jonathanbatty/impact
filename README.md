@@ -9,11 +9,7 @@
 [![Stars](https://img.shields.io/github/stars/jonathanbatty/impact)](https://github.com/jonathanbatty/impact/stargazers)
 
 ---
-
-## Contents
-
-- [Introduction](#introduction) | [Installation](#installation) | [Stata](#stata) | [R](#r) | [Python](#python) | [Syntax](#syntax) | [Examples of key syntax](#examples-of-key-syntax) | [Feedback](#feedback) | [Acknowledgements](#acknowledgements) | [Suggested citation](#suggested-citation)
-
+[Introduction](#introduction) | [Installation](#installation) | [Stata](#stata) | [R](#r) | [Python](#python) | [Syntax](#syntax) | [Examples of key syntax](#examples-of-key-syntax) | [Feedback](#feedback) | [Acknowledgements](#acknowledgements) | [Suggested citation](#suggested-citation)
 ---
 
 ## Introduction
