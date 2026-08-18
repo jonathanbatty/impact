@@ -22,6 +22,8 @@ healthcare data used in the UK. It maps each coded event to either:
 - 321 granular long-term conditions (LTCs); or
 - 116 grouped phenotypes.
 
+![Phenotypes](assets/phenotypes.png "mapping")
+
 The output level must be selected on every run using `level = "ltc"` or
 `level = "phenotype"` in R and Python, or `level(ltc)` or
 `level(phenotype)` in Stata. Every input row produces one output row containing
@@ -31,6 +33,9 @@ output level.
 Equivalent implementations are provided for Stata, R, and Python. All three
 are installed directly from GitHub; IMPACT is not distributed through SSC,
 CRAN, or PyPI.
+
+
+
 
 ### Supported coding systems
 
