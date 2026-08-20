@@ -5,7 +5,7 @@
 [![R 3.5+](https://img.shields.io/badge/R-%E2%89%A53.5.0-276DC3?logo=r&logoColor=white)](packages/r/README.md)
 [![Python 3.8+](https://img.shields.io/badge/Python-%E2%89%A53.8-3776AB?logo=python&logoColor=white)](packages/python/README.md)
 [![Issues](https://img.shields.io/github/issues/jonathanbatty/impact)](https://github.com/jonathanbatty/impact/issues)
-[![License](https://img.shields.io/github/license/jonathanbatty/impact)](LICENSE)
+[![license](https://img.shields.io/badge/license-MIT-green)]
 [![Stars](https://img.shields.io/github/stars/jonathanbatty/impact)](https://github.com/jonathanbatty/impact/stargazers)
 
 ---
