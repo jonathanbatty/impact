@@ -1,8 +1,6 @@
 # IMPACT — Stata package
 
-This is the Stata implementation of IMPACT, the Inclusive Multimorbidity
-Phenotyping Algorithm and Coding Tool. It creates either 321 granular LTC
-indicators or 116 grouped phenotype indicators from row-level coded-event data.
+This is the Stata implementation of IMPACT — the Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool. It may be used to ascertain 321 granular LTC indicators or 116 grouped phenotype indicators from row-level coded-event healthcare data.
 
 ## Install directly from GitHub
 
