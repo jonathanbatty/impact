@@ -14,7 +14,7 @@ condition (LTC) indicators or 116 grouped phenotype indicators.
 {cmd:impact}, {opt dataset(string)} {opt id(varname)}
 {opt codesystems(string)} {opt searchvars(string)}
 {opt level(ltc|phenotype)}
-[{opt n_cores(integer)} {opt multimorbidity} {opt summary}]
+[{opt multimorbidity} {opt summary}]
 
 {title:Required options}
 
@@ -55,10 +55,6 @@ level; multiple granular LTCs in one phenotype are counted once.
 
 {phang}
 {opt summary} prints matched-code counts for each selected code system.
-
-{phang}
-{opt n_cores(integer)} accepts zero or a positive integer for interface
-compatibility with R and Python. This release maps serially. The default is 1.
 
 {title:Examples}
 

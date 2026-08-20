@@ -10,7 +10,6 @@ program define impact
 		SEARCHVars(string)                         ///
 		LEVel(string)                              ///
 		[                                          ///
-			N_cores(integer 1)                       ///
 			MULTImorbidity                           ///
 			SUMMary                                  ///
 		]
@@ -30,11 +29,6 @@ program define impact
 		display as error "level() must be either level(ltc) or level(phenotype)."
 		error 198
 	}
-	if `n_cores' < 0 {
-		display as error "n_cores() must be zero or a positive integer."
-		error 198
-	}
-
 	quietly findfile "impact.mata"
 	capture mata: mata drop impact_load()
 	capture mata: mata drop impact_find()

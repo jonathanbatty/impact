@@ -1,4 +1,4 @@
-"""Functional test for the IMPACT Python package. Run with: python test.py"""
+"""Functional IMPACT Python example. Run with: python python_example.py"""
 
 import os
 import sys
@@ -63,7 +63,7 @@ def main():
     else:
         raise AssertionError("An invalid output level did not raise ValueError.")
 
-    print("OK: IMPACT Python functional test passed")
+    print("OK: IMPACT Python example passed")
 
 
 if __name__ == "__main__":

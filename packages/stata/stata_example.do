@@ -1,5 +1,5 @@
-* Functional test for the IMPACT Stata package.
-* Run from packages/stata with: stata -b do test.do
+* Functional example for the IMPACT Stata package.
+* Run from packages/stata with: stata -b do stata_example.do
 
 clear all
 set more off
@@ -43,4 +43,4 @@ assert __ASTH == 1 in 4
 assert __ACSN == 0 in 5
 assert __nphenotypes == 2 in 1
 
-display as result "OK: IMPACT Stata functional test passed"
+display as result "OK: IMPACT Stata example passed"

@@ -125,21 +125,21 @@ systems, the corresponding code columns, and the desired output level.
 ```stata
 impact, dataset(string) id(varname) codesystems(string) ///
     searchvars(string) level(ltc|phenotype) ///
-    [n_cores(integer) multimorbidity summary]
+    [multimorbidity summary]
 ```
 
 ### R syntax
 
 ```r
 impact(data, id, codesystems, searchvars, level,
-       n_cores = 1L, multimorbidity = FALSE, summary = FALSE)
+       multimorbidity = FALSE, summary = FALSE)
 ```
 
 ### Python syntax
 
 ```python
 impact(df, id, codesystems, searchvars, level,
-       n_cores=1, multimorbidity=False, summary=False)
+       multimorbidity=False, summary=False)
 ```
 
 | Argument | Meaning |
@@ -148,7 +148,6 @@ impact(df, id, codesystems, searchvars, level,
 | `codesystems` | One or more supported coding systems. |
 | `searchvars` | Code-column group corresponding to each coding system. |
 | `level` | Required output level: `ltc` or `phenotype`. |
-| `n_cores` | Non-negative integer reserved for interface compatibility; mapping is currently serial. |
 | `multimorbidity` | Add phenotype-based multimorbidity measures. |
 | `summary` | Print matched-code counts for each selected coding system. |
 
@@ -196,9 +195,9 @@ out = impact(events, id="patid", codesystems="icd10",
 ```
 
 Hard-coded functional examples and assertions are also provided in
-[`packages/stata/test.do`](packages/stata/test.do),
-[`packages/r/test.R`](packages/r/test.R), and
-[`packages/python/test.py`](packages/python/test.py).
+[`packages/stata/stata_example.do`](packages/stata/stata_example.do),
+[`packages/r/r_example.R`](packages/r/r_example.R), and
+[`packages/python/python_example.py`](packages/python/python_example.py).
 
 ## Feedback
 

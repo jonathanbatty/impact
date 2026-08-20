@@ -48,8 +48,7 @@ Supported canonical systems are `cprd_aurum_medcodeid`,
 Code columns should contain strings; surrounding whitespace is ignored.
 `multimorbidity=True` adds phenotype-based
 `__nphenotypes`, `__nmental`, `__nphysical`, `__bs_<system>`, and `__nbody`,
-regardless of the chosen output level. `n_cores` is retained for interface
-compatibility; mapping is currently serial.
+regardless of the chosen output level.
 
 Helpers:
 
@@ -57,6 +56,6 @@ Helpers:
 - `list_codesystems()` lists canonical names and aliases.
 - `list_ltcs()` returns all 321 LTCs with their phenotype metadata.
 
-Run [`test.py`](test.py) from this directory to exercise both output levels
-with hard-coded sample data. [`src/example.py`](src/example.py) is a minimal
-worked example.
+Run [`python_example.py`](python_example.py) from this directory to exercise
+both output levels with hard-coded sample data. [`src/example.py`](src/example.py)
+is a minimal worked example.

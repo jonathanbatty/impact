@@ -1,5 +1,5 @@
-# Functional test for the IMPACT R package.
-# Run from packages/r with: Rscript test.R
+# Functional example for the IMPACT R package.
+# Run from packages/r with: Rscript r_example.R
 
 if (requireNamespace("devtools", quietly = TRUE)) {
   devtools::load_all(".", quiet = TRUE)
@@ -55,5 +55,5 @@ error_seen <- tryCatch({
 }, error = function(e) grepl("level", conditionMessage(e)))
 stopifnot(error_seen)
 
-message("OK: IMPACT R functional test passed")
+message("OK: IMPACT R example passed")
 

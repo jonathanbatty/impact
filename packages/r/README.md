@@ -48,7 +48,6 @@ Code columns should be character vectors; surrounding whitespace is ignored.
 `multimorbidity = TRUE` adds
 phenotype-based `__nphenotypes`, `__nmental`, `__nphysical`,
 `__bs_<system>`, and `__nbody`, regardless of the chosen output level.
-`n_cores` is retained for interface compatibility; mapping is currently serial.
 
 Helpers:
 
@@ -56,5 +55,5 @@ Helpers:
 - `list_codesystems()` lists canonical names and aliases.
 - `list_ltcs()` returns all 321 LTCs with their phenotype metadata.
 
-Run [`test.R`](test.R) from this directory to exercise both output levels with
-hard-coded sample data.
+Run [`r_example.R`](r_example.R) from this directory to exercise both output
+levels with hard-coded sample data.

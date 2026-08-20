@@ -46,8 +46,7 @@ the identifier and indicators. `multimorbidity` adds phenotype-based
 `__nphenotypes`, `__nmental`, `__nphysical`, `__bs_<system>`, and `__nbody`.
 Grouped phenotypes are counted even with `level(ltc)`.
 
-`n_cores()` accepts a non-negative integer for interface compatibility; this
-release maps serially. `summary` prints matched-code counts.
+`summary` prints matched-code counts.
 
-Run [`test.do`](test.do) from this directory to exercise both output levels on
-hard-coded sample data.
+Run [`stata_example.do`](stata_example.do) from this directory to exercise both
+output levels on hard-coded sample data.

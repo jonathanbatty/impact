@@ -11,14 +11,12 @@
 #' @param searchvars A list with one character vector of code-column names per
 #'   code system. For one code system, a character vector is also accepted.
 #' @param level Either "ltc" or "phenotype".
-#' @param n_cores Non-negative integer retained for cross-language interface
-#'   compatibility. Mapping is currently serial.
 #' @param multimorbidity If TRUE, add phenotype-based counts.
 #' @param summary If TRUE, print matched-code counts by code system.
 #' @return A data frame containing the identifier and requested indicators.
 #' @export
 impact <- function(data, id, codesystems, searchvars, level,
-                   n_cores = 1L, multimorbidity = FALSE, summary = FALSE) {
+                   multimorbidity = FALSE, summary = FALSE) {
   if (!is.data.frame(data)) stop("data must be a data frame.", call. = FALSE)
   if (!is.character(id) || length(id) != 1L || is.na(id)) {
     stop("id must be one column name.", call. = FALSE)
@@ -30,11 +28,6 @@ impact <- function(data, id, codesystems, searchvars, level,
     stop("level must be specified as 'ltc' or 'phenotype'.", call. = FALSE)
   }
   level <- match.arg(tolower(level), c("ltc", "phenotype"))
-  if (length(n_cores) != 1L || is.na(n_cores) || n_cores < 0 ||
-      n_cores != as.integer(n_cores)) {
-    stop("n_cores must be zero or a positive integer.", call. = FALSE)
-  }
-
   codesystems <- .impact_as_codesystems(codesystems)
   if (!is.list(searchvars)) {
     searchvars <- if (length(codesystems) == 1L) list(searchvars) else as.list(searchvars)

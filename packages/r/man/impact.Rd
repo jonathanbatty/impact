@@ -2,7 +2,7 @@
 \alias{impact}
 \title{Run the Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool}
 \usage{
-impact(data, id, codesystems, searchvars, level, n_cores = 1L,
+impact(data, id, codesystems, searchvars, level,
   multimorbidity = FALSE, summary = FALSE)
 }
 \arguments{
@@ -11,7 +11,6 @@ impact(data, id, codesystems, searchvars, level, n_cores = 1L,
   \item{codesystems}{One or more supported code-system names.}
   \item{searchvars}{One code-column group per code system.}
   \item{level}{Required output level: \code{"ltc"} or \code{"phenotype"}.}
-  \item{n_cores}{A non-negative integer reserved for interface compatibility. Mapping is currently serial.}
   \item{multimorbidity}{Add phenotype-based multimorbidity measures.}
   \item{summary}{Print matched-code counts by code system.}
 }

@@ -160,7 +160,6 @@ def impact(
     codesystems,
     searchvars,
     level,
-    n_cores=1,
     multimorbidity=False,
     summary=False,
 ):
@@ -179,8 +178,6 @@ def impact(
         several columns using one code system.
     level : {"ltc", "phenotype"}
         Return 321 granular LTC indicators or 116 grouped phenotype indicators.
-    n_cores : int, optional
-        Retained for cross-language compatibility; mapping is currently serial.
     multimorbidity : bool, optional
         Add phenotype-based counts, including ``__nphenotypes``.
     summary : bool, optional
@@ -197,9 +194,6 @@ def impact(
     if not isinstance(level, str) or level.lower() not in ("ltc", "phenotype"):
         raise ValueError("level must be specified as 'ltc' or 'phenotype'.")
     level = level.lower()
-    if isinstance(n_cores, bool) or not isinstance(n_cores, int) or n_cores < 0:
-        raise ValueError("n_cores must be zero or a positive integer.")
-
     canonical = _as_codesystems(codesystems)
     search_groups = _as_search_groups(searchvars, len(canonical))
     if len(canonical) != len(search_groups):
