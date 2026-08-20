@@ -30,6 +30,9 @@ impact, dataset("events.dta") id(patid) codesystems(icd10) ///
 IMPACT must be run with no dataset currently loaded; use `clear all` before
 calling the command.
 
+Variable names beginning `__` are reserved for IMPACT outputs. The identifier
+specified in `id()` must not begin with this prefix.
+
 Specifying level as:
 
 - `level(ltc)` returns 321 granular `__<LTC>` indicators.
@@ -45,6 +48,11 @@ The command processes `"events.dta"` and produces an output dataset containing
 the original identifier and indicators. The output remains at the same row
 level as the input dataset. Repeated patient
 identifiers are retained and are not collapsed or aggregated. 
+
+Consequently, multimorbidity counts are event-level. To calculate patient-level
+phenotypes, aggregate each phenotype indicator using its maximum across all
+events for an identifier and then recalculate `__nphenotypes`. A complete
+worked aggregation is included in [`stata_example.do`](stata_example.do).
 
 `multimorbidity` adds the following additional multimorbidity-relevant variables:
 

@@ -62,6 +62,7 @@ CANONICAL_CODESYSTEMS = (
     "snomed_description",
 )
 
+
 def _normalise_codesystem(value):
     value = str(value).lower()
     if value not in CANONICAL_CODESYSTEMS:
@@ -100,8 +101,12 @@ def _load_codesystem(canonical):
 
 
 def select_codesystem(ontology):
-    """Return the code-to-granular-LTC dictionary for one code system."""
-    return _load_codesystem(_normalise_codesystem(ontology))
+    """Return an independent code-to-granular-LTC dictionary."""
+    lookup = _load_codesystem(_normalise_codesystem(ontology))
+    return {
+        code: list(ltcs) if isinstance(ltcs, list) else ltcs
+        for code, ltcs in lookup.items()
+    }
 
 
 def list_codesystems():
@@ -146,6 +151,40 @@ def _as_search_groups(value, number_of_systems):
     return groups
 
 
+def _validate_boolean(value, name):
+    from pandas.api.types import is_bool
+
+    if not is_bool(value):
+        raise TypeError("%s must be either True or False." % name)
+
+
+def _validate_string_column(series, column):
+    non_missing = series[series.notna()]
+    if not all(isinstance(value, str) for value in non_missing.array):
+        raise TypeError(
+            "Search variable %r must contain strings. Store clinical codes "
+            "as strings to preserve leading zeroes and long identifiers."
+            % column
+        )
+    if non_missing.empty:
+        import pandas as pd
+        from pandas.api.types import (
+            is_object_dtype,
+            is_string_dtype,
+        )
+
+        if not (
+            is_object_dtype(series.dtype)
+            or is_string_dtype(series.dtype)
+            or isinstance(series.dtype, pd.CategoricalDtype)
+        ):
+            raise TypeError(
+                "Search variable %r must be string-like. Store clinical "
+                "codes as strings to preserve leading zeroes and long "
+                "identifiers." % column
+            )
+
+
 def impact(
     df,
     id,
@@ -162,16 +201,18 @@ def impact(
     df : pandas.DataFrame
         One row per coded event.
     id : str
-        Identifier column retained in the result.
+        Identifier column retained in the result. Names beginning ``__`` are
+        reserved for IMPACT outputs.
     codesystems : str or sequence of str
         Code systems corresponding, in order, to ``searchvars``.
     searchvars : str or sequence
         One code-column group per code system. A nested sequence searches
-        several columns using one code system.
+        several columns using one code system. Search columns must contain
+        strings so leading zeroes and long identifiers are preserved.
     level : {"ltc", "phenotype"}
         Return 321 granular LTC indicators or 116 grouped phenotype indicators.
     multimorbidity : bool, optional
-        Add phenotype-based counts, including ``__nphenotypes``.
+        Add event-level phenotype-based counts, including ``__nphenotypes``.
     summary : bool, optional
         Print matched-code counts for each selected code system.
     """
@@ -181,8 +222,15 @@ def impact(
         raise TypeError("df must be a pandas DataFrame.")
     if not isinstance(id, str) or not id:
         raise TypeError("id must be one column name.")
+    if id.startswith("__"):
+        raise ValueError(
+            "Identifier column names beginning '__' are reserved for "
+            "IMPACT outputs."
+        )
     if id not in df.columns:
         raise KeyError("Identifier column %r was not found." % id)
+    _validate_boolean(multimorbidity, "multimorbidity")
+    _validate_boolean(summary, "summary")
     if not isinstance(level, str) or level.lower() not in ("ltc", "phenotype"):
         raise ValueError("level must be specified as 'ltc' or 'phenotype'.")
     level = level.lower()
@@ -198,6 +246,8 @@ def impact(
         missing = [column for column in group if column not in df.columns]
         if missing:
             raise KeyError("Search variable(s) not found: %s" % ", ".join(missing))
+        for column in group:
+            _validate_string_column(df[column], column)
 
     target_ids = LTC_IDS if level == "ltc" else PHENOTYPE_IDS
     flags = pd.DataFrame(

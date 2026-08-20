@@ -34,6 +34,10 @@ out = impact(events, id="patid", codesystems="icd10",
 
 `df`, `id`, `codesystems`, `searchvars` and `level` are required.
 
+Column names beginning `__` are reserved for IMPACT outputs. The identifier
+specified by `id` must not begin with this prefix. `multimorbidity` and
+`summary` must each be either `True` or `False`.
+
 Specifying level as:
 
 - `level="ltc"` returns 321 granular `__<LTC>` indicators.
@@ -41,7 +45,7 @@ Specifying level as:
 
 Note that both levels cannot be returned in a single run.
 
-`codesystems` and `searchvars` are ordered pairs. For several coding systems, pass one search-column group per system. All variables to search should contain strings so that leading zeroes, decimal points and long identifiers are preserved.
+`codesystems` and `searchvars` are ordered pairs. For several coding systems, pass one search-column group per system. All variables to search must contain strings so that leading zeroes, decimal points and long identifiers are preserved. IMPACT rejects non-string-like search columns.
 
 ```python
 out = impact(events, id="patid",
@@ -53,6 +57,8 @@ out = impact(events, id="patid",
 Supported code systems are `icd10`, `opcs4`, `read_original`, `read_cleansed`, `snomed_concept`, `snomed_description`, `emis_local`, `cprd_gold_medcode`, `cprd_aurum_medcodeid`, `icd10cm`, `icd10pcs`, `icd9cm` and `icd9pcs`.
 
 The function processes `events` and returns a pandas DataFrame containing the original identifier and indicators. The output remains at the same row level as the input data. Repeated patient identifiers are retained and are not collapsed or aggregated. Setting `summary=True` prints the number of matched codes for each selected coding system.
+
+Consequently, multimorbidity counts are event-level. To calculate patient-level phenotypes, aggregate each phenotype indicator using its maximum across all events for an identifier and then recalculate `__nphenotypes`. A complete worked aggregation is included in [`python_example.py`](python_example.py).
 
 `multimorbidity=True` adds the following additional multimorbidity-relevant variables:
 
@@ -68,8 +74,8 @@ Grouped phenotypes are counted even when `level="ltc"` has been specified.
 
 Additional helper functions are available:
 
-- `select_codesystem("icd10")` returns a code-to-granular-LTC dictionary.
+- `select_codesystem("icd10")` returns an independent code-to-granular-LTC dictionary. Modifying it does not change IMPACT's internal lookup.
 - `list_codesystems()` lists the supported code-system names.
 - `list_ltcs()` returns all 321 LTCs with their phenotype metadata.
 
-See [`python_example.py`](python_example.py) as an example of how to run IMPACT on sample data. [`src/example.py`](src/example.py) is also provided as a minimal worked example.
+See [`python_example.py`](python_example.py) as an example of how to run IMPACT on sample data and aggregate event-level indicators to patient level.

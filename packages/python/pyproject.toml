@@ -6,7 +6,13 @@ build-backend = "setuptools.build_meta"
 name = "impact"
 version = "1.0"
 authors = [
-  { name="Jonathan A. Batty", email="J.Batty@leeds.ac.uk" },
+  { name = "Jonathan A. Batty", email = "J.Batty@leeds.ac.uk" },
+  { name = "T. del Toro" },
+  { name = "C. Sturley" },
+  { name = "C. Wilkinson" },
+  { name = "B.C. Brown" },
+  { name = "M.T. Kearney" },
+  { name = "M. Hall" },
 ]
 description = "The Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool (IMPACT)."
 readme = "README.md"

@@ -156,7 +156,7 @@ The generated `R` and `Python` resources are built using the human-readable mast
 
 ## Syntax
 
-The IMPACT packages require the specification of (i) an individual-level identifier, (ii) a coding system, (iii) the corresponding code column, and (iv) the desired output level: long-term condition (*n* = 321) or phenotype (*n* = 116).
+The IMPACT packages require the specification of (i) an individual-level identifier, (ii) one or more coding systems, (iii) the corresponding code column or columns, and (iv) the desired output level: long-term condition (*n* = 321) or phenotype (*n* = 116).
 
 ### Stata
 

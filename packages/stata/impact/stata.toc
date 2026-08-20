@@ -1,5 +1,5 @@
 v 3
 d {bf:IMPACT}: the Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool
-d By Jonathan A. Batty, The Survivorship and Multimorbidity Epidemiology Group, University of Leeds
+d Contributors: Jonathan A. Batty, T. del Toro, C. Sturley, C. Wilkinson, B.C. Brown, M.T. Kearney and M. Hall
 d This tool can be used to ascertain long-term conditions from routinely collected, coded healthcare data.
 p impact IMPACT: Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool

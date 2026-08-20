@@ -29,6 +29,10 @@ program define impact
 		display as error "level() must be either level(ltc) or level(phenotype)."
 		error 198
 	}
+	if substr("`id'", 1, 2) == "__" {
+		display as error "Identifier variable names beginning __ are reserved for IMPACT outputs."
+		error 198
+	}
 	quietly findfile "impact.mata"
 	capture mata: mata drop impact_load()
 	capture mata: mata drop impact_find()

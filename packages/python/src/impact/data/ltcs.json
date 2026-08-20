@@ -98,7 +98,7 @@
     },
     {
       "ltc_id": "APVC",
-      "ltc_label": "Anomalous pulmonary venous  connection",
+      "ltc_label": "Anomalous pulmonary venous connection",
       "phenotype_id": "CONG"
     },
     {
@@ -608,7 +608,7 @@
     },
     {
       "ltc_id": "HOCM",
-      "ltc_label": "Hypertrophic (obstructive)  cardiomyopathy",
+      "ltc_label": "Hypertrophic (obstructive) cardiomyopathy",
       "phenotype_id": "HFCM"
     },
     {
@@ -723,7 +723,7 @@
     },
     {
       "ltc_id": "LUPU",
-      "ltc_label": "Systematic lupus erythematosus",
+      "ltc_label": "Systemic lupus erythematosus",
       "phenotype_id": "CTDS"
     },
     {
@@ -1488,7 +1488,7 @@
     },
     {
       "ltc_id": "UNCO",
-      "ltc_label": "Unspecified chronic non-infectious  colitis",
+      "ltc_label": "Unspecified chronic non-infectious colitis",
       "phenotype_id": "IFBD"
     },
     {

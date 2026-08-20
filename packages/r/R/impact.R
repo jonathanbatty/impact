@@ -5,14 +5,18 @@
 #' indicators. The output level must be selected explicitly.
 #'
 #' @param data A data frame containing coded events.
-#' @param id Name of the identifier column.
+#' @param id Name of the identifier column. Names beginning `__` are reserved
+#'   for IMPACT outputs.
 #' @param codesystems Code system name(s), in the same order as
 #'   `searchvars`.
-#' @param searchvars A list with one character vector of code-column names per
-#'   code system. For one code system, a character vector is also accepted.
+#' @param searchvars A list with one character vector of character code-column
+#'   names per code system. For one code system, a character vector is also
+#'   accepted.
 #' @param level Either "ltc" or "phenotype".
-#' @param multimorbidity If TRUE, add phenotype-based counts.
-#' @param summary If TRUE, print matched-code counts by code system.
+#' @param multimorbidity A single logical value. If TRUE, add event-level,
+#'   phenotype-based counts.
+#' @param summary A single logical value. If TRUE, print matched-code counts by
+#'   code system.
 #' @return A data frame containing the identifier and requested indicators.
 #' @export
 impact <- function(data, id, codesystems, searchvars, level,
@@ -21,9 +25,17 @@ impact <- function(data, id, codesystems, searchvars, level,
   if (!is.character(id) || length(id) != 1L || is.na(id)) {
     stop("id must be one column name.", call. = FALSE)
   }
+  if (startsWith(id, "__")) {
+    stop(
+      "Identifier column names beginning '__' are reserved for IMPACT outputs.",
+      call. = FALSE
+    )
+  }
   if (!(id %in% names(data))) {
     stop("Identifier column '", id, "' was not found.", call. = FALSE)
   }
+  .impact_validate_logical(multimorbidity, "multimorbidity")
+  .impact_validate_logical(summary, "summary")
   if (missing(level) || length(level) != 1L) {
     stop("level must be specified as 'ltc' or 'phenotype'.", call. = FALSE)
   }
@@ -47,6 +59,16 @@ impact <- function(data, id, codesystems, searchvars, level,
     if (length(missing_cols)) {
       stop("Search variable(s) not found: ", paste(missing_cols, collapse = ", "),
            call. = FALSE)
+    }
+    non_character <- cols[!vapply(data[cols], is.character, logical(1))]
+    if (length(non_character)) {
+      stop(
+        "Search variable(s) must be character columns: ",
+        paste(non_character, collapse = ", "),
+        ". Store clinical codes as character values to preserve leading ",
+        "zeroes and long identifiers.",
+        call. = FALSE
+      )
     }
   }
 
@@ -93,6 +115,12 @@ impact <- function(data, id, codesystems, searchvars, level,
   }
 
   result
+}
+
+.impact_validate_logical <- function(value, name) {
+  if (!is.logical(value) || length(value) != 1L || is.na(value)) {
+    stop(name, " must be either TRUE or FALSE.", call. = FALSE)
+  }
 }
 
 .impact_as_codesystems <- function(value) {
@@ -161,11 +189,17 @@ impact <- function(data, id, codesystems, searchvars, level,
 #' Return an LTC lookup for a supported code system.
 #'
 #' @param ontology A value returned by `list_codesystems()`.
-#' @return An environment mapping code strings to LTC identifier vectors.
+#' @return An independent environment mapping code strings to LTC identifier
+#'   vectors. Modifying it does not alter IMPACT's internal lookup.
 #' @export
 select_codesystem <- function(ontology) {
   canonical <- .impact_normalize_codesystem(ontology)
-  get(canonical, envir = .impact_lookup_store, inherits = FALSE)
+  lookup <- get(canonical, envir = .impact_lookup_store, inherits = FALSE)
+  list2env(
+    as.list.environment(lookup, all.names = TRUE),
+    hash = TRUE,
+    parent = emptyenv()
+  )
 }
 
 #' List supported code-system names.

@@ -2,6 +2,7 @@ v 3
 d IMPACT: the Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool
 d
 d Ascertain granular long-term conditions or grouped phenotypes from coded healthcare data.
+d Contributors: Jonathan A. Batty, T. del Toro, C. Sturley, C. Wilkinson, B.C. Brown, M.T. Kearney and M. Hall
 f impact.ado
 f impact.mata
 f impact.sthlp

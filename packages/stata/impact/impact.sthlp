@@ -1,5 +1,5 @@
 {smcl}
-{* 2026-08-18}{...}
+{* 2026-08-20}{...}
 {hi:help impact}
 {hline}
 {title:IMPACT — Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool}
@@ -24,7 +24,8 @@ event per row. Stata must contain no loaded observations before the command.
 
 {phang}
 {opt id(varname)} is the identifier retained in the result. Values may repeat
-because output remains at coded-event row level.
+because output remains at coded-event row level. Names beginning {cmd:__} are
+reserved for IMPACT outputs and cannot be used as the identifier.
 
 {phang}
 {opt codesystems(string)} lists code systems in the same order as
@@ -50,7 +51,8 @@ Surrounding whitespace is ignored.
 {opt multimorbidity} adds phenotype-based {cmd:__nphenotypes},
 {cmd:__nmental}, {cmd:__nphysical}, one {cmd:__bs_}<system> count per body
 system, and {cmd:__nbody}. These count grouped phenotypes at either output
-level; multiple granular LTCs in one phenotype are counted once.
+level; multiple granular LTCs in one phenotype are counted once. Counts remain
+at coded-event row level and are not aggregated across repeated identifiers.
 
 {phang}
 {opt summary} prints matched-code counts for each selected code system.

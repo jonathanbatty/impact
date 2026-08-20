@@ -7,12 +7,12 @@ impact(data, id, codesystems, searchvars, level,
 }
 \arguments{
   \item{data}{A data frame containing one coded event per row.}
-  \item{id}{Name of the identifier column retained in the result.}
+  \item{id}{Name of the identifier column retained in the result. Names beginning \code{__} are reserved for IMPACT outputs.}
   \item{codesystems}{One or more supported code-system names.}
-  \item{searchvars}{One code-column group per code system.}
+  \item{searchvars}{One character code-column group per code system. Search columns must be character vectors so leading zeroes and long identifiers are preserved.}
   \item{level}{Required output level: \code{"ltc"} or \code{"phenotype"}.}
-  \item{multimorbidity}{Add phenotype-based multimorbidity measures.}
-  \item{summary}{Print matched-code counts by code system.}
+  \item{multimorbidity}{A logical value indicating whether to add phenotype-based, event-level multimorbidity measures.}
+  \item{summary}{A logical value indicating whether to print matched-code counts by code system.}
 }
 \value{A data frame containing the identifier and 321 granular LTC indicators or 116 grouped phenotype indicators.}
 \description{

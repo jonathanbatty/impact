@@ -43,4 +43,18 @@ assert __ASTH == 1 in 4
 assert __ACSN == 0 in 5
 assert __nphenotypes == 2 in 1
 
+* IMPORTANT: IMPACT output and multimorbidity counts are event-level. To
+* obtain patient-level phenotypes, take the maximum of each phenotype flag
+* across all events for the identifier, then recalculate the phenotype count.
+display as text "Aggregating event-level output to patient-level phenotypes..."
+ds __????
+local phenotype_vars `r(varlist)'
+keep patid `phenotype_vars'
+collapse (max) `phenotype_vars', by(patid)
+egen int __nphenotypes = rowtotal(`phenotype_vars')
+assert __nphenotypes == 3 if patid == 1
+assert __nphenotypes == 2 if patid == 2
+assert __nphenotypes == 0 if patid == 3
+assert _N == 3
+
 display as result "OK: IMPACT Stata example passed"

@@ -418,29 +418,48 @@ def build_r_sysdata(model: dict, rscript: Optional[str] = None) -> None:
 
     # CSV provides a simple UTF-8 interchange format between Python and the
     # small R builder responsible for writing R's native ``sysdata.rda``.
-    # Temporary files are removed automatically when the context exits.
-    with tempfile.TemporaryDirectory(prefix="impact-build-") as temp_dir_name:
-        temp_dir = Path(temp_dir_name)
-        lookups_path = temp_dir / "lookups.csv"
-        ltcs_path = temp_dir / "ltcs.csv"
-        phenotypes_path = temp_dir / "phenotypes.csv"
-        model["lookup_rows"].to_csv(lookups_path, index=False, encoding="utf-8")
-        model["ltc_metadata"].to_csv(ltcs_path, index=False, encoding="utf-8")
-        model["phenotype_metadata"].to_csv(
-            phenotypes_path, index=False, encoding="utf-8"
-        )
-        subprocess.run(
-            [
-                executable,
-                str(R_BUILDER),
-                str(lookups_path),
-                str(ltcs_path),
-                str(phenotypes_path),
-                str(R_DIR / "sysdata.rda"),
-            ],
-            check=True,
-            env=r_environment,
-        )
+    # Build to a temporary sibling and replace the installed resource only
+    # after R succeeds. This avoids partial resources and permits reliable
+    # replacement of an existing compressed file on Windows.
+    target_path = R_DIR / "sysdata.rda"
+    output_handle, output_name = tempfile.mkstemp(
+        prefix=".sysdata-", suffix=".rda", dir=R_DIR
+    )
+    os.close(output_handle)
+    output_path = Path(output_name)
+    output_path.unlink()
+    try:
+        with tempfile.TemporaryDirectory(
+            prefix="impact-build-"
+        ) as temp_dir_name:
+            temp_dir = Path(temp_dir_name)
+            lookups_path = temp_dir / "lookups.csv"
+            ltcs_path = temp_dir / "ltcs.csv"
+            phenotypes_path = temp_dir / "phenotypes.csv"
+            model["lookup_rows"].to_csv(
+                lookups_path, index=False, encoding="utf-8"
+            )
+            model["ltc_metadata"].to_csv(
+                ltcs_path, index=False, encoding="utf-8"
+            )
+            model["phenotype_metadata"].to_csv(
+                phenotypes_path, index=False, encoding="utf-8"
+            )
+            subprocess.run(
+                [
+                    executable,
+                    str(R_BUILDER),
+                    str(lookups_path),
+                    str(ltcs_path),
+                    str(phenotypes_path),
+                    str(output_path),
+                ],
+                check=True,
+                env=r_environment,
+            )
+        os.replace(output_path, target_path)
+    finally:
+        output_path.unlink(missing_ok=True)
 
 
 # ---------------------------------------------------------------------------

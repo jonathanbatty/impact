@@ -56,6 +56,27 @@ def main():
     assert phenotype_out.loc[4, "__ACSN"] == 0
     assert phenotype_out.loc[0, "__nphenotypes"] == 2
 
+    # IMPORTANT: IMPACT output and multimorbidity counts are event-level. To
+    # obtain patient-level phenotypes, take the maximum of each phenotype flag
+    # across all events for the identifier, then recalculate the phenotype
+    # count.
+    print("Aggregating event-level output to patient-level phenotypes...")
+    phenotype_columns = [
+        column
+        for column in phenotype_out.columns
+        if column.startswith("__") and len(column) == 6
+    ]
+    patient_out = (
+        phenotype_out[["patid"] + phenotype_columns]
+        .groupby("patid", as_index=False)
+        .max()
+    )
+    patient_out["__nphenotypes"] = patient_out[phenotype_columns].sum(axis=1)
+    patient_counts = patient_out.set_index("patid")["__nphenotypes"]
+    assert patient_counts.loc[1] == 3
+    assert patient_counts.loc[2] == 2
+    assert patient_counts.loc[3] == 0
+
     try:
         impact(events, "patid", "icd9cm", "icdcode", level="invalid")
     except ValueError as error:
