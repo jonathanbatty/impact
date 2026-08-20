@@ -53,34 +53,22 @@ IMPACT supports the following coding systems:
 | `icd9cm`               | The US Clinical Modification of the International Classification of Diseases, 9th Revision (ICD-9-CM), used for diagnosis coding in the United States before the transition to ICD-10-CM on 1 October 2015; for example, 410.71 – “Subendocardial infarction, initial episode of care”, commonly used to code NSTEMI.                                    |
 | `icd9pcs`              | ICD-9-CM Volume 3, the former US classification for procedures performed during inpatient hospital admissions, used before the transition to ICD-10-PCS on 1 October 2015.                                                                                                                                                                               |
 
-To simplify the application of IMPACT for use in CPRD datasets, mappings are given at CPRD Gold medcode and CPRD Aurum medcodeid level (see above).
+To simplify the application of IMPACT for use in CPRD datasets, mappings are given at CPRD Gold medcode and CPRD Aurum medcodeid level (see above table).
 
-Please note that clinical coding data should be stored as strings so that leading zeroes, decimal points, and long identifiers are preserved. Surrounding whitespace is ignored.
+Please note that all clinical coding data should be stored as strings so that leading zeroes, decimal points, and long identifiers are preserved. Surrounding whitespace is ignored.
 
-### Codelists and generated definitions
+### Codelists and definitions
 
-[`codelist/master_codelist.csv`](codelist/master_codelist.csv) is the
-authoritative master codelist. [`buildfile.py`](buildfile.py) generates the
-Stata `__*.ado` definitions, compressed R internal data in `R/sysdata.rda`,
-and the UTF-8 Python package resources from this master file. Generated
-definitions should not be edited manually.
-
-From the repository root, rebuild every package definition with:
-
-```bash
-python buildfile.py
-```
-
-Use `--rscript PATH` if `Rscript` is not on `PATH`. To rebuild only the R and
-Python resources without regenerating the Stata definitions, run
-`python buildfile.py --resources-only`.
+The master codelist for IMPACT can be found at [`codelist/master_codelist.csv`](codelist/master_codelist.csv). The definition files for each of the `stata`, `R` and `python` packages are generated from this codelist.
+This codelist could be used to apply the IMPACT definitions to other software packages, or in situations in which custom packages cannot be installed.
 
 ## Installation
 
 ### Stata
 
-See the [Stata package README](packages/stata/README.md) for complete usage
-instructions.
+See the `Stata` package [README](packages/stata/README.md) for complete installation and usage instructions.
+
+The `Stata` package can be installed using:
 
 ```stata
 net from https://raw.githubusercontent.com/jonathanbatty/impact/main/packages/stata/impact
@@ -90,29 +78,66 @@ help impact
 
 ### R
 
-See the [R package README](packages/r/README.md) for complete usage
-instructions.
+See the `R` package [README](packages/r/README.md) for complete installation and usage instructions.
+
+The `R` package can be installed using:
 
 ```r
-install.packages("remotes") # only needed if remotes is not installed
+install.packages("remotes") # if remotes is not already installed
 remotes::install_github("jonathanbatty/impact", subdir = "packages/r")
 library(impact)
 ```
 
 ### Python
 
-See the [Python package README](packages/python/README.md) for complete usage
-instructions.
+See the `Python` package [README](packages/python/README.md) for complete installation and usage instructions.
+
+The `Python` package can be installed using:
 
 ```bash
 python -m pip install "git+https://github.com/jonathanbatty/impact.git#subdirectory=packages/python"
 ```
 
-Pip is used only to install the GitHub source; IMPACT is not fetched from
-PyPI.
+Pip is used only to install the package fromt the GitHub source; IMPACT is not fetched from PyPI.
 
 ### TREs
-Trusted research environments (TREs) often restrict access to the open Internet, including GitHub. 
+Trusted research environments (TREs, also referred to as Secure Data Environments and Data Safe Havens) often restrict access to the open Internet, including GitHub. In these environments, IMPACT can be downloaded on an Internet-connected computer, transferred through the TRE's approved file-transfer process (often called an airlock) and installed from the local file system.
+
+[Download](https://github.com/jonathanbatty/impact/archive/refs/heads/main.zip) or clone the complete IMPACT GitHub repository outside the TRE. Upload the repository, preserving its directory structure. The relevant package can then be installed locally. Instructions for each package are given below:
+
+#### Stata
+
+From within Stata, install the package from the transferred repository:
+
+```stata
+net install impact, from("C:/path/to/impact/packages/stata/impact") replace
+```
+
+Alternatively, the packages/stata/impact directory can be added to the ado-path for a project-specific installation:
+
+```
+adopath ++ "C:/path/to/impact/packages/stata/impact"
+```
+
+#### R
+
+Install the R package directly from its local source directory using a terminal or command prompt within the TRE:
+
+```bash
+R CMD INSTALL "C:/path/to/impact/packages/r"
+```
+
+R and the required installation tools must already be available within the TRE.
+
+#### Python
+
+Install the Python package from its local source directory:
+
+```bash
+python -m pip install --no-index --no-deps --no-build-isolation "C:/path/to/impact/packages/python"
+```
+
+Python, pandas, setuptools and wheel must already be installed within the TRE, or transferred and installed separately through the approved airlock process.
 
 ## Syntax
 
@@ -126,6 +151,22 @@ impact, dataset(string) id(varname) codesystems(string) ///
     searchvars(string) level(ltc|phenotype) ///
     [multimorbidity summary]
 ```
+
+#### Binary and compressed files
+IMPACT does not contain compiled executables, DLLs, shared libraries or other native machine-code binaries. It does, however, include generated data resources that are not directly human-readable: the R package contains a compressed R/sysdata.rda file, and the Python package contains a gzip-compressed data/codes.json.gz file. These files contain codelists and metadata rather than executable code.
+If the TRE airlock does not permit .rda, .gz or other compressed files, transfer the human-readable source files—including codelist/master_codelist.csv, buildfile.py and the package source directories—and regenerate the package resources inside the TRE before installation:
+
+``` bash
+python buildfile.py --resources-only
+```
+
+This requires `Python` with pandas and an available R installation. If Rscript is not discoverable automatically, provide its local path:
+
+```
+python buildfile.py --resources-only --rscript "C:/path/to/Rscript"
+```
+
+The generated R and Python resources are derived from the human-readable master codelist. TRE users should consult the relevant governance team before transfer, as permitted file types and installation procedures vary between environments.
 
 ### R syntax
 
