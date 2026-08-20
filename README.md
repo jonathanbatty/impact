@@ -37,7 +37,7 @@ The number of long-term conditions included in each phenotype and for each body 
 
 IMPACT supports the following coding systems:
 
-| Coding system | Details and example |
+| Coding system alias | Details and example |
 | ---------------------- | ------------------------------------------------------- |
 | `icd10`                | The UK implementation of the International Classification of Diseases, 10th Revision (5th Edition), as specified in the [NHS Classification Browser](https://classbrowser.nhs.uk/#/book/ICD-10-5TH-Edition); for example, I21.4 – “Acute subendocardial myocardial infarction”, which includes non-ST elevation myocardial infarction (NSTEMI).          |
 | `opcs4`                | The UK classification of interventions and procedures, based on the Office of Population Censuses and Surveys Classification of Interventions and Procedures (OPCS-4), version 4.11, as specified in the [NHS Classification Browser](https://classbrowser.nhs.uk/#/book/OPCS-4.11).                                                                     |
