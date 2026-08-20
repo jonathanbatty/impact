@@ -37,23 +37,24 @@ The number of long-term conditions included in each phenotype and for each body 
 
 IMPACT supports the following coding systems:
 
-| Coding system | Details |
-|---|---|
-| `icd10` | The UK implementation of the International Classification of Diseases, 10th Revision (5th Edition, as per the [NHS classicfication browser](https://classbrowser.nhs.uk/#/book/ICD-10-5TH-Edition)|
-| `opcs4` | The UK implementation of the Office of Population Censuses and Surveys Classification of Interventions and Procedures (version 4.11; as per the [NHS classification browser](https://classbrowser.nhs.uk/#/book/OPCS-4.11)) |
-| `read_cleansed` | Cleansed Read codes |
-| `read_original` | Original Read codes |
-| `snomed_concept` | SNOMED CT concept identifiers |
-| `snomed_description` | SNOMED CT description identifiers |
-| `emis_local` | EMIS local codes |
-| `cprd_aurum_medcodeid` | CPRD Aurum medcodeid (`cprdaurum` and `medcodeid` are aliases) |
-| `cprd_gold_medcode` | CPRD GOLD medcode (`cprdgold` is an alias) |
-| `icd10cm` | The US ICD-10-CM |
-| `icd10pcs` | ICD-10-PCS |
-| `icd9cm` | ICD-9-CM |
-| `icd9pcs` | ICD-9-PCS |
+| Coding system | Details and example |
+| ---------------------- | ------------------------------------------------------- |
+| `icd10`                | The UK implementation of the International Classification of Diseases, 10th Revision (5th Edition), as specified in the [NHS Classification Browser](https://classbrowser.nhs.uk/#/book/ICD-10-5TH-Edition); for example, I21.4 – “Acute subendocardial myocardial infarction”, which includes non-ST elevation myocardial infarction (NSTEMI).          |
+| `opcs4`                | The UK classification of interventions and procedures, based on the Office of Population Censuses and Surveys Classification of Interventions and Procedures (OPCS-4), version 4.11, as specified in the [NHS Classification Browser](https://classbrowser.nhs.uk/#/book/OPCS-4.11).                                                                     |
+| `read_original`        | A Read code as stored in the source clinical system before standardisation, which may use a shortened or unpadded representation; for example, G3071 – “Acute non-ST segment elevation myocardial infarction”.                                                                                                                                           |
+| `read_cleansed`        | A standardised representation of a UK primary-care Read code, reformatted to a consistent structure to facilitate matching and comparison across datasets; for example, G3071 may be represented as G307100 – “Acute non-ST segment elevation myocardial infarction”.                                                                                    |
+| `snomed_concept`       | A unique numeric identifier assigned to a clinical concept in SNOMED CT, independent of the particular term used to describe it; for example, 401314000 represents “Non-ST elevation myocardial infarction (NSTEMI)”.                                                                                                                                    |
+| `snomed_description`   | A unique numeric identifier assigned to a particular textual description or synonym of a SNOMED CT concept; for example, 1787486017 identifies the description “NSTEMI - Non-ST segment elevation MI”, associated with concept 401314000.                                                                                                                |
+| `emis_local`           | A proprietary identifier used within the EMIS clinical system for a clinical term that may not have a standard Read code representation and may instead be linked to a SNOMED CT concept; for example, ^ESCTNS665139 maps to the SNOMED CT concept for NSTEMI.                                                                                           |
+| `cprd_aurum_medcodeid` | A unique identifier assigned by CPRD to a clinical term in the CPRD Aurum medical dictionary; for example, 1780501013 identifies “Acute non-ST segment elevation myocardial infarction”.                                                                                                                                                                 |
+| `cprd_gold_medcode`    | A unique identifier assigned by CPRD to a clinical term in the CPRD GOLD medical dictionary; for example, 10562 identifies “Acute non-ST segment elevation myocardial infarction”.                                                                                                                                                                       |
+| `icd10cm`              | The US Clinical Modification of the International Classification of Diseases, 10th Revision (ICD-10-CM), maintained by the National Center for Health Statistics (NCHS), with official coding guidelines issued jointly with the Centers for Medicare & Medicaid Services (CMS); for example, I21.4 – “Non-ST elevation (NSTEMI) myocardial infarction”. |
+| `icd10pcs`             | The US International Classification of Diseases, 10th Revision, Procedure Coding System (ICD-10-PCS), maintained by the Centers for Medicare & Medicaid Services (CMS), for coding procedures performed during inpatient hospital admissions.                                                                                                            |
+| `icd9cm`               | The US Clinical Modification of the International Classification of Diseases, 9th Revision (ICD-9-CM), used for diagnosis coding in the United States before the transition to ICD-10-CM on 1 October 2015; for example, 410.71 – “Subendocardial infarction, initial episode of care”, commonly used to code NSTEMI.                                    |
+| `icd9pcs`              | ICD-9-CM Volume 3, the former US classification for procedures performed during inpatient hospital admissions, used before the transition to ICD-10-PCS on 1 October 2015.                                                                                                                                                                               |
+| ---------------------- | ------------------------------------------------------- |
 
-To simplify the application of IMPACT for use in the CPRD datasets, mappings are also given at CPRD Gold medcode and CPRD Aurum medcodeid level (see table above).
+To simplify the application of IMPACT for use in CPRD datasets, mappings are given at CPRD Gold medcode and CPRD Aurum medcodeid level (see above).
 
 Please note that clinical coding data should be stored as strings so that leading zeroes, decimal points, and long identifiers are preserved. Surrounding whitespace is ignored.
 
