@@ -33,19 +33,6 @@ The number of long-term conditions included in each phenotype and for each body 
 
 ![Phenotypes](assets/phenotypes.png "mapping")
 
-The output level must be selected on every run using `level = "ltc"` or
-`level = "phenotype"` in R and Python, or `level(ltc)` or
-`level(phenotype)` in Stata. Every input row produces one output row containing
-the supplied identifier followed by binary `__<ID>` indicators for the chosen
-output level.
-
-Equivalent implementations are provided for Stata, R, and Python. All three
-are installed directly from GitHub; IMPACT is not distributed through SSC,
-CRAN, or PyPI.
-
-The condition definitions can be updated by... buildfile
-
-
 ### Supported coding systems
 
 | Value | Source coding system |
