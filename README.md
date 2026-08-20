@@ -156,11 +156,9 @@ python buildfile.py --resources-only --rscript "C:/path/to/Rscript"
 The generated R and Python resources are derived from the human-readable master codelist. TRE users should consult the relevant governance team before transfer, as permitted file types and installation procedures vary between environments.
 
 
-
 ## Syntax
 
-The common IMPACT interface requires an identifier, one or more coding
-systems, the corresponding code columns, and the desired output level.
+The IMPACT pages require the specification of (i) an individual-level identifier, (ii) a coding system, (iii) the corresponding code column, and (iii) the desired output level: long-term condition (*n* = 321) or phenotype (*n* = 116).
 
 ### Stata syntax
 
