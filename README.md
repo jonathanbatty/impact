@@ -16,11 +16,20 @@
 
 ## Introduction
 
-IMPACT ascertains a wide range of long-term conditions from routinely collected, coded healthcare data. It maps each coded event to one of:
+IMPACT — the Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool — is designed to ascertain a broad range of long-term conditions from routinely collected, coded healthcare data. It supports the reproducible identification of multimorbidity in UK (and international) healthcare datasets, where diagnoses, procedures and other clinical information may be recorded using several different coding systems.
 
-- 321 granular long-term conditions (LTCs); 
-- 116 grouped phenotypes;
-- 21 body system categories.
+IMPACT translates individual clinical codes into one or more related classifications:
+- 321 granular long-term conditions (LTCs), providing detailed condition-level information;
+- 116 grouped phenotypes, combining clinically related LTCs into broader, analytically useful categories; and
+- 21 body-system categories, supporting higher-level summaries of the distribution of disease.
+
+Users may select whether the primary output contains the 321 granular LTCs or the 116 grouped phenotypes. Multimorbidity measures are based on the grouped phenotypes, ensuring that several closely related LTCs within the same phenotype are counted only once. IMPACT can also summarise the number of mental and physical phenotypes and the body systems affected.
+
+The tool supports coding systems commonly encountered in UK primary and secondary care data, including ICD-9, ICD-10, OPCS-4, SNOMED CT, Read codes, EMIS local codes and CPRD-specific identifiers. It also includes the US ICD-9-CM and ICD-10-CM mappings. Equivalent implementations are provided for Stata, R and Python, allowing the same master codelist and phenotype definitions to be used across different analytical environments. Installation of these packages should be performed directly from Github (see instructions [Below](#installation)) or can be done by downloading this repository and installing locally (for example, on a [TRE](#TREs))
+
+IMPACT is intended to reduce the duplication and inconsistency involved in developing study-specific multimorbidity definitions. Its definitions are generated from a single master codelist, providing a transparent and maintainable workflow in which updates can be propagated consistently across all three packages. It may be used for cohort description, epidemiological analyses, risk adjustment, healthcare utilisation research, target trial emulations and other studies requiring systematic ascertainment of long-term conditions.
+
+The number of long-term conditions included in each phenotype and for each body system is summarised below:
 
 ![Phenotypes](assets/phenotypes.png "mapping")
 
