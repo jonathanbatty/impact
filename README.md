@@ -25,7 +25,7 @@ IMPACT translates individual clinical codes into one or more related classificat
 
 Users may select whether the primary output contains the 321 granular LTCs or the 116 grouped phenotypes. Multimorbidity measures are based on the grouped phenotypes, ensuring that several closely related LTCs within the same phenotype are counted only once. IMPACT can also summarise the number of mental and physical phenotypes and the body systems affected.
 
-The tool supports coding systems commonly encountered in UK primary and secondary care data, including ICD-9, ICD-10, OPCS-4, SNOMED CT, Read codes, EMIS local codes and CPRD-specific identifiers. It also includes the US ICD-9-CM and ICD-10-CM mappings. Equivalent implementations are provided for Stata, R and Python, allowing the same master codelist and phenotype definitions to be used across different analytical environments. Installation of these packages should be performed directly from Github (see instructions [Below](#installation)) or can be done by downloading this repository and installing locally (for example, on a [TRE](#TREs))
+The tool supports coding systems commonly encountered in UK primary and secondary care data, including ICD-10, OPCS-4, SNOMED CT, Read codes, EMIS local codes and CPRD-specific identifiers. It also includes the US ICD-9-CM and ICD-10-CM mappings. Equivalent implementations are provided for Stata, R and Python, allowing the same master codelist and phenotype definitions to be used across different analytical environments. Installation of these packages should be performed directly from Github (see instructions [Below](#installation)) or can be done by downloading this repository and installing locally (for example, on a [TRE](#TREs))
 
 IMPACT is intended to reduce the duplication and inconsistency involved in developing study-specific multimorbidity definitions. Its definitions are generated from a single master codelist, providing a transparent and maintainable workflow in which updates can be propagated consistently across all three packages. It may be used for cohort description, epidemiological analyses, risk adjustment, healthcare utilisation research, target trial emulations and other studies requiring systematic ascertainment of long-term conditions.
 
@@ -35,24 +35,27 @@ The number of long-term conditions included in each phenotype and for each body 
 
 ### Supported coding systems
 
+IMPACT supports the following coding systems:
+
 | Value | Source coding system |
 |---|---|
-| `cprd_aurum_medcodeid` | CPRD Aurum medcodeid (`cprdaurum` and `medcodeid` are aliases) |
-| `cprd_gold_medcode` | CPRD GOLD medcode (`cprdgold` is an alias) |
-| `emis_local` | EMIS local codes |
-| `icd10` | ICD-10 |
+| `icd10` | The UK implementation of the International Classification of Diseases, 10th Revision (5th Edition, as per the NHS [classicfication browser](https://classbrowser.nhs.uk/#/book/ICD-10-5TH-Edition})|
+| `opcs4` | The UK implementation of the Office of Population Censuses and Surveys Classification of Interventions and Procedures (version 4.11; as per the NHS [classification browser](https://classbrowser.nhs.uk/#/book/OPCS-4.11)) |
 | `icd10cm` | ICD-10-CM |
 | `icd10pcs` | ICD-10-PCS |
 | `icd9cm` | ICD-9-CM |
 | `icd9pcs` | ICD-9-PCS |
-| `opcs4` | OPCS-4 |
 | `read_cleansed` | Cleansed Read codes |
 | `read_original` | Original Read codes |
 | `snomed_concept` | SNOMED CT concept identifiers |
 | `snomed_description` | SNOMED CT description identifiers |
+| `emis_local` | EMIS local codes |
+| `cprd_aurum_medcodeid` | CPRD Aurum medcodeid (`cprdaurum` and `medcodeid` are aliases) |
+| `cprd_gold_medcode` | CPRD GOLD medcode (`cprdgold` is an alias) |
 
-Code columns should be stored as strings so that leading zeroes, decimal
-points, and long identifiers are preserved. Surrounding whitespace is ignored.
+To simplify the application of IMPACT for use in the CPRD datasets, mappings are also given at CPRD Gold medcode and CPRD Aurum medcodeid level (see table above).
+
+Please note that clinical coding data should be stored as strings so that leading zeroes, decimal points, and long identifiers are preserved. Surrounding whitespace is ignored.
 
 ### Codelists and generated definitions
 
