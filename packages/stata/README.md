@@ -2,7 +2,7 @@
 
 This is the `Stata` implementation of IMPACT — the Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool. 
 
-It may be used to ascertain 321 granular LTC indicators or 116 grouped phenotype indicators from row-level coded-event healthcare data.
+It can be used to ascertain 321 granular long-term condition (LTC) indicators or 116 grouped phenotype indicators in routinely collected healthcare data.
 
 ## Install directly from GitHub
 
@@ -44,8 +44,7 @@ Supported code systems are `icd10`, `opcs4`, `read_original`, `read_cleansed`, `
 The command processes `"events.dta"` and produces an output dataset containing
 the original identifier and indicators. The output remains at the same row
 level as the input dataset. Repeated patient
-identifiers are retained and are not collapsed or aggregated. The `summary`
-option prints the number of matched codes for each selected coding system.
+identifiers are retained and are not collapsed or aggregated. 
 
 `multimorbidity` adds the following additional multimorbidity-relevant variables:
 
@@ -58,5 +57,7 @@ option prints the number of matched codes for each selected coding system.
 | `__nbody` | Number of distinct body-system categories affected. A body system is counted once when at least one phenotype within it is identified. |
 
 Grouped phenotypes are counted even when `level(ltc)` has been specified.
+
+The `summary` option prints the number of matched codes for each selected coding system.
 
 See [`stata_example.do`](stata_example.do) as an example of how to run IMPACT on sample data.
