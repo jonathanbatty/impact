@@ -101,9 +101,7 @@ python -m pip install "git+https://github.com/jonathanbatty/impact.git#subdirect
 Pip is used only to install the package from the GitHub source; IMPACT is not fetched from PyPI.
 
 ### TREs
-Trusted research environments (TREs, also referred to as Secure Data Environments and Data Safe Havens) often restrict access to the open Internet, including GitHub. In these environments, IMPACT can be downloaded to an Internet-connected computer, transferred via the approved file upload process for the TRE and installed using the local file system.
-
-[Download](https://github.com/jonathanbatty/impact/archive/refs/heads/main.zip) or clone the complete IMPACT GitHub repository outside the TRE. Upload the repository, preserving its directory structure. The relevant package can then be installed locally. Instructions for each package are given below:
+Trusted research environments (TREs, also referred to as Secure Data Environments and Data Safe Havens) often restrict access to the open Internet, including GitHub. In these environments, IMPACT can be [downloaded](https://github.com/jonathanbatty/impact/archive/refs/heads/main.zip) (or cloned) to an Internet-connected computer outside of the TRE, prior to review and transfer via the approved file upload process for the TRE. It can then be installed locally using the local file system. Instructions for each package are given below:
 
 #### Stata
 
