@@ -1,16 +1,29 @@
+"""
+Generate IMPACT package resources from the master codelist.
+The script validates and normalises ``codelist/master_codelist.csv``,
+then uses the resulting shared model to build the Stata definitions, R internal
+data, and Python package resources. Run ``python buildfile.py --help`` for the
+available build targets.
+"""
+
 from __future__ import annotations
 
 import argparse
 import gzip
 import json
 import os
-from pathlib import Path
 import shutil
 import subprocess
 import tempfile
+from pathlib import Path
 from typing import Optional
 
 import pandas as pd
+
+
+# ---------------------------------------------------------------------------
+# Project paths and source schema
+# ---------------------------------------------------------------------------
 
 ROOT = Path(__file__).resolve().parent
 MASTER_CODELIST = ROOT / "codelist" / "master_codelist.csv"
@@ -33,16 +46,47 @@ REQUIRED_COLUMNS = {
 }
 
 
+# ---------------------------------------------------------------------------
+# Helper functions
+# ---------------------------------------------------------------------------
+
+
 def _capitalise(value: str) -> str:
+    """Return a value with a capitalised first letter and lowercase remainder.
+
+    Args:
+        value: Text to normalise. Empty strings are returned unchanged.
+
+    Returns:
+        The normalised text.
+    """
     return value[:1].upper() + value[1:].lower() if value else value
 
 
 def _ordered_unique(values):
+    """Remove duplicate values while preserving their first-seen order."""
     return list(dict.fromkeys(values))
 
 
 def load_model(master_path: Path = MASTER_CODELIST) -> dict:
-    """Read and validate the master codelist, returning a shared data model."""
+    """Read and validate the codelist, then construct shared lookup structures.
+
+    All columns are read as strings so that clinical codes retain leading
+    zeroes, punctuation, and long numeric identifiers.
+
+    Args:
+        master_path: Path to the authoritative IMPACT master codelist.
+
+    Returns:
+        A dictionary containing normalised LTC and phenotype metadata, the
+        supported code-system names, lookups in both mapping directions, and
+        flattened lookup rows for the R resource builder.
+
+    Raises:
+        ValueError: If required columns are absent or an identifier has
+            conflicting metadata.
+    """
+    # ``utf-8-sig`` accepts both ordinary UTF-8 files and files with a BOM.
     codelist = pd.read_csv(
         master_path,
         dtype=str,
@@ -56,9 +100,14 @@ def load_model(master_path: Path = MASTER_CODELIST) -> dict:
             + ", ".join(sorted(missing))
         )
 
+    # Whitespace is not meaningful in identifiers or metadata. Normalising it
+    # here ensures that all downstream package resources remain consistent.
     for column in REQUIRED_COLUMNS:
         codelist[column] = codelist[column].str.strip()
 
+    # Lookup resources require a complete phenotype/LTC/code-system/code tuple.
+    # Metadata-only or incomplete rows remain available to the metadata tables
+    # but are excluded from code mappings.
     coded = codelist.loc[
         (codelist["phenotype_id"] != "")
         & (codelist["ltc_id"] != "")
@@ -68,6 +117,7 @@ def load_model(master_path: Path = MASTER_CODELIST) -> dict:
     coded["code"] = coded["code"].str.strip()
     coded = coded.loc[coded["code"] != ""]
 
+    # Each granular LTC must map to exactly one label and one phenotype.
     ltc_metadata = (
         codelist[["ltc_id", "ltc_name", "phenotype_id"]]
         .loc[codelist["ltc_id"] != ""]
@@ -82,6 +132,7 @@ def load_model(master_path: Path = MASTER_CODELIST) -> dict:
         )
     ltc_metadata = ltc_metadata.sort_values("ltc_id").reset_index(drop=True)
 
+    # Phenotype labels, categories, and body systems must also be unique by ID.
     phenotype_metadata = (
         codelist[["phenotype_id", "phenotype_name", "type", "body_system"]]
         .loc[codelist["phenotype_id"] != ""]
@@ -99,6 +150,8 @@ def load_model(master_path: Path = MASTER_CODELIST) -> dict:
             + ", ".join(inconsistent_phenotypes.index)
         )
 
+    # A grouped phenotype can contain sex-neutral and sex-specific granular
+    # LTCs. Such mixed groups are applicable to either sex at phenotype level.
     phenotype_sex = {}
     for phenotype_id, values in codelist.loc[
         codelist["phenotype_id"] != "", ["phenotype_id", "sex"]
@@ -126,8 +179,12 @@ def load_model(master_path: Path = MASTER_CODELIST) -> dict:
     )
     phenotype_metadata["type"] = phenotype_metadata["type"].map(_capitalise)
 
+    # Sorted identifiers and mappings make generated output reproducible and
+    # keep resource diffs stable when the master codelist row order changes.
     codesystems = sorted(coded["code_type"].unique())
 
+    # Stata consumes LTC-to-code mappings, whereas R and Python consume
+    # code-to-LTC mappings. Both are derived from the same validated rows.
     ltc_to_codes = {}
     code_to_ltcs = {}
     for codesystem in codesystems:
@@ -157,13 +214,30 @@ def load_model(master_path: Path = MASTER_CODELIST) -> dict:
     }
 
 
+# ---------------------------------------------------------------------------
+# Stata definition generation
+# ---------------------------------------------------------------------------
+
+
 def _stata_quoted_local(name, values):
+    """Format values as a quoted Stata local macro declaration.
+
+    Embedded quotation marks are doubled according to Stata string syntax.
+    """
     escaped = [str(value).replace('"', '""') for value in values]
     return f"local {name} " + " ".join(f'"{value}"' for value in escaped)
 
 
 def build_stata_definitions(model: dict) -> None:
-    """Regenerate Stata's existing __*.ado definition files only."""
+    """Generate Stata metadata and per-code-system ``__*.ado`` definitions.
+
+    Args:
+        model: Shared data model returned by :func:`load_model`.
+
+    Notes:
+        Stata definitions remain text-based local macros. This function does
+        not create any ``.dta`` files.
+    """
     STATA_DIR.mkdir(parents=True, exist_ok=True)
     phenotypes = model["phenotype_metadata"]
     ltcs = model["ltc_metadata"]
@@ -196,7 +270,20 @@ def build_stata_definitions(model: dict) -> None:
         )
 
 
+# ---------------------------------------------------------------------------
+# Python resource generation
+# ---------------------------------------------------------------------------
+
+
 def _write_json(path: Path, value, *, compact=False) -> None:
+    """Write a value as deterministic UTF-8 JSON.
+
+    Args:
+        path: Destination file path.
+        value: JSON-serialisable value to write.
+        compact: Write compact, key-sorted JSON when true; otherwise write
+            indented, human-readable JSON with a trailing newline.
+    """
     path.parent.mkdir(parents=True, exist_ok=True)
     if compact:
         text = json.dumps(
@@ -208,7 +295,16 @@ def _write_json(path: Path, value, *, compact=False) -> None:
 
 
 def build_python_resources(model: dict) -> None:
-    """Create UTF-8 package resources consumed by the Python implementation."""
+    """Generate the UTF-8 resources consumed by the Python package.
+
+    Args:
+        model: Shared data model returned by :func:`load_model`.
+
+    Notes:
+        Code mappings are compressed because they are substantially larger
+        than the LTC and phenotype metadata. A fixed gzip timestamp makes the
+        compressed output reproducible across otherwise identical builds.
+    """
     PYTHON_DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     codes_payload = {
@@ -232,6 +328,8 @@ def build_python_resources(model: dict) -> None:
         ) as compressed:
             compressed.write(encoded)
 
+    # Metadata remains uncompressed and indented so it can be inspected easily
+    # during code review and by TRE airlock teams.
     ltc_records = [
         {
             "ltc_id": row.ltc_id,
@@ -261,7 +359,25 @@ def build_python_resources(model: dict) -> None:
     )
 
 
+# ---------------------------------------------------------------------------
+# R resource generation
+# ---------------------------------------------------------------------------
+
 def _find_rscript(explicit: Optional[str]) -> str:
+    """Locate an Rscript executable using explicit and conventional paths.
+
+    Args:
+        explicit: Optional executable path supplied with ``--rscript``.
+
+    Returns:
+        The resolved path to an existing Rscript executable.
+
+    Raises:
+        RuntimeError: If Rscript cannot be found.
+    """
+    # Respect the command-line option first, followed by the environment and
+    # PATH. Windows R installations are commonly absent from PATH, so their
+    # conventional Program Files locations are checked as a final fallback.
     candidates = [explicit, os.environ.get("RSCRIPT"), shutil.which("Rscript")]
     if os.name == "nt":
         program_files = Path(os.environ.get("ProgramFiles", "C:/Program Files"))
@@ -281,7 +397,16 @@ def _find_rscript(explicit: Optional[str]) -> str:
 
 
 def build_r_sysdata(model: dict, rscript: Optional[str] = None) -> None:
-    """Create compressed internal R data from the shared normalised model."""
+    """Generate compressed R internal data from the shared model.
+
+    Args:
+        model: Shared data model returned by :func:`load_model`.
+        rscript: Optional path to an Rscript executable.
+
+    Raises:
+        RuntimeError: If no Rscript executable is available.
+        subprocess.CalledProcessError: If the R resource builder fails.
+    """
     executable = _find_rscript(rscript)
     R_DIR.mkdir(parents=True, exist_ok=True)
     r_environment = os.environ.copy()
@@ -291,6 +416,9 @@ def build_r_sysdata(model: dict, rscript: Optional[str] = None) -> None:
             if name == "LC_ALL" or name.startswith("LC_"):
                 r_environment.pop(name, None)
 
+    # CSV provides a simple UTF-8 interchange format between Python and the
+    # small R builder responsible for writing R's native ``sysdata.rda``.
+    # Temporary files are removed automatically when the context exits.
     with tempfile.TemporaryDirectory(prefix="impact-build-") as temp_dir_name:
         temp_dir = Path(temp_dir_name)
         lookups_path = temp_dir / "lookups.csv"
@@ -315,7 +443,12 @@ def build_r_sysdata(model: dict, rscript: Optional[str] = None) -> None:
         )
 
 
+# ---------------------------------------------------------------------------
+# Command-line interface and build orchestration
+# ---------------------------------------------------------------------------
+
 def parse_args() -> argparse.Namespace:
+    """Parse and return command-line build options."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--target",
@@ -336,9 +469,12 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
+    """Validate the codelist once and run the requested package builders."""
     args = parse_args()
     model = load_model()
 
+    # Stata has no separate binary/data resource: its runtime data consists of
+    # the ``__*.ado`` definitions created by the standard Stata target.
     if args.resources_only and args.target == "stata":
         raise SystemExit("Stata has no separate runtime resource target.")
 
