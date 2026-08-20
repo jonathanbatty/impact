@@ -52,7 +52,6 @@ IMPACT supports the following coding systems:
 | `icd10pcs`             | The US International Classification of Diseases, 10th Revision, Procedure Coding System (ICD-10-PCS), maintained by the Centers for Medicare & Medicaid Services (CMS), for coding procedures performed during inpatient hospital admissions.                                                                                                            |
 | `icd9cm`               | The US Clinical Modification of the International Classification of Diseases, 9th Revision (ICD-9-CM), used for diagnosis coding in the United States before the transition to ICD-10-CM on 1 October 2015; for example, 410.71 – “Subendocardial infarction, initial episode of care”, commonly used to code NSTEMI.                                    |
 | `icd9pcs`              | ICD-9-CM Volume 3, the former US classification for procedures performed during inpatient hospital admissions, used before the transition to ICD-10-PCS on 1 October 2015.                                                                                                                                                                               |
-| ---------------------- | ------------------------------------------------------- |
 
 To simplify the application of IMPACT for use in CPRD datasets, mappings are given at CPRD Gold medcode and CPRD Aurum medcodeid level (see above).
 
