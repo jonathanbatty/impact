@@ -10,17 +10,17 @@
 
 ---
 
-[Introduction](#introduction) | [Installation](#installation) ([Stata](#stata) | [R](#r) | [Python](#python)) | [Syntax](#syntax) | [Feedback](#feedback) | [Acknowledgements](#acknowledgements) | [Citation](#suggested-citation)
+[Introduction](#introduction) | [Installation](#installation) ([Stata](#stata) | [R](#r) | [Python](#python)) | [TREs](#TREs)| [Syntax](#syntax) | [Feedback](#feedback) | [Acknowledgements](#acknowledgements) | [Citation](#suggested-citation)
 
 ---
 
 ## Introduction
 
-IMPACT ascertains long-term conditions from routinely collected, coded
-healthcare data used in the UK. It maps each coded event to either:
+IMPACT ascertains a wide range of long-term conditions from routinely collected, coded healthcare data. It maps each coded event to one of:
 
-- 321 granular long-term conditions (LTCs); or
-- 116 grouped phenotypes.
+- 321 granular long-term conditions (LTCs); 
+- 116 grouped phenotypes;
+- 21 body system categories.
 
 ![Phenotypes](assets/phenotypes.png "mapping")
 
@@ -34,6 +34,7 @@ Equivalent implementations are provided for Stata, R, and Python. All three
 are installed directly from GitHub; IMPACT is not distributed through SSC,
 CRAN, or PyPI.
 
+The condition definitions can be updated by... buildfile
 
 
 ### Supported coding systems
@@ -110,6 +111,9 @@ python -m pip install "git+https://github.com/jonathanbatty/impact.git#subdirect
 
 Pip is used only to install the GitHub source; IMPACT is not fetched from
 PyPI.
+
+### TREs
+Trusted research environments (TREs) often restrict access to the open Internet, including GitHub. 
 
 ## Syntax
 
