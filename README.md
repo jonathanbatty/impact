@@ -147,114 +147,57 @@ If the TRE airlock does not permit .rda, .gz or other compressed files, transfer
 python buildfile.py --resources-only
 ```
 
-This requires `Python` with pandas and an available R installation. If Rscript is not discoverable automatically, provide its local path:
+This requires `Python` with pandas and an available R installation. If `Rscript` is not discoverable automatically, provide its local path:
 
 ```
 python buildfile.py --resources-only --rscript "C:/path/to/Rscript"
 ```
 
-The generated R and Python resources are derived from the human-readable master codelist. TRE users should consult the relevant governance team before transfer, as permitted file types and installation procedures vary between environments.
+The generated `R` and `Python` resources are the built using the human-readable master codelist. TRE users should consult the relevant governance team before transfer, as permitted file types and installation procedures vary between environments.
 
 
 ## Syntax
 
 The IMPACT pages require the specification of (i) an individual-level identifier, (ii) a coding system, (iii) the corresponding code column, and (iii) the desired output level: long-term condition (*n* = 321) or phenotype (*n* = 116).
 
-### Stata syntax
+### Stata
 
 ```stata
 impact, dataset(string) id(varname) codesystems(string) ///
-    searchvars(string) level(ltc|phenotype) ///
-    [multimorbidity summary]
+        searchvars(string) level(ltc|phenotype) ///
+        [multimorbidity summary]
 ```
 
+More information about using the `Stata` package can be found [here](packages/stata/README.md). An example of usage is also provided in [`packages/stata/stata_example.do`](packages/stata/stata_example.do).
 
-
-### R syntax
+### R
 
 ```r
 impact(data, id, codesystems, searchvars, level,
        multimorbidity = FALSE, summary = FALSE)
 ```
 
-### Python syntax
+More information about using the `R` package can be found [here](packages/r/README.md). An example of usage is also provided in [`packages/r/r_example.R`](packages/r/r_example.R).
+
+### Python
 
 ```python
 impact(df, id, codesystems, searchvars, level,
-       multimorbidity=False, summary=False)
+       multimorbidity = False, summary = False)
 ```
-
-| Argument | Meaning |
-|---|---|
-| `id` | Identifier column retained in the row-level output. |
-| `codesystems` | One or more supported coding systems. |
-| `searchvars` | Code-column group corresponding to each coding system. |
-| `level` | Required output level: `ltc` or `phenotype`. |
-| `multimorbidity` | Add phenotype-based multimorbidity measures. |
-| `summary` | Print matched-code counts for each selected coding system. |
-
-When `multimorbidity` is selected, IMPACT adds:
-
-- `__nphenotypes`: number of the 116 grouped phenotypes present;
-- `__nmental` and `__nphysical`: mental and physical phenotype counts;
-- `__bs_<system>`: number of phenotypes present in each body system; and
-- `__nbody`: number of body systems affected.
-
-These measures always count grouped phenotypes, even when the requested output
-level is `ltc`. Several granular LTCs belonging to one phenotype are therefore
-counted once.
-
-## Examples of key syntax
-
-Full details and additional examples are available in the
-[Stata](packages/stata/README.md), [R](packages/r/README.md), and
-[Python](packages/python/README.md) package READMEs.
-
-### Stata example
-
-```stata
-clear all
-impact, dataset("events.dta") id(patid) codesystems(icd10) ///
-    searchvars(icdcode) level(phenotype) multimorbidity summary
-```
-
-### R example
-
-```r
-out <- impact(events, id = "patid", codesystems = "icd10",
-              searchvars = "icdcode", level = "phenotype",
-              multimorbidity = TRUE, summary = TRUE)
-```
-
-### Python example
-
-```python
-from impact import impact
-
-out = impact(events, id="patid", codesystems="icd10",
-             searchvars="icdcode", level="phenotype",
-             multimorbidity=True, summary=True)
-```
-
-Hard-coded functional examples and assertions are also provided in
-[`packages/stata/stata_example.do`](packages/stata/stata_example.do),
-[`packages/r/r_example.R`](packages/r/r_example.R), and
-[`packages/python/python_example.py`](packages/python/python_example.py).
+More information about using the `Python` package can be found [here](packages/python/README.md). An example of usage is also provided in [`packages/python/python_example.py`](packages/python/python_example.py).
 
 ## Feedback
 
-Please [open an issue](https://github.com/jonathanbatty/impact/issues) to
-report suspected errors or omissions in the codelists, identify installation
-or runtime problems, suggest feature enhancements, or make any other request.
+Please [open an issue](https://github.com/jonathanbatty/impact/issues) to report suspected errors or omissions in the codelists, identify installation or runtime problems, suggest feature enhancements, or make any other requests.
 
 ## Acknowledgements
 
-This work was done while JB was a member of the [Survivorship and Multimorbidity Epidemiology Group](https://multimorbidity-research-leeds.github.io/) at the University of Leeds, led by Dr Marlous Hall.
+This work was done while JB was a member of the [Survivorship and Multimorbidity Epidemiology Group](https://multimorbidity-research-leeds.github.io/) at the University of Leeds, led by Dr Marlous Hall. We would like to acknowledge the following sources of funding for this work:
 
 - JB received funding from a Wellcome Trust 4ward North Clinical Research Training Fellowship (227498/Z/23/Z; R127002).
 - MH was funded by the Wellcome Trust Sir Henry Wellcome Postdoctoral Fellowship scheme (206470/Z/17/Z). 
 
 ## Suggested citation
-
-Batty, J. A. (2026). *IMPACT: The Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool* (Version 0.1.0) [Computer software].
+Batty JA, del Toro T, Sturley C, Wilkinson C, Brown BC, Kearney MT and Hall M (2026). *IMPACT: The Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool* (Version 1.0) [Computer software].
 https://github.com/jonathanbatty/impact
