@@ -2,7 +2,7 @@
 
 This is the `R` implementation of IMPACT — the Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool.
 
-It may be used to ascertain 321 granular LTC indicators or 116 grouped phenotype indicators from row-level coded-event healthcare data.
+It can be used to ascertain 321 granular long-term condition (LTC) indicators or 116 grouped phenotype indicators in routinely collected healthcare data.
 
 ## Install directly from GitHub
 
@@ -14,7 +14,7 @@ remotes::install_github("jonathanbatty/impact", subdir = "packages/r")
 library(impact)
 ```
 
-The package's code lookups and LTC/phenotype metadata are stored as compressed internal data in `R/sysdata.rda`. This file is generated from the repository's authoritative `codelist/master_codelist.csv` by `buildfile.py` and should not be edited directly.
+The package's code lookups and LTC/phenotype metadata are stored as compressed internal data in `R/sysdata.rda`. This file is generated from the repository's `codelist/master_codelist.csv` by `buildfile.py` and should not be edited directly.
 
 ## Help
 

@@ -2,7 +2,7 @@
 
 This is the `Python` implementation of IMPACT — the Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool.
 
-It may be used to ascertain 321 granular LTC indicators or 116 grouped phenotype indicators from row-level coded-event healthcare data.
+It can be used to ascertain 321 granular long-term condition (LTC) indicators or 116 grouped phenotype indicators in routinely collected healthcare data.
 
 ## Install directly from GitHub
 
