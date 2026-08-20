@@ -37,7 +37,7 @@ The number of long-term conditions included in each phenotype and for each body 
 
 IMPACT supports the following coding systems:
 
-| Coding system alias | Details and example |
+| Coding system | Details and example |
 | ---------------------- | ------------------------------------------------------- |
 | `icd10`                | The UK implementation of the International Classification of Diseases, 10th Revision (5th Edition), as specified in the [NHS Classification Browser](https://classbrowser.nhs.uk/#/book/ICD-10-5TH-Edition); for example, I21.4 – “Acute subendocardial myocardial infarction”, which includes non-ST elevation myocardial infarction (NSTEMI).          |
 | `opcs4`                | The UK classification of interventions and procedures, based on the Office of Population Censuses and Surveys Classification of Interventions and Procedures (OPCS-4), version 4.11, as specified in the [NHS Classification Browser](https://classbrowser.nhs.uk/#/book/OPCS-4.11).                                                                     |
@@ -98,7 +98,7 @@ The `Python` package can be installed using:
 python -m pip install "git+https://github.com/jonathanbatty/impact.git#subdirectory=packages/python"
 ```
 
-Pip is used only to install the package fromt the GitHub source; IMPACT is not fetched from PyPI.
+Pip is used only to install the package from the GitHub source; IMPACT is not fetched from PyPI.
 
 ### TREs
 Trusted research environments (TREs, also referred to as Secure Data Environments and Data Safe Havens) often restrict access to the open Internet, including GitHub. In these environments, IMPACT can be downloaded on an Internet-connected computer, transferred through the TRE's approved file-transfer process (often called an airlock) and installed from the local file system.
@@ -141,7 +141,7 @@ Python, pandas, setuptools and wheel must already be installed within the TRE, o
 
 #### Binary and compressed files
 IMPACT does not contain compiled executables, DLLs, shared libraries or other native machine-code binaries. It does, however, include generated data resources that are not directly human-readable: the R package contains a compressed R/sysdata.rda file, and the Python package contains a gzip-compressed data/codes.json.gz file. These files contain codelists and metadata rather than executable code.
-If the TRE airlock does not permit .rda, .gz or other compressed files, transfer the human-readable source files—including codelist/master_codelist.csv, buildfile.py and the package source directories—and regenerate the package resources inside the TRE before installation:
+If the TRE airlock does not permit .rda, .gz or other compressed files, exclude `packages/r/R/sysdata.rda` and `packages/python/src/impact/data/codes.json.gz` from the transfer. Transfer the remaining human-readable source files—including `codelist/master_codelist.csv`, `buildfile.py` and the package source directories—and regenerate the excluded package resources inside the TRE before installation:
 
 ``` bash
 python buildfile.py --resources-only
@@ -153,12 +153,12 @@ This requires `Python` with pandas and an available R installation. If `Rscript`
 python buildfile.py --resources-only --rscript "C:/path/to/Rscript"
 ```
 
-The generated `R` and `Python` resources are the built using the human-readable master codelist. TRE users should consult the relevant governance team before transfer, as permitted file types and installation procedures vary between environments.
+The generated `R` and `Python` resources are built using the human-readable master codelist. TRE users should consult the relevant governance team before transfer, as permitted file types and installation procedures vary between environments.
 
 
 ## Syntax
 
-The IMPACT pages require the specification of (i) an individual-level identifier, (ii) a coding system, (iii) the corresponding code column, and (iii) the desired output level: long-term condition (*n* = 321) or phenotype (*n* = 116).
+The IMPACT packages require the specification of (i) an individual-level identifier, (ii) a coding system, (iii) the corresponding code column, and (iv) the desired output level: long-term condition (*n* = 321) or phenotype (*n* = 116).
 
 ### Stata
 

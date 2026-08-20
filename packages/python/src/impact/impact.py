@@ -62,16 +62,8 @@ CANONICAL_CODESYSTEMS = (
     "snomed_description",
 )
 
-ALIASES = {
-    "cprdaurum": "cprd_aurum_medcodeid",
-    "medcodeid": "cprd_aurum_medcodeid",
-    "cprdgold": "cprd_gold_medcode",
-}
-
-
 def _normalise_codesystem(value):
     value = str(value).lower()
-    value = ALIASES.get(value, value)
     if value not in CANONICAL_CODESYSTEMS:
         raise ValueError(
             "Unknown code system %r. See list_codesystems()." % value
@@ -113,8 +105,8 @@ def select_codesystem(ontology):
 
 
 def list_codesystems():
-    """Return canonical supported code-system names followed by aliases."""
-    return list(CANONICAL_CODESYSTEMS) + list(ALIASES)
+    """Return supported code-system names."""
+    return list(CANONICAL_CODESYSTEMS)
 
 
 def list_ltcs():

@@ -1,5 +1,5 @@
 capture program drop impact
-*! version 0.1.0 2026-08-18
+*! version 1.0 2026-08-20
 program define impact
 	version 17
 
@@ -92,12 +92,6 @@ program define impact
 	forvalues i = 1/`num_codesystems' {
 		local requested_cs_`i' = lower("``i''")
 		local canonical_cs_`i' "`requested_cs_`i''"
-		if inlist("`requested_cs_`i''", "cprdaurum", "medcodeid") {
-			local canonical_cs_`i' "cprd_aurum_medcodeid"
-		}
-		else if "`requested_cs_`i''" == "cprdgold" {
-			local canonical_cs_`i' "cprd_gold_medcode"
-		}
 	}
 
 	tokenize "`searchvars'"

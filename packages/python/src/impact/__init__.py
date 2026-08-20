@@ -8,4 +8,4 @@ Aurum medcodeid values).
 from .impact import impact, select_codesystem, list_ltcs, list_codesystems
 
 __all__ = ["impact", "select_codesystem", "list_ltcs", "list_codesystems"]
-__version__ = "0.1.0"
+__version__ = "1.0"

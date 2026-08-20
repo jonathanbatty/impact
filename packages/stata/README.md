@@ -23,10 +23,12 @@ The basic usage of IMPACT is as below:
 ```stata
 clear all
 impact, dataset("events.dta") id(patid) codesystems(icd10) ///
-        searchvars(icd10) level(phenotype) multimorbidity summary
+        searchvars(icdcode) level(phenotype) multimorbidity summary
 ```
 
-`dataset`, `id`, `codesystem`, `searchvars` and `level()` are required. 
+`dataset()`, `id()`, `codesystems()`, `searchvars()` and `level()` are required.
+IMPACT must be run with no dataset currently loaded; use `clear all` before
+calling the command.
 
 Specifying level as:
 
@@ -37,10 +39,15 @@ Note that both levels cannot be returned in a single run.
 
 `codesystems()` and `searchvars()` are ordered pairs. A wildcard expression in one search-variable position can search several columns with the same code system. All variables to search must be strings.
 
-Supported code systems are `icd10`, `opcs4`, `read_original`, `read_cleansed`, `snomed_concept`, `snomed_description`, `emis_local`, `cprd_gold_medcode`, `cprd_aurum_medcodeid`, `icd10cm`, `icd10pcs` and `icd9cm`,
-`icd9pcs`.
+Supported code systems are `icd10`, `opcs4`, `read_original`, `read_cleansed`, `snomed_concept`, `snomed_description`, `emis_local`, `cprd_gold_medcode`, `cprd_aurum_medcodeid`, `icd10cm`, `icd10pcs`, `icd9cm` and `icd9pcs`.
 
-The command processes `"events.dta"` and produces an output dataset, containing the original identifier and indicators. `multimorbidity` adds the following additional multimorbidity-relevant variables:
+The command processes `"events.dta"` and produces an output dataset containing
+the original identifier and indicators. The output remains at the same row
+level as the input dataset. Repeated patient
+identifiers are retained and are not collapsed or aggregated. The `summary`
+option prints the number of matched codes for each selected coding system.
+
+`multimorbidity` adds the following additional multimorbidity-relevant variables:
 
 | Variable | Description |
 | --- | --- |

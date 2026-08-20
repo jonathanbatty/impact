@@ -103,12 +103,6 @@ impact <- function(data, id, codesystems, searchvars, level,
   value[nzchar(value)]
 }
 
-.impact_aliases <- c(
-  cprdaurum = "cprd_aurum_medcodeid",
-  medcodeid = "cprd_aurum_medcodeid",
-  cprdgold = "cprd_gold_medcode"
-)
-
 .impact_canonical_codesystems <- c(
   "cprd_aurum_medcodeid", "cprd_gold_medcode", "emis_local", "icd10",
   "icd10cm", "icd10pcs", "icd9cm", "icd9pcs", "opcs4",
@@ -117,7 +111,6 @@ impact <- function(data, id, codesystems, searchvars, level,
 
 .impact_normalize_codesystem <- function(value) {
   value <- tolower(value)
-  if (value %in% names(.impact_aliases)) value <- unname(.impact_aliases[[value]])
   if (!(value %in% .impact_canonical_codesystems)) {
     stop("Unknown code system '", value, "'. See list_codesystems().", call. = FALSE)
   }
@@ -175,12 +168,12 @@ select_codesystem <- function(ontology) {
   get(canonical, envir = .impact_lookup_store, inherits = FALSE)
 }
 
-#' List supported code-system names and aliases.
+#' List supported code-system names.
 #'
 #' @return A character vector.
 #' @export
 list_codesystems <- function() {
-  c(.impact_canonical_codesystems, names(.impact_aliases))
+  .impact_canonical_codesystems
 }
 
 #' List IMPACT granular LTC metadata.

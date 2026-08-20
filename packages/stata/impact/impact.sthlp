@@ -32,8 +32,7 @@ because output remains at coded-event row level.
 {cmd:cprd_aurum_medcodeid}, {cmd:cprd_gold_medcode}, {cmd:emis_local},
 {cmd:icd10}, {cmd:icd10cm}, {cmd:icd10pcs}, {cmd:icd9cm}, {cmd:icd9pcs},
 {cmd:opcs4}, {cmd:read_cleansed}, {cmd:read_original},
-{cmd:snomed_concept}, and {cmd:snomed_description}. Aliases are
-{cmd:cprdaurum}, {cmd:medcodeid}, and {cmd:cprdgold}.
+{cmd:snomed_concept}, and {cmd:snomed_description}.
 
 {phang}
 {opt searchvars(string)} lists string variables or wildcard expressions to

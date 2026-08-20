@@ -1,7 +1,7 @@
 Package: impact
 Type: Package
 Title: Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool
-Version: 0.1.0
+Version: 1.0
 Authors@R: person("Jonathan A.", "Batty", email = "J.Batty@leeds.ac.uk", role = c("aut", "cre"))
 Description: Ascertain long-term conditions from routinely collected, coded
     healthcare data (ICD-9-CM, ICD-9-PCS, ICD-10-CM, ICD-10-PCS, ICD-10,

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "impact"
-version = "0.1.0"
+version = "1.0"
 authors = [
   { name="Jonathan A. Batty", email="J.Batty@leeds.ac.uk" },
 ]
