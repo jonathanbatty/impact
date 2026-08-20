@@ -139,19 +139,6 @@ python -m pip install --no-index --no-deps --no-build-isolation "C:/path/to/impa
 
 Python, pandas, setuptools and wheel must already be installed within the TRE, or transferred and installed separately through the approved airlock process.
 
-## Syntax
-
-The common IMPACT interface requires an identifier, one or more coding
-systems, the corresponding code columns, and the desired output level.
-
-### Stata syntax
-
-```stata
-impact, dataset(string) id(varname) codesystems(string) ///
-    searchvars(string) level(ltc|phenotype) ///
-    [multimorbidity summary]
-```
-
 #### Binary and compressed files
 IMPACT does not contain compiled executables, DLLs, shared libraries or other native machine-code binaries. It does, however, include generated data resources that are not directly human-readable: the R package contains a compressed R/sysdata.rda file, and the Python package contains a gzip-compressed data/codes.json.gz file. These files contain codelists and metadata rather than executable code.
 If the TRE airlock does not permit .rda, .gz or other compressed files, transfer the human-readable source files—including codelist/master_codelist.csv, buildfile.py and the package source directories—and regenerate the package resources inside the TRE before installation:
@@ -167,6 +154,23 @@ python buildfile.py --resources-only --rscript "C:/path/to/Rscript"
 ```
 
 The generated R and Python resources are derived from the human-readable master codelist. TRE users should consult the relevant governance team before transfer, as permitted file types and installation procedures vary between environments.
+
+
+
+## Syntax
+
+The common IMPACT interface requires an identifier, one or more coding
+systems, the corresponding code columns, and the desired output level.
+
+### Stata syntax
+
+```stata
+impact, dataset(string) id(varname) codesystems(string) ///
+    searchvars(string) level(ltc|phenotype) ///
+    [multimorbidity summary]
+```
+
+
 
 ### R syntax
 
