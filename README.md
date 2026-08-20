@@ -39,8 +39,8 @@ IMPACT supports the following coding systems:
 
 | Value | Source coding system |
 |---|---|
-| `icd10` | The UK implementation of the International Classification of Diseases, 10th Revision (5th Edition, as per the NHS [classicfication browser](https://classbrowser.nhs.uk/#/book/ICD-10-5TH-Edition})|
-| `opcs4` | The UK implementation of the Office of Population Censuses and Surveys Classification of Interventions and Procedures (version 4.11; as per the NHS [classification browser](https://classbrowser.nhs.uk/#/book/OPCS-4.11)) |
+| `icd10` | The UK implementation of the International Classification of Diseases, 10th Revision (5th Edition, as per the [NHS classicfication browser](https://classbrowser.nhs.uk/#/book/ICD-10-5TH-Edition)|
+| `opcs4` | The UK implementation of the Office of Population Censuses and Surveys Classification of Interventions and Procedures (version 4.11; as per the [NHS classification browser](https://classbrowser.nhs.uk/#/book/OPCS-4.11)) |
 | `icd10cm` | ICD-10-CM |
 | `icd10pcs` | ICD-10-PCS |
 | `icd9cm` | ICD-9-CM |
