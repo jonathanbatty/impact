@@ -13,7 +13,7 @@ net from https://raw.githubusercontent.com/jonathanbatty/impact/main/packages/st
 net install impact, replace
 ```
 
-# Help
+## Help
 A `Stata` help file is made available after installation and can be viewed by running: `help impact`
 
 ## Run IMPACT
