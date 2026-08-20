@@ -37,14 +37,10 @@ The number of long-term conditions included in each phenotype and for each body 
 
 IMPACT supports the following coding systems:
 
-| Value | Source coding system |
+| Coding system | Details |
 |---|---|
 | `icd10` | The UK implementation of the International Classification of Diseases, 10th Revision (5th Edition, as per the [NHS classicfication browser](https://classbrowser.nhs.uk/#/book/ICD-10-5TH-Edition)|
 | `opcs4` | The UK implementation of the Office of Population Censuses and Surveys Classification of Interventions and Procedures (version 4.11; as per the [NHS classification browser](https://classbrowser.nhs.uk/#/book/OPCS-4.11)) |
-| `icd10cm` | ICD-10-CM |
-| `icd10pcs` | ICD-10-PCS |
-| `icd9cm` | ICD-9-CM |
-| `icd9pcs` | ICD-9-PCS |
 | `read_cleansed` | Cleansed Read codes |
 | `read_original` | Original Read codes |
 | `snomed_concept` | SNOMED CT concept identifiers |
@@ -52,6 +48,10 @@ IMPACT supports the following coding systems:
 | `emis_local` | EMIS local codes |
 | `cprd_aurum_medcodeid` | CPRD Aurum medcodeid (`cprdaurum` and `medcodeid` are aliases) |
 | `cprd_gold_medcode` | CPRD GOLD medcode (`cprdgold` is an alias) |
+| `icd10cm` | The US ICD-10-CM |
+| `icd10pcs` | ICD-10-PCS |
+| `icd9cm` | ICD-9-CM |
+| `icd9pcs` | ICD-9-PCS |
 
 To simplify the application of IMPACT for use in the CPRD datasets, mappings are also given at CPRD Gold medcode and CPRD Aurum medcodeid level (see table above).
 
