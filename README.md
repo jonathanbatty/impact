@@ -193,7 +193,9 @@ Please [open an issue](https://github.com/jonathanbatty/impact/issues) to report
 
 ## Acknowledgements
 
-This work was done while JB was a member of the [Survivorship and Multimorbidity Epidemiology Group](https://multimorbidity-research-leeds.github.io/) at the University of Leeds, led by Dr Marlous Hall. We would like to acknowledge the following sources of funding for this work:
+This work was done while JB was a member of the [Survivorship and Multimorbidity Epidemiology Group](https://multimorbidity-research-leeds.github.io/) at the University of Leeds, led by Dr Marlous Hall. 
+
+We would like to acknowledge the following sources of funding for this work:
 
 - JB received funding from a Wellcome Trust 4ward North Clinical Research Training Fellowship (227498/Z/23/Z; R127002).
 - MH was funded by the Wellcome Trust Sir Henry Wellcome Postdoctoral Fellowship scheme (206470/Z/17/Z). 
