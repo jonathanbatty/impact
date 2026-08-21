@@ -153,7 +153,7 @@ program define impact
 		local resultvars "`resultvars' __``i''"
 	}
 
-	noisily display _newline "Ascertaining IMPACT `level' indicators (serial mapping)..."
+	noisily display _newline "Ascertaining IMPACT `level' indicators..."
 	forvalues i = 1/`num_codesystems' {
 		unab vars_to_search : `searchvars_`i''
 		foreach var of varlist `vars_to_search' {

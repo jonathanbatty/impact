@@ -33,8 +33,16 @@ void impact_load(
         }
     }
 
-    printf("Number of %ss indexed:          %9.0fc\n", level, cols(mapped))
-    printf("Number of codes mapped:         %9.0fc\n", rows(asarray_keys(lookup)))
+    printf(
+        "%-35s %9.0fc\n",
+        sprintf("Number of %ss indexed:", level),
+        cols(mapped)
+    )
+    printf(
+        "%-35s %9.0fc\n",
+        "Number of codes mapped:",
+        rows(asarray_keys(lookup))
+    )
 }
 
 void impact_find(
