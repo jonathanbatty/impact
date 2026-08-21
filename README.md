@@ -1,6 +1,6 @@
 ![IMPACT](assets/header.png "IMPACT")
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22045591.svg)](https://doi.org/10.5281/zenodo.22045590)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.22045591-blue.svg)](https://doi.org/10.5281/zenodo.22045590)
 [![Version](https://img.shields.io/badge/version-1.0-blue)](https://github.com/jonathanbatty/impact)
 [![Stata 17+](https://img.shields.io/badge/Stata-17%2B-1f77b4)](packages/stata/README.md)
 [![R 3.5+](https://img.shields.io/badge/R-%E2%89%A53.5.0-276DC3?logo=r&logoColor=white)](packages/r/README.md)
