@@ -201,4 +201,4 @@ We would like to acknowledge the following sources of funding for this work:
 
 ## Suggested citation
 Batty JA, del Toro T, Sturley C, Wilkinson C, Brown BC, Kearney MT and Hall M (2026). *IMPACT: The Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool* (Version 1.0) [Computer software].
-https://github.com/jonathanbatty/impact
+https://github.com/jonathanbatty/impact. DOI: 10.5281/zenodo.22045590
