@@ -53,7 +53,7 @@ function buildFilters() {
         options.set(value,name);
       }
     }
-    const details = element('details'); details.open = key === 'body_system' || filters[key].length > 0;
+    const details = element('details'); details.open = key === 'code_type' || filters[key].length > 0;
     const summary = element('summary',label + (filters[key].length ? ` (${filters[key].length})` : '')); details.append(summary);
     const search = element('input'); search.type = 'search'; search.placeholder = 'Find ' + label.toLowerCase(); search.setAttribute('aria-label','Find ' + label.toLowerCase()); details.append(search);
     const choices = element('div',null,'choices');
