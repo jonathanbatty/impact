@@ -60,6 +60,8 @@ Please note that all clinical coding data should be stored as strings so that le
 
 ### Codelists and definitions
 
+An interactive static code browser is available in [`browser/`](browser/README.md), with filters, search and CSV exports. See its README for local preview and GitHub Pages deployment instructions. Generate its data with `python buildfile.py --target browser`.
+
 The master codelist for IMPACT can be found at [`codelist/master_codelist.csv`](codelist/master_codelist.csv). The definition files for each of the `stata`, `R` and `python` packages are generated from this codelist.
 This codelist could be used to apply the IMPACT definitions to other software packages, or in situations in which custom packages cannot be installed.
 

@@ -1,0 +1,42 @@
+name: Build and deploy code browser
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['browser/**', 'codelist/master_codelist.csv', 'buildfile.py', 'tests/test_browser.py', '.github/workflows/pages.yml']
+permissions:
+  contents: read
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p 'test_browser.py'
+      - run: python buildfile.py --target browser
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node browser/query.test.mjs
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: browser
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

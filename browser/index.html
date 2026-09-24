@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Explore and export IMPACT codelists for long-term conditions in routinely collected healthcare data.">
+  <title>IMPACT · Code browser</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to code browser</a>
+<header><a class="brand" href="./" aria-label="IMPACT: Code Browser">IMPACT:<span>Code Browser</span></a><nav aria-label="Project"><a href="#about">About & citation</a><a href="https://github.com/jonathanbatty/impact">View on GitHub ↗</a></nav></header>
+<main id="main">
+<section class="intro"><p>Explore the Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool.<br>Browse long-term conditions, refine your selection and export the codes you need.</p><div id="stats" class="stats">Loading the codelist catalogue…</div></section>
+<div class="workspace">
+<aside aria-label="Codelist filters"><div class="section-heading"><h2>Refine your selection</h2><button id="reset" class="text-button">Reset</button></div><p class="hint">Selections within a filter are combined. Different filters narrow the results.</p><div id="filters"></div></aside>
+<section class="results" aria-label="Codelist results">
+<div class="search-box"><label for="search">Search conditions, codes or descriptions</label><input id="search" type="search" placeholder="e.g. asthma, diabetes, I10" autocomplete="off"><div class="search-options"><label><input id="exact" type="checkbox"> Exact code match</label><button id="browse" class="text-button">Browse all codes</button></div></div>
+<div class="result-heading"><div><h2 id="result-title">Explore by phenotype</h2><p id="status" role="status" aria-live="polite">Choose a phenotype below, use the filters, or search the full codelist.</p></div><button id="share" class="secondary" hidden>Copy link</button></div>
+<div id="catalogue" class="catalogue"></div>
+<div id="table-panel" hidden><div class="table-controls"><label>Sort by <select id="sort"><option value="source">Source order</option><option value="code">Code</option><option value="description">Description</option><option value="ltc_name">Condition</option><option value="code_type">Coding system</option></select></label><label><input id="descending" type="checkbox"> Descending</label><label>Rows <select id="size"><option>25</option><option selected>50</option><option>100</option></select></label></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Code results; scroll horizontally for all columns"><table><caption class="sr-only">Matching master codelist rows</caption><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
+<div class="pagination"><button id="previous" class="secondary">← Previous</button><span id="page-label"></span><button id="next" class="secondary">Next →</button></div>
+<div class="export-bar"><div><strong>Export codelist</strong><p>Exports include every matching row, across all pages.</p></div><div class="export-actions"><button id="export">Export CSV</button><button id="codes" class="secondary" title="Select exactly one coding system to export distinct codes">Distinct codes</button></div></div><p class="hint">Codes are exported exactly as text in the source. When opening CSVs in spreadsheet software, import code columns as text to preserve long identifiers and leading zeroes.</p></div>
+<button id="retry" class="secondary" hidden>Retry loading</button>
+</section></div>
+<section id="about" class="about"><div><p class="eyebrow">ABOUT THE PROJECT</p><h2>IMPACT — the Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool</h2><p>IMPACT supports ascertainment of long-term conditions in routinely collected healthcare datasets, with packages for Stata, R and Python. This browser provides a searchable view of the project's master codelist.</p><p><a href="https://github.com/jonathanbatty/impact">Project, documentation & installation ↗</a> · <a href="https://github.com/jonathanbatty/impact/issues">Report an issue</a></p><p id="version" class="hint"></p></div><div><h3>Authors & suggested citation</h3><p>Batty JA, del Toro T, Sturley C, Wilkinson C, Brown BC, Kearney MT and Hall M (2026). <em>IMPACT: The Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool</em> (Version 1.0) [Computer software]. <a href="https://doi.org/10.5281/zenodo.22045590">doi:10.5281/zenodo.22045590</a></p><details><summary>Acknowledgements & funding</summary><p>This work was done while JB was a member of the <a href="https://multimorbidity-research-leeds.github.io/">Survivorship and Multimorbidity Epidemiology Group</a> at the University of Leeds, led by Dr Marlous Hall.</p><p>JB received funding from a Wellcome Trust 4ward North Clinical Research Training Fellowship (227498/Z/23/Z; R127002). MH was funded by the Wellcome Trust Sir Henry Wellcome Postdoctoral Fellowship scheme (206470/Z/17/Z).</p></details></div></section>
+</main><footer><strong>IMPACT</strong><span>Inclusive Multimorbidity Phenotyping Algorithm and Coding Tool</span><a href="https://github.com/jonathanbatty/impact/blob/main/LICENSE">MIT licence</a></footer>
+<noscript>This code browser requires JavaScript. The master CSV is available from the project's GitHub repository.</noscript><script type="module" src="app.js"></script>
+</body></html>

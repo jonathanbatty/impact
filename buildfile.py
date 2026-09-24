@@ -1,5 +1,5 @@
 """
-Generate IMPACT package resources from the master codelist.
+Generate IMPACT package and code-browser resources from the master codelist.
 The script validates and normalises ``codelist/master_codelist.csv``,
 then uses the resulting shared model to build the Stata definitions, R internal
 data, and Python package resources. Run ``python buildfile.py --help`` for the
@@ -9,6 +9,8 @@ available build targets.
 from __future__ import annotations
 
 import argparse
+import csv
+import hashlib
 import gzip
 import json
 import os
@@ -18,7 +20,6 @@ import tempfile
 from pathlib import Path
 from typing import Optional
 
-import pandas as pd
 
 
 # ---------------------------------------------------------------------------
@@ -86,6 +87,8 @@ def load_model(master_path: Path = MASTER_CODELIST) -> dict:
         ValueError: If required columns are absent or an identifier has
             conflicting metadata.
     """
+    import pandas as pd
+
     # ``utf-8-sig`` accepts both ordinary UTF-8 files and files with a BOM.
     codelist = pd.read_csv(
         master_path,
@@ -466,14 +469,66 @@ def build_r_sysdata(model: dict, rscript: Optional[str] = None) -> None:
 # Command-line interface and build orchestration
 # ---------------------------------------------------------------------------
 
+def build_browser(master_path: Path = MASTER_CODELIST, output: Optional[Path] = None) -> dict:
+    """Build lossless, deterministic browser partitions using only the standard library.
+
+    Rows are arrays in source column order, prefixed by their original row number.
+    No trimming, deduplication, or numeric conversion is applied. Content-addressed
+    files prevent stale browser caches from mixing different codelist revisions.
+    """
+    output = output or ROOT / "browser" / "data"
+    output.mkdir(parents=True, exist_ok=True)
+    groups = {}
+    catalogue = {}
+    with master_path.open(encoding="utf-8-sig", newline="") as source:
+        reader = csv.DictReader(source)
+        columns = reader.fieldnames
+        if not columns or not (REQUIRED_COLUMNS | {"description"}).issubset(columns):
+            raise ValueError("Browser source is missing required columns.")
+        for number, row in enumerate(reader):
+            if None in row or any(value is None for value in row.values()):
+                raise ValueError(f"Malformed CSV row {number + 2}")
+            key = row["phenotype_id"]
+            groups.setdefault(key, []).append([number] + [row[c] for c in columns])
+            entry = catalogue.setdefault(key, {"id": key, "name": row["phenotype_name"],
+                "body_system": row["body_system"], "type": row["type"],
+                "ltcs": {}, "sexes": set(), "systems": set()})
+            if (entry["name"], entry["body_system"], entry["type"]) != (
+                row["phenotype_name"], row["body_system"], row["type"]
+            ):
+                raise ValueError(f"Conflicting browser metadata for phenotype {key}")
+            if row["ltc_id"] in entry["ltcs"] and entry["ltcs"][row["ltc_id"]] != row["ltc_name"]:
+                raise ValueError(f"Conflicting browser LTC name for {row['ltc_id']}")
+            entry["ltcs"][row["ltc_id"]] = row["ltc_name"]
+            entry["sexes"].add(row["sex"])
+            entry["systems"].add(row["code_type"])
+    partitions = []
+    for key in sorted(groups):
+        payload = json.dumps(groups[key], ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+        compressed = gzip.compress(payload, mtime=0)
+        name = hashlib.sha256(compressed).hexdigest()[:24] + ".json.gz"
+        (output / name).write_bytes(compressed)
+        entry = catalogue[key]
+        entry.update(file=name, rows=len(groups[key]), bytes=len(compressed))
+        entry["sexes"] = sorted(entry["sexes"])
+        entry["systems"] = sorted(entry["systems"])
+        partitions.append(entry)
+    manifest = {"schema": 1, "columns": columns, "rows": sum(map(len, groups.values())),
+        "sha256": hashlib.sha256(master_path.read_bytes()).hexdigest(), "partitions": partitions}
+    temporary = output / "manifest.tmp"
+    temporary.write_text(json.dumps(manifest, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    temporary.replace(output / "manifest.json")
+    return manifest
+
+
 def parse_args() -> argparse.Namespace:
     """Parse and return command-line build options."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--target",
-        choices=("all", "stata", "r", "python"),
+        choices=("all", "stata", "r", "python", "browser"),
         default="all",
-        help="Build one package or all packages (default: all).",
+        help="Build a package, the browser, or all targets (default: all).",
     )
     parser.add_argument(
         "--resources-only",
@@ -490,6 +545,12 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     """Validate the codelist once and run the requested package builders."""
     args = parse_args()
+    if args.target == "browser":
+        if args.resources_only:
+            raise SystemExit("Use --target browser without --resources-only.")
+        manifest = build_browser()
+        print(f"Browser build complete: {manifest['rows']} rows, {len(manifest['partitions'])} partitions.")
+        return
     model = load_model()
 
     # Stata has no separate binary/data resource: its runtime data consists of
@@ -505,6 +566,9 @@ def main() -> None:
 
     if args.target in ("all", "python"):
         build_python_resources(model)
+
+    if args.target == "all" and not args.resources_only:
+        build_browser()
 
     print(
         "IMPACT build complete: "
