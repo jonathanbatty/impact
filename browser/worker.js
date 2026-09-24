@@ -48,9 +48,10 @@ self.onmessage = async ({data: message}) => {
     if (latest !== message.id) return;
     const query = message.query.trim().toLowerCase();
     result = partitions.flatMap(p => cache.get(p.file)).filter(row => matches(row, manifest.columns, message.filters, query, message.exact));
-    const index = manifest.columns.indexOf(message.sort) + 1;
+    const sort = ['code', 'description', 'ltc_name', 'code_type'].includes(message.sort) ? message.sort : 'code';
+    const index = manifest.columns.indexOf(sort) + 1;
     const direction = message.descending ? -1 : 1;
-    result.sort((a,b) => direction * (index === 0 ? a[0]-b[0] : (a[index] < b[index] ? -1 : a[index] > b[index] ? 1 : a[0]-b[0])));
+    result.sort((a,b) => direction * (a[index] < b[index] ? -1 : a[index] > b[index] ? 1 : a[0]-b[0]));
     resultId = message.id;
     page(message);
   } catch (error) {

@@ -27,10 +27,16 @@ const send=async message=>{
   assert.notEqual(response?.type,'error',response?.message);
   return response;
 };
-const base={type:'query',id:1,filters:{},query:'',exact:false,sort:'source',descending:false,page:1,size:50};
+const base={type:'query',id:1,filters:{},query:'',exact:false,sort:'code',descending:false,page:1,size:50};
 let result=await send(base);
 assert.equal(result.count,manifest.rows); assert.equal(result.rows.length,50); assert.equal(requests,manifest.partitions.length);
-result=await send({...base,type:'page',page:2}); assert.equal(result.rows[0][0],50);
+const firstPage = result.rows;
+result=await send({...base,type:'page',page:2});
+assert.equal(result.page,2);
+assert.ok(result.rows.every(row=>!firstPage.some(previous=>previous[0]===row[0])));
+const codeIndex = manifest.columns.indexOf('code') + 1;
+const codes = [...firstPage,...result.rows].map(row=>row[codeIndex]);
+assert.deepEqual(codes,[...codes].sort(),'Codes must be ascending across page boundaries');
 result=await send({...base,id:2,query:'I21.4',exact:true});
 assert.ok(result.count>0); assert.ok(result.rows.every(row=>row[manifest.columns.indexOf('code')+1].toLowerCase()==='i21.4'));
 assert.equal(requests,manifest.partitions.length,'Repeated queries should use the cache');

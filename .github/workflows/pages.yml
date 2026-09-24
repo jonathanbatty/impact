@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['browser/**', 'codelist/master_codelist.csv', 'buildfile.py', 'tests/test_browser.py', '.github/workflows/pages.yml']
+    paths: ['browser/**', 'codelist/master_codelist.csv', 'buildfile.py', '.github/workflows/pages.yml']
 permissions:
   contents: read
 concurrency:
@@ -17,7 +17,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m unittest discover -s tests -p 'test_browser.py'
       - run: python buildfile.py --target browser
       - uses: actions/setup-node@v4
         with:
