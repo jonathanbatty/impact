@@ -11,7 +11,7 @@
 
 ---
 
-[Introduction](#introduction) | [Installation](#installation) ([Stata](#stata) | [R](#r) | [Python](#python) | [TREs](#TREs)) | [Syntax](#syntax) | [Feedback](#feedback) | [Acknowledgements](#acknowledgements) | [Citation](#suggested-citation)
+[Introduction](#introduction) | [Code browser](#code-browser) | [Installation](#installation) ([Stata](#stata) | [R](#r) | [Python](#python) | [TREs](#TREs)) | [Syntax](#syntax) | [Feedback](#feedback) | [Acknowledgements](#acknowledgements) | [Citation](#suggested-citation)
 
 ---
 
@@ -60,10 +60,16 @@ Please note that all clinical coding data should be stored as strings so that le
 
 ### Codelists and definitions
 
-An interactive static code browser is available in [`browser/`](browser/README.md), with filters, search and CSV exports. See its README for local preview and GitHub Pages deployment instructions. Generate its data with `python buildfile.py --target browser`.
-
 The master codelist for IMPACT can be found at [`codelist/master_codelist.csv`](codelist/master_codelist.csv). The definition files for each of the `stata`, `R` and `python` packages are generated from this codelist.
 This codelist could be used to apply the IMPACT definitions to other software packages, or in situations in which custom packages cannot be installed.
+
+### Code browser
+
+The [IMPACT: Code Browser](https://jonathanbatty.github.io/impact/) provides an interactive way to explore the master codelist without installing Stata, R or Python. Browse by phenotype or long-term condition, search codes and descriptions, and filter by coding system, body system, condition type and sex.
+
+Matching results can be exported as a CSV containing all original columns, or as a list of distinct codes when a single coding system is selected. Exports include all matching rows across every results page. Filtered views can also be shared using the **Copy link** button.
+
+The browser data are generated from the same master codelist as the packages. For local preview, data regeneration and GitHub Pages deployment instructions, see the [code browser README](browser/README.md).
 
 ## Installation
 
