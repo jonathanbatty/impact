@@ -1,3 +1,4 @@
 !/.gitignore
 browser/data/
+browser/assets/
 __pycache__/

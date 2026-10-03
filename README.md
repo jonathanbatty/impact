@@ -65,7 +65,7 @@ This codelist could be used to apply the IMPACT definitions to other software pa
 
 ### Code browser
 
-The [IMPACT: Code Browser](https://jonathanbatty.github.io/impact/) provides an interactive way to explore the master codelist without installing Stata, R or Python. Browse by phenotype or long-term condition, search codes and descriptions, and filter by coding system, body system, condition type and sex.
+The [IMPACT Code Browser](https://jonathanbatty.github.io/impact/) provides an interactive way to explore the master codelist without installing Stata, R or Python. Browse by phenotype or long-term condition, search codes and descriptions, and filter by coding system, body system, condition type and sex.
 
 Matching results can be exported as a CSV containing all original columns, or as a list of distinct codes when a single coding system is selected. Exports include all matching rows across every results page. Filtered views can also be shared using the `Copy link` button.
 

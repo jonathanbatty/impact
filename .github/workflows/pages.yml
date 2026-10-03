@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['browser/**', 'codelist/master_codelist.csv', 'buildfile.py', '.github/workflows/pages.yml']
+    paths: ['browser/**', 'assets/*_logo.png', 'codelist/master_codelist.csv', 'buildfile.py', '.github/workflows/pages.yml']
 permissions:
   contents: read
 concurrency:

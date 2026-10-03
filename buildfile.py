@@ -478,6 +478,11 @@ def build_browser(master_path: Path = MASTER_CODELIST, output: Optional[Path] = 
     """
     output = output or ROOT / "browser" / "data"
     output.mkdir(parents=True, exist_ok=True)
+    # Stage shared logos inside the self-contained GitHub Pages artifact.
+    browser_assets = output.parent / "assets"
+    browser_assets.mkdir(parents=True, exist_ok=True)
+    for name in ("university_leeds_logo.png", "hyms_logo.png", "acu_logo.png", "university_manchester_logo.png"):
+        shutil.copyfile(ROOT / "assets" / name, browser_assets / name)
     groups = {}
     catalogue = {}
     with master_path.open(encoding="utf-8-sig", newline="") as source:
